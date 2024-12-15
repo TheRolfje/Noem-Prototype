@@ -1,0 +1,415 @@
+[gd_scene load_steps=31 format=3 uid="uid://cnxcbehk0elv1"]
+
+[ext_resource type="Script" path="res://Noem V1/noem_v_1.gd" id="1_5kxts"]
+[ext_resource type="Texture2D" uid="uid://csfnrn82vro3x" path="res://Noem V1/Sprites/Movimiento V1/Noem Spritesheet basico V1-3.png" id="2_24i53"]
+[ext_resource type="Animation" uid="uid://ebfrdosqoib" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Idle.res" id="3_nys80"]
+[ext_resource type="Texture2D" uid="uid://cpo83mlhxlnaq" path="res://Noem V1/Sprites/Noem Spritesheet basico V1-4 izq.png" id="4_wp6wr"]
+[ext_resource type="Animation" uid="uid://rto4joclywuh" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Transition.res" id="5_sut02"]
+[ext_resource type="Animation" uid="uid://cef6soik8i0hw" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Transition_Idle_Idle.res" id="6_fmrmg"]
+[ext_resource type="Animation" uid="uid://cl1h65tvgqpdj" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Transition_Idle_Walk.res" id="7_fs880"]
+[ext_resource type="Animation" uid="uid://cyjiyybar4vi4" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Transition_Idle_Walk_izq.res" id="8_txyrv"]
+[ext_resource type="Texture2D" uid="uid://cp58gnk8f2y3x" path="res://Noem V1/Sprites/Movimiento V1/Noem Spritesheet basico V1-2 IZQ.png" id="9_pf18j"]
+[ext_resource type="Animation" uid="uid://ob5v73o5a0pd" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Walk.res" id="10_ywdbh"]
+[ext_resource type="Script" path="res://Noem V1/Animaciones.gd" id="11_5toep"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://leohjmwux110" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Noem_Animation_StateMachine.tres" id="12_4biyo"]
+[ext_resource type="PackedScene" uid="uid://qg3n2iddtuy6" path="res://state_machine_2d.tscn" id="13_d0qma"]
+[ext_resource type="Script" path="res://Transition_from_idle.gd" id="14_t8aay"]
+[ext_resource type="Script" path="res://Transition_from_walk.gd" id="15_udxt5"]
+[ext_resource type="Script" path="res://Transition_idle_walk.gd" id="16_of3db"]
+[ext_resource type="Script" path="res://Desenfundar.gd" id="17_gw8eo"]
+[ext_resource type="Script" path="res://Descansando.gd" id="18_dtlh1"]
+[ext_resource type="Script" path="res://Control_of_player.gd" id="18_npnie"]
+
+[sub_resource type="Animation" id="Animation_wfcjj"]
+resource_name = "Idle_izq"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_wp6wr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_kviug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_24i53")]
+}
+
+[sub_resource type="Animation" id="Animation_ely50"]
+resource_name = "Transition_Idle_Idle_izq"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_wp6wr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31]
+}
+
+[sub_resource type="Animation" id="Animation_15ycj"]
+resource_name = "Transition_izq"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_pf18j")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 20, 21, 22, 23, 24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_52q8s"]
+resource_name = "Walk_izq"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_wp6wr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cahn"]
+_data = {
+"Idle": ExtResource("3_nys80"),
+"Idle_izq": SubResource("Animation_wfcjj"),
+"RESET": SubResource("Animation_kviug"),
+"Transition": ExtResource("5_sut02"),
+"Transition_Idle_Idle": ExtResource("6_fmrmg"),
+"Transition_Idle_Idle_izq": SubResource("Animation_ely50"),
+"Transition_Idle_Walk": ExtResource("7_fs880"),
+"Transition_Idle_Walk_izq": ExtResource("8_txyrv"),
+"Transition_izq": SubResource("Animation_15ycj"),
+"Walk": ExtResource("10_ywdbh"),
+"Walk_izq": SubResource("Animation_52q8s")
+}
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f12wn"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_y0fk7"]
+nodes/Noem_Animation_StateMachine/node = ExtResource("12_4biyo")
+nodes/Noem_Animation_StateMachine/position = Vector2(280, 360)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_f12wn")
+nodes/TimeScale/position = Vector2(818, 206)
+nodes/output/position = Vector2(1140, 240)
+node_connections = [&"TimeScale", 0, &"Noem_Animation_StateMachine", &"output", 0, &"TimeScale"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ny3vh"]
+radius = 8.0
+
+[sub_resource type="GDScript" id="GDScript_a4w13"]
+script/source = "extends Node2D
+
+var state_machine:Node2D
+var name_of_state:String
+var entity:CharacterBody2D
+
+var timer_para_descansar:Timer
+var timer_verdadero_idle:Timer
+
+var verdadero_idle:bool = true #comprueba que el jugador este realmente en idle o si solo se quedó quieto por x motivo
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	_assign_state_machine()
+	_add_state_to_the_machine()
+	
+	state_machine.assign_default_state(self)
+	entity = state_machine.Entity
+	
+	timer_para_descansar = $Descansar
+	timer_verdadero_idle = $Verdadero_idle
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func action():
+	entity.velocity.x = 0
+	
+	if(timer_para_descansar.is_stopped()):
+		timer_para_descansar.start()
+		
+	if(timer_verdadero_idle.is_stopped()):
+		timer_verdadero_idle.start()
+	
+	if(state_machine.old_state == \"WALK\" and !verdadero_idle):
+		#Resulta que cuando se pasa de \"walk\" a \"transition_from_walk\", al \"movement\" ser 0 en el tiempo
+		#entre que una tecla es soltada y la otra se aprieta, es posible que pase a \"Idle\" en vez de a la
+		#transición. Por suerte, ese tiempo donde \"movement\" es 0 es muy corto, por eso si el estado anterior
+		#era \"walk\" y se pasó a \"idle\", pero no se cumplió ese tiempo, se sabe que estamos en esa situación y 
+		#se pasa directamente a \"transition_from_walk\", simulando que jamás vino a \"idle\"
+		
+		timer_para_descansar.stop()
+		timer_verdadero_idle.stop()
+		state_machine.switch_state(\"TRANSITION_WALK\")
+	
+	
+	if(!_condition_of_permanence()):
+		timer_para_descansar.stop()
+		timer_verdadero_idle.stop()
+		#Si \"_condition_of_permanence()\" retorna false, se saldrá del estado
+		_transition_of_state()
+		pass
+
+func _transition_of_state():
+	var name_of_new_state:String
+	
+	#Programa las transiciones a otros estados.
+	#Asigna el nombre del nuevo estado a \"name_of_new_state\"
+	
+	state_machine.switch_state(name_of_new_state)
+	
+	pass
+
+func _assign_state_machine():
+	#Arrastra y añade la referencia al nodo State_Machine de la escena.
+	state_machine = $\"../..\"
+	
+
+func _add_state_to_the_machine():
+	#Dale un nombre a este estado, en mayusculas:
+	name_of_state = \"IDLE\"
+	state_machine.add_state(name_of_state, self)
+	
+func _condition_of_permanence():
+	#Reemplaza \"CONDICION\" por la condicion para permanecer en el estado
+	
+	if(state_machine.Entity.movement == 0):
+		return true
+	else:
+		return false
+	pass
+
+func _on_descansar_timeout():
+	state_machine.switch_state(\"DESCANSAR\")
+
+
+func _on_verdadero_idle_timeout():
+	verdadero_idle = true
+"
+
+[sub_resource type="GDScript" id="GDScript_ulrwj"]
+script/source = "extends Node2D
+
+var state_machine:Node2D
+var name_of_state:String
+var entity:CharacterBody2D
+var direction_int:int = 1
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	_assign_state_machine()
+	_add_state_to_the_machine()
+	
+	entity = state_machine.Entity
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func action():
+	entity.velocity.x = entity.movement * entity.speed
+	
+	if(!_condition_of_permanence()):
+		#Si \"_condition_of_permanence()\" retorna false, se saldrá del estado
+		_transition_of_state()
+		pass
+
+func _transition_of_state():
+	var name_of_new_state:String
+	
+	#Programa las transiciones a otros estados.
+	#Asigna el nombre del nuevo estado a \"name_of_new_state\"
+	
+	state_machine.switch_state(name_of_new_state)
+	
+	pass
+
+func _assign_state_machine():
+	#Arrastra y añade la referencia al nodo State_Machine de la escena.
+	state_machine = $\"../..\"
+
+func _add_state_to_the_machine():
+	#Dale un nombre a este estado, en mayusculas:
+	name_of_state = \"WALK\"
+	state_machine.add_state(name_of_state, self)
+	
+func _condition_of_permanence():
+	#Si movement es 1, la entidad se mueve hacia la derecha, si es -1, hacia la izquierda, si es 0, está quieta.
+	#Es necesario convertir la direccion de la entidad (un booleno) a int (1 o -1) para que pueda compararse.
+	#Si en algun momento el movimiento (1, -1, 0) no es igual a la direccion (convertida a int) que tiene la entidad,
+	#entonces la entidad habrá cambiado de dirección o estará quieta, en cualquier caso saldrá del estado de WALK
+	
+	_transform_entity_direction_to_int()
+	
+	if(entity.movement == direction_int):
+		return true
+	else:
+		return false
+	
+func _transform_entity_direction_to_int():
+	if(entity.direction):
+		direction_int = 1
+	else:
+		direction_int = -1
+"
+
+[node name="Noem_V2" type="CharacterBody2D"]
+position = Vector2(0, -19)
+script = ExtResource("1_5kxts")
+speed = 50
+metadata/_edit_group_ = true
+
+[node name="Sprite_Noem_V1" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("2_24i53")
+hframes = 16
+vframes = 3
+
+[node name="Animaciones" type="AnimationPlayer" parent="Sprite_Noem_V1"]
+libraries = {
+"": SubResource("AnimationLibrary_8cahn")
+}
+script = ExtResource("11_5toep")
+
+[node name="Control_de_animaciones" type="AnimationTree" parent="Sprite_Noem_V1"]
+active = false
+tree_root = SubResource("AnimationNodeBlendTree_y0fk7")
+anim_player = NodePath("../Animaciones")
+parameters/TimeScale/scale = 0.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_ny3vh")
+
+[node name="State_Machine" parent="." instance=ExtResource("13_d0qma")]
+
+[node name="Basic_Movement" type="Node" parent="State_Machine"]
+
+[node name="Idle" type="Node2D" parent="State_Machine/Basic_Movement"]
+position = Vector2(0, -19)
+script = SubResource("GDScript_a4w13")
+
+[node name="Descansar" type="Timer" parent="State_Machine/Basic_Movement/Idle"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Verdadero_idle" type="Timer" parent="State_Machine/Basic_Movement/Idle"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Walk" type="Node2D" parent="State_Machine/Basic_Movement"]
+position = Vector2(0, -19)
+script = SubResource("GDScript_ulrwj")
+
+[node name="Transition_from_idle" type="Node2D" parent="State_Machine/Basic_Movement"]
+position = Vector2(0, -19)
+script = ExtResource("14_t8aay")
+
+[node name="Transition_from_walk" type="Node2D" parent="State_Machine/Basic_Movement"]
+position = Vector2(0, -19)
+script = ExtResource("15_udxt5")
+
+[node name="Transition_idle_walk" type="Node2D" parent="State_Machine/Basic_Movement"]
+position = Vector2(0, -19)
+script = ExtResource("16_of3db")
+
+[node name="Desenfundar" type="Node2D" parent="State_Machine/Basic_Movement"]
+position = Vector2(0, -19)
+script = ExtResource("17_gw8eo")
+
+[node name="Descansando" type="Node2D" parent="State_Machine/Basic_Movement"]
+script = ExtResource("18_dtlh1")
+
+[node name="Control_of_player" type="Node2D" parent="."]
+script = ExtResource("18_npnie")
+
+[connection signal="timeout" from="State_Machine/Basic_Movement/Idle/Descansar" to="State_Machine/Basic_Movement/Idle" method="_on_descansar_timeout"]
+[connection signal="timeout" from="State_Machine/Basic_Movement/Idle/Verdadero_idle" to="State_Machine/Basic_Movement/Idle" method="_on_verdadero_idle_timeout"]
