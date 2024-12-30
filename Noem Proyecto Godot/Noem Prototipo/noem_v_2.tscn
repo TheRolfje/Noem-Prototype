@@ -233,7 +233,6 @@ func action():
 		timer_verdadero_idle.stop()
 		state_machine.switch_state(\"TRANSITION_WALK\")
 	
-	
 	if(!_condition_of_permanence()):
 		timer_para_descansar.stop()
 		timer_verdadero_idle.stop()
