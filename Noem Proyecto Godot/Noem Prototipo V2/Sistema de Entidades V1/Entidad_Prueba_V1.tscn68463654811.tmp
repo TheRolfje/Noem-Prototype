@@ -1,0 +1,65 @@
+[gd_scene load_steps=14 format=3 uid="uid://cc313ielffwpo"]
+
+[ext_resource type="Script" uid="uid://bukmchxswihd0" path="res://Sistema de Entidades V1/Entidad_de_Prueba.gd" id="1_mh20s"]
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_a2hvl"]
+[ext_resource type="Script" uid="uid://reeyn43do5we" path="res://Sistema de Entidades V1/data.gd" id="3_3l8d7"]
+[ext_resource type="Script" uid="uid://bifu6w4p8uico" path="res://Sistema de Entidades V1/idle.gd" id="4_30b8d"]
+[ext_resource type="Script" uid="uid://dyd67l4cim3ef" path="res://Sistema de Entidades V1/movement.gd" id="4_a2hvl"]
+[ext_resource type="Script" uid="uid://c06jrsalu6n65" path="res://Sistema de Entidades V1/walk.gd" id="5_o2e4n"]
+[ext_resource type="Script" uid="uid://bsykdwoinw4w2" path="res://Sistema de Entidades V1/run.gd" id="6_8frgj"]
+[ext_resource type="Script" uid="uid://dpaou152asclb" path="res://Sistema de Entidades V1/stealth.gd" id="7_71f5c"]
+[ext_resource type="Script" uid="uid://bwu8o5v4o8g18" path="res://Sistema de Entidades V1/a.gd" id="8_qvekk"]
+[ext_resource type="Script" uid="uid://c6y5xovyvfwgd" path="res://Sistema de Entidades V1/b.gd" id="9_mur6r"]
+[ext_resource type="Script" uid="uid://bgflfojdllcr8" path="res://Sistema de Entidades V1/control.gd" id="10_waedq"]
+[ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="11_a2hvl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_odgeb"]
+radius = 11.0
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_mh20s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_a2hvl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_odgeb")
+
+[node name="Data" type="Node" parent="."]
+script = ExtResource("3_3l8d7")
+
+[node name="Control" type="Node2D" parent="."]
+script = ExtResource("10_waedq")
+
+[node name="Control_of_Skills" type="Node2D" parent="."]
+
+[node name="Movement" type="Node2D" parent="Control_of_Skills"]
+script = ExtResource("4_a2hvl")
+
+[node name="Receiving_Damage" type="Node2D" parent="Control_of_Skills"]
+
+[node name="Die" type="Node2D" parent="Control_of_Skills"]
+
+[node name="Haling" type="Node2D" parent="Control_of_Skills"]
+
+[node name="State_Machine_2D" parent="." instance=ExtResource("11_a2hvl")]
+
+[node name="IDLE" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("4_30b8d")
+
+[node name="WALK" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("5_o2e4n")
+
+[node name="RUN" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("6_8frgj")
+
+[node name="STEALTH" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("7_71f5c")
+
+[node name="A" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("8_qvekk")
+
+[node name="B" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("9_mur6r")

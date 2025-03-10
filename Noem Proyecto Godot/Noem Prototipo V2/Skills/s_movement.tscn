@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckcbr1vraifgl"]
+
+[ext_resource type="Script" uid="uid://bmx88fqe7a104" path="res://Skills/s_movement.gd" id="1_cbupq"]
+
+[node name="S_Movement" type="Node2D"]
+script = ExtResource("1_cbupq")

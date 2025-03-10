@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://y6s137yqmmxv"]
+
+[ext_resource type="PackedScene" uid="uid://cc313ielffwpo" path="res://Sistema de Entidades V1/Noem_V1.tscn" id="1_amc4x"]
+[ext_resource type="PackedScene" uid="uid://f3kmj4rkfnhv" path="res://malba.tscn" id="3_xe7la"]
+
+[sub_resource type="GDScript" id="GDScript_hlh48"]
+script/source = "extends Node2D
+"
+
+[node name="Nivel de Prueba" type="Node2D"]
+script = SubResource("GDScript_hlh48")
+
+[node name="Noem" parent="." instance=ExtResource("1_amc4x")]
+position = Vector2(473, 260)
+scale = Vector2(3.96094, 3.61719)
+
+[node name="Malba" parent="." instance=ExtResource("3_xe7la")]
+position = Vector2(255, 310)
