@@ -1,9 +1,17 @@
 extends Node
 
+var noem:CharacterBody2D
+
 @export var walk_speed:float = 0
 @export var run_speed:float = 0
 
-var distancia_de_seguimiento:float = 150
+var distraida:bool = false
+
+enum Emociones {enojada, triste, asustada, feliz}
+var emocion_activa = Emociones.feliz
+
+var distancia_de_seguimiento_max:float = 100
+var distancia_de_seguimiento_min:float = 90
 
 var direction_look:Vector2
 #Contempla mirar hacia la derecha e izquierda (x),

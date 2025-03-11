@@ -2,7 +2,7 @@ extends Node2D
 
 class_name State_2D
 
-var state_machine:Node2D = null
+var state_machine:State_Machine = null
 var entity:CharacterBody2D = null
 var data:Node = null
 
@@ -17,6 +17,11 @@ func _add_state_to_the_machine(name_of_state:String, state:State_2D):
 
 func action():
 	assert(false, "¡El método 'action()' debe ser sobrescrito en la subclase!")
+	
+func action_of_end():
+	#sobreescribe cuando quieras que el estado haga algo antes de ser cambiado.
+	#Esta función se llama al salir del estado.
+	pass
 
 func add_a_state_to_which_I_can_travel(name_new_state:String):
 	#La State Machine usará esta función para agregar un destino nuevo.

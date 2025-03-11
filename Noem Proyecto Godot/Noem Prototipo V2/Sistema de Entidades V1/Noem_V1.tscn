@@ -33,7 +33,7 @@ shape = SubResource("CapsuleShape2D_odgeb")
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource("3_3l8d7")
-walk_speed = 100.0
+walk_speed = 200.0
 run_speed = 1000.0
 
 [node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("Entity", "state_machine", "data")]

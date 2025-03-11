@@ -10,9 +10,8 @@ script/source = "extends Node2D
 [node name="Nivel de Prueba" type="Node2D"]
 script = SubResource("GDScript_hlh48")
 
-[node name="Noem" parent="." instance=ExtResource("1_amc4x")]
-position = Vector2(473, 260)
-scale = Vector2(3.96094, 3.61719)
-
 [node name="Malba" parent="." instance=ExtResource("3_xe7la")]
 position = Vector2(255, 310)
+
+[node name="Noem" parent="." instance=ExtResource("1_amc4x")]
+position = Vector2(379, 317)

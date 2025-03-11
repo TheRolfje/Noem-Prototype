@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name State_Machine
+
 var active_state:State_2D #Es necesario que sea un Node2D porque se usará su metodo "Action"
 var old_state:String
 
@@ -51,6 +53,8 @@ func _switch_state(name_of_new_active_state:String):
 	#Registra el estado activo como old_state y luego busca la clave del nuevo
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
+		action_end_of_active_state()
+		
 		old_state = active_state.name_of_state
 		active_state = States_in_the_Machine[name_of_new_active_state]
 		#print("Estado cambiado a: ", active_state.name_of_state)
@@ -104,6 +108,9 @@ func action_of_active_state():
 	#Ejecuta la acción del estado activo.
 	active_state.action()
 	
+func action_end_of_active_state():
+	active_state.action_of_end()
+
 func assign_default_state(state:State_2D):
 	#Asigna un estado como estado por default de la entidad. Normalmente IDLE.
 	active_state = state

@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://f3kmj4rkfnhv"]
+[gd_scene load_steps=13 format=3 uid="uid://f3kmj4rkfnhv"]
 
 [ext_resource type="Script" uid="uid://d2etw2vgekydo" path="res://malba.gd" id="1_p86lk"]
 [ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="1_rjylw"]
 [ext_resource type="Script" uid="uid://cjtc8olnufnjf" path="res://data.gd" id="3_aib0v"]
 [ext_resource type="Script" uid="uid://bxk8ukbufpwj1" path="res://control.gd" id="4_aib0v"]
 [ext_resource type="PackedScene" uid="uid://ckcbr1vraifgl" path="res://Skills/s_movement.tscn" id="4_fq3h5"]
+[ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="6_fq3h5"]
+[ext_resource type="Script" uid="uid://b8fwqp31jpiiy" path="res://seguir_noem.gd" id="7_657f3"]
+[ext_resource type="Script" uid="uid://d0kfpw33ims5c" path="res://inactivo.gd" id="8_6ugjy"]
+[ext_resource type="Script" uid="uid://ctepmktan05w6" path="res://idle.gd" id="9_eqjtp"]
+[ext_resource type="Script" uid="uid://d06s1pk60ivk3" path="res://walk.gd" id="10_atsdh"]
+[ext_resource type="Script" uid="uid://twth3qy15ye4" path="res://run.gd" id="11_6t4dd"]
+[ext_resource type="Script" uid="uid://bfpdwk2myqgqc" path="res://distraida.gd" id="12_48rat"]
 
 [node name="Malba" type="CharacterBody2D"]
 script = ExtResource("1_p86lk")
@@ -17,12 +24,48 @@ texture = ExtResource("1_rjylw")
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource("3_aib0v")
-walk_speed = 100.0
+walk_speed = 200.0
+run_speed = 800.0
 
-[node name="Control" type="Node2D" parent="."]
+[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("data", "state_machine")]
 script = ExtResource("4_aib0v")
+data = NodePath("../Data")
+state_machine = NodePath("../S_M_Comportamientos")
 
 [node name="Control_of_Skills" type="Node2D" parent="."]
 
 [node name="S_Movement" parent="Control_of_Skills" node_paths=PackedStringArray("data") instance=ExtResource("4_fq3h5")]
 data = NodePath("../../Data")
+
+[node name="S_M_Comportamientos" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data") instance=ExtResource("6_fq3h5")]
+Entity = NodePath("..")
+Control_Skills = NodePath("../Control_of_Skills")
+Data = NodePath("../Data")
+
+[node name="Esperando_Nodo_Noem" type="Node2D" parent="S_M_Comportamientos"]
+script = ExtResource("8_6ugjy")
+
+[node name="Seguir_Noem" type="Node2D" parent="S_M_Comportamientos" node_paths=PackedStringArray("movimiento")]
+script = ExtResource("7_657f3")
+movimiento = NodePath("../../Control_of_Skills/S_Movement")
+
+[node name="S_M_Acciones" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data") instance=ExtResource("6_fq3h5")]
+Entity = NodePath("..")
+Control_Skills = NodePath("../Control_of_Skills")
+Data = NodePath("../Data")
+
+[node name="IDLE" type="Node2D" parent="S_M_Acciones"]
+script = ExtResource("9_eqjtp")
+
+[node name="WALK" type="Node2D" parent="S_M_Acciones"]
+script = ExtResource("10_atsdh")
+
+[node name="T_distraida" type="Timer" parent="S_M_Acciones/WALK"]
+
+[node name="RUN" type="Node2D" parent="S_M_Acciones"]
+script = ExtResource("11_6t4dd")
+
+[node name="DISTRAIDA" type="Node2D" parent="S_M_Acciones"]
+script = ExtResource("12_48rat")
+
+[connection signal="timeout" from="S_M_Acciones/WALK/T_distraida" to="S_M_Acciones/WALK" method="_on_t_distraida_timeout"]
