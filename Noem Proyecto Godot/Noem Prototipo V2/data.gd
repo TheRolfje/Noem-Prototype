@@ -6,6 +6,7 @@ var noem:CharacterBody2D
 @export var run_speed:float = 0
 
 var distraida:bool = false
+var direccion_distraida:int
 
 enum Emociones {enojada, triste, asustada, feliz}
 var emocion_activa = Emociones.feliz

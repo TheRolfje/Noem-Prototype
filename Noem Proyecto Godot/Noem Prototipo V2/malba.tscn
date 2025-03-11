@@ -61,11 +61,16 @@ script = ExtResource("9_eqjtp")
 script = ExtResource("10_atsdh")
 
 [node name="T_distraida" type="Timer" parent="S_M_Acciones/WALK"]
+wait_time = 2.0
 
 [node name="RUN" type="Node2D" parent="S_M_Acciones"]
 script = ExtResource("11_6t4dd")
 
 [node name="DISTRAIDA" type="Node2D" parent="S_M_Acciones"]
 script = ExtResource("12_48rat")
+walk_speed_distraida = 100.0
+
+[node name="Timer" type="Timer" parent="S_M_Acciones/DISTRAIDA"]
 
 [connection signal="timeout" from="S_M_Acciones/WALK/T_distraida" to="S_M_Acciones/WALK" method="_on_t_distraida_timeout"]
+[connection signal="timeout" from="S_M_Acciones/DISTRAIDA/Timer" to="S_M_Acciones/DISTRAIDA" method="_on_timer_timeout"]

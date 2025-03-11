@@ -4,7 +4,7 @@ var movimiento:Node2D
 var t_distraida:Timer
 
 func _ready():
-	name_of_state = "STATE"
+	name_of_state = "WALK"
 	state_machine = $".." 
 	entity = self.owner
 	data = state_machine.Data
@@ -18,10 +18,18 @@ func action():
 	
 	movimiento.walk()
 	
-	pass
+	if(t_distraida.is_stopped()):
+		t_distraida.start()
+	
+	if(data.distraida):
+		data.direccion_distraida = data.direction_movement.x
+		state_machine._switch_state("DISTRAIDA")
+	
 		
 
+func action_of_end():
+	t_distraida.stop()
 
 
 func _on_t_distraida_timeout() -> void:
-	pass # Replace with function body.
+	data.distraida = true

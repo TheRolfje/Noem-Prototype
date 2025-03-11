@@ -16,5 +16,5 @@ func _ready() -> void:
 	travel_to_state.connect(state_machine.new_state_signal)
 
 func _process(delta: float) -> void:
-	if(data.noem != null):
+	if(data.noem != null and state_machine.active_state.name_of_state != "SEGUIR_A_NOEM"):
 		emit_signal("travel_to_state", "SEGUIR_A_NOEM")

@@ -33,13 +33,11 @@ func action():
 		
 	data.set_direction_move_x(direccion_hacia_noem)
 	
-	
-	if(distancia_hasta_noem > data.distancia_de_seguimiento_max):
-		if(sm_acciones.active_state.name_of_state != "DISTRAIDA"):
+	if(sm_acciones.active_state.name_of_state != "DISTRAIDA"):
+		if(distancia_hasta_noem > data.distancia_de_seguimiento_max):	
 			emit_signal("travel_to_state", "RUN")
-	elif(distancia_hasta_noem < data.distancia_de_seguimiento_min):
-		if(sm_acciones.active_state.name_of_state != "DISTRAIDA"):
+		elif(distancia_hasta_noem < data.distancia_de_seguimiento_min):
 			emit_signal("travel_to_state", "IDLE")
-	else:
-		emit_signal("travel_to_state", "WALK")
+		else:
+			emit_signal("travel_to_state", "WALK")
 	
