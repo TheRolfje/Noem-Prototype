@@ -11,7 +11,6 @@ signal travel_to_state(new_state:String)
 func _ready() -> void:
 	malba = self.owner
 	movimiento = $"../Control_of_Skills/S_Movement"
-	data = $"../Data"
 	
 	travel_to_state.connect(state_machine.new_state_signal)
 

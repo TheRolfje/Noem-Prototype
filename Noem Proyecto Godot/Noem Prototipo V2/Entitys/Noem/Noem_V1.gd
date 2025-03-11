@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var state_machine:Node2D
+@export var sm_acciones:Node2D
 @export var data:Node
 
 func _ready():
@@ -8,6 +8,6 @@ func _ready():
 
 func _physics_process(delta):
 	
-	state_machine.action_of_active_state()
+	sm_acciones.action_of_active_state()
 
 	move_and_slide()

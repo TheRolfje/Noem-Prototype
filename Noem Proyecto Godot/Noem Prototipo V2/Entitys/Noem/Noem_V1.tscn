@@ -1,0 +1,118 @@
+[gd_scene load_steps=16 format=3 uid="uid://cc313ielffwpo"]
+
+[ext_resource type="Script" uid="uid://bukmchxswihd0" path="res://Entitys/Noem/Noem_V1.gd" id="1_mh20s"]
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_a2hvl"]
+[ext_resource type="Script" uid="uid://reeyn43do5we" path="res://Entitys/Noem/data.gd" id="3_3l8d7"]
+[ext_resource type="Script" uid="uid://bifu6w4p8uico" path="res://Entitys/Noem/States_action/idle.gd" id="4_30b8d"]
+[ext_resource type="PackedScene" uid="uid://ckcbr1vraifgl" path="res://Skills/s_movement.tscn" id="5_30b8d"]
+[ext_resource type="PackedScene" uid="uid://blhm488h600g2" path="res://Skills/s_interaction.tscn" id="5_e8ciq"]
+[ext_resource type="Script" uid="uid://c06jrsalu6n65" path="res://Entitys/Noem/States_action/walk.gd" id="5_o2e4n"]
+[ext_resource type="Script" uid="uid://bsykdwoinw4w2" path="res://Entitys/Noem/States_action/run.gd" id="6_8frgj"]
+[ext_resource type="Script" uid="uid://dpaou152asclb" path="res://Entitys/Noem/States_action/stealth.gd" id="7_71f5c"]
+[ext_resource type="Script" uid="uid://bgflfojdllcr8" path="res://Entitys/Noem/control.gd" id="10_waedq"]
+[ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="11_a2hvl"]
+[ext_resource type="Script" uid="uid://11e02soux7l0" path="res://Entitys/Noem/States_action/reposo.gd" id="13_30b8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78ybp"]
+size = Vector2(44, 45)
+
+[sub_resource type="GDScript" id="GDScript_78ybp"]
+script/source = "extends State_2D
+
+@export var combat:Node2D
+
+func _ready():
+	name_of_state = \"TAKE_DAMAGE\"
+	state_machine = $\"..\"
+	entity = state_machine.Entity
+
+	_add_state_to_the_machine(name_of_state, self)
+
+func action():
+	combat.take_damage()
+	print(entity.data.health)
+	state_machine._switch_state(state_machine.old_state)
+		
+"
+
+[sub_resource type="GDScript" id="GDScript_e8ciq"]
+script/source = "extends State_2D
+
+func _ready():
+	name_of_state = \"B\"
+	state_machine = $\"..\"
+	entity = state_machine.Entity
+
+	states_to_which_I_can_travel = [\"A\"]
+	states_that_can_travel_to_me = [\"A\"]
+
+	_add_state_to_the_machine(name_of_state, self)
+
+func action():
+	print(\"Estoy en B\")
+		
+"
+
+[node name="Noem" type="CharacterBody2D" node_paths=PackedStringArray("sm_acciones", "data")]
+script = ExtResource("1_mh20s")
+sm_acciones = NodePath("State_Machine_2D")
+data = NodePath("Data")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.363281, 0.367188)
+texture = ExtResource("2_a2hvl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_78ybp")
+
+[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("Entity", "state_machine", "data")]
+script = ExtResource("10_waedq")
+Entity = NodePath("..")
+state_machine = NodePath("../State_Machine_2D")
+data = NodePath("../Data")
+
+[node name="Control_of_Skills" type="Node2D" parent="."]
+
+[node name="S_Movement" parent="Control_of_Skills" node_paths=PackedStringArray("data") instance=ExtResource("5_30b8d")]
+data = NodePath("../../Data")
+
+[node name="s_combat" parent="Control_of_Skills" node_paths=PackedStringArray("data") instance=ExtResource("5_e8ciq")]
+data = NodePath("../../Data")
+
+[node name="State_Machine_2D" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data") instance=ExtResource("11_a2hvl")]
+Entity = NodePath("..")
+Control_Skills = NodePath("../Control_of_Skills")
+Data = NodePath("../Data")
+
+[node name="IDLE" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("4_30b8d")
+
+[node name="WALK" type="Node2D" parent="State_Machine_2D" node_paths=PackedStringArray("movimiento")]
+script = ExtResource("5_o2e4n")
+movimiento = NodePath("../../Control_of_Skills/S_Movement")
+
+[node name="RUN" type="Node2D" parent="State_Machine_2D" node_paths=PackedStringArray("movimiento")]
+script = ExtResource("6_8frgj")
+movimiento = NodePath("../../Control_of_Skills/S_Movement")
+
+[node name="STEALTH" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("7_71f5c")
+
+[node name="Take_Damage" type="Node2D" parent="State_Machine_2D" node_paths=PackedStringArray("combat")]
+script = SubResource("GDScript_78ybp")
+combat = NodePath("../../Control_of_Skills/s_combat")
+
+[node name="B" type="Node2D" parent="State_Machine_2D"]
+script = SubResource("GDScript_e8ciq")
+
+[node name="Reposo" type="Node2D" parent="State_Machine_2D"]
+script = ExtResource("13_30b8d")
+
+[node name="Data" type="Node" parent="."]
+script = ExtResource("3_3l8d7")
+walk_speed = 200.0
+run_speed = 1000.0
+health = 300
+damage = 100

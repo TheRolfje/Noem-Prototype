@@ -1,25 +1,21 @@
 extends Node
 
-var noem:CharacterBody2D
+class_name data_humanoid
 
 @export var walk_speed:float = 0
 @export var run_speed:float = 0
+@export var health:int = 1
+@export var damage:int = 0
 
-var distraida:bool = false
-var direccion_distraida:int
+var attack_received:object_attack = null
+var objetivo_atacado:CharacterBody2D = null
 
-enum Emociones {enojada, triste, asustada, feliz}
-var emocion_activa = Emociones.feliz
-
-var distancia_de_seguimiento_max:float = 100
-var distancia_de_seguimiento_min:float = 90
-
-var direction_look:Vector2
+var direction_look:Vector2 = Vector2.RIGHT
 #Contempla mirar hacia la derecha e izquierda (x),
 #arriba y abajo (y)
 #y en diagonal (x,y)
 
-var direction_movement:Vector2
+var direction_movement:Vector2 = Vector2.RIGHT
 
 func set_direction_move(dir:Vector2):
 	direction_movement = dir

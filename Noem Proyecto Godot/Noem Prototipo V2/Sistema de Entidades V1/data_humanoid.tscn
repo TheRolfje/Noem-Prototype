@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://caf0v3rvv2nhu"]
+
+[ext_resource type="Script" uid="uid://coevkvcluqumc" path="res://Sistema de Entidades V1/data_humanoid_entity.gd" id="1_1fy07"]
+
+[node name="Data_Humanoid" type="Node"]
+script = ExtResource("1_1fy07")

@@ -1,7 +1,7 @@
 extends State_2D
 
 func _ready():
-	name_of_state = "STATE"
+	name_of_state = "COMBATIR"
 	state_machine = $".." 
 	entity = self.owner
 	data = state_machine.Data

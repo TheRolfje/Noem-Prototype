@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blhm488h600g2"]
+
+[ext_resource type="Script" uid="uid://2wxe4ciwr8ui" path="res://Skills/s_combat.gd" id="1_dy3jp"]
+
+[node name="s_combat" type="Node2D"]
+script = ExtResource("1_dy3jp")
