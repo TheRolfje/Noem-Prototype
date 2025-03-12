@@ -25,6 +25,7 @@ func _ready():
 	name_of_state = \"TAKE_DAMAGE\"
 	state_machine = $\"..\"
 	entity = state_machine.Entity
+	data = state_machine.Data
 
 	_add_state_to_the_machine(name_of_state, self)
 
@@ -32,6 +33,9 @@ func action():
 	combat.take_damage()
 	print(entity.data.health)
 	state_machine._switch_state(state_machine.old_state)
+	
+func action_of_end():
+	data.continue_the_process = true
 		
 "
 

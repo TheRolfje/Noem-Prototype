@@ -16,7 +16,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(data.player_detected):
+	if(data.combatir):
+		emit_signal("travel_to_state", "COMBATIR")
+	elif(data.player_detected):
 		emit_signal("travel_to_state", "PERSEGUIR")
 	else:
 		emit_signal("travel_to_state", "PATRULLAR")
@@ -31,3 +33,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if(body.is_in_group("Noem")):
 		data.player_detected = false
+
+
+func _on_area_de_ataque_body_entered(body: Node2D) -> void:
+	if(body.is_in_group("Noem")):
+		data.objetivo_atacado = body
+		data.combatir = true
+
+
+func _on_area_de_ataque_body_exited(body: Node2D) -> void:
+	if(data.objetivo_atacado == body):
+		data.combatir = false
