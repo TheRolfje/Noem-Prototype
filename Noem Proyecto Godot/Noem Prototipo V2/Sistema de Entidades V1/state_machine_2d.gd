@@ -10,7 +10,7 @@ var check_if_the_status_is_valid:bool = false
 
 @export var Entity:CharacterBody2D
 @export var Control_Skills:Node2D
-@export var Data:Node
+@export var Data:Data_class
 
 var cant_of_childs:int = 0
 
@@ -21,6 +21,17 @@ var States_whit_pending_connections:Array = []
 func _ready():
 	#Guarda la ruta de la entidad en una variable para que los estados la usen.
 	Entity = self.owner
+	
+func interruption_is_valid(name_of_interruption:String):
+	if(active_state.name_of_state != name_of_interruption):
+		if(!name_of_interruption in active_state.interruptions_not_allowed):
+			return true
+		else:
+			return false
+			
+	
+	
+	return true
 	
 func new_state_signal(name_of_state:String): #Cambiar nombre
 	#Recibe una señal desde fuera con el nombre del estado al que se quiere cambiar.

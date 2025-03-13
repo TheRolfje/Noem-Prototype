@@ -20,14 +20,3 @@ func action():
 			
 		emit_signal("travel_to_state", "RUN")
 		
-
-
-func _on_area_de_ataque_body_entered(body: Node2D) -> void:
-	if(body.is_in_group("Noem")):
-		data.objetivo_atacado = body
-		emit_signal("travel_to_state", "ATACAR")
-
-
-func _on_area_de_ataque_body_exited(body: Node2D) -> void:
-	if(body == data.objetivo_atacado):
-		emit_signal("travel_to_state", "RUN")

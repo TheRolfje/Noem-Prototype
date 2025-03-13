@@ -1,6 +1,8 @@
-extends Node
+extends Data_class
 
 class_name data_humanoid
+
+var continue_the_process:bool = true
 
 @export var walk_speed:float = 0
 @export var run_speed:float = 0

@@ -115,5 +115,5 @@ shape = SubResource("RectangleShape2D_53p5i")
 [connection signal="timeout" from="SM_acciones/Atacar/Timer" to="SM_acciones/Atacar" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area_de_Deteccion" to="Control" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area_de_Deteccion" to="Control" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="Area_De_Ataque" to="SM_comportamientos/Perseguir" method="_on_area_de_ataque_body_entered"]
-[connection signal="body_exited" from="Area_De_Ataque" to="SM_comportamientos/Perseguir" method="_on_area_de_ataque_body_exited"]
+[connection signal="body_entered" from="Area_De_Ataque" to="Control" method="_on_area_de_ataque_body_entered"]
+[connection signal="body_exited" from="Area_De_Ataque" to="Control" method="_on_area_de_ataque_body_exited"]
