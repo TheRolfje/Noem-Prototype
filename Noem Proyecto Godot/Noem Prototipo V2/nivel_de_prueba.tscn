@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://du3dg4aqro84w"]
+[gd_scene load_steps=4 format=3 uid="uid://du3dg4aqro84w"]
 
-[ext_resource type="PackedScene" uid="uid://cc313ielffwpo" path="res://Entitys/Noem/Noem_V1.tscn" id="1_amc4x"]
 [ext_resource type="PackedScene" uid="uid://ef04eq62jljj" path="res://Entitys/Enemy_V1/enemy_v_1.tscn" id="3_5mnk7"]
 [ext_resource type="PackedScene" uid="uid://f3kmj4rkfnhv" path="res://Entitys/Malba/malba.tscn" id="3_xe7la"]
 
@@ -14,12 +13,5 @@ script = SubResource("GDScript_hlh48")
 [node name="Malba" parent="." instance=ExtResource("3_xe7la")]
 position = Vector2(255, 310)
 
-[node name="Noem" parent="." instance=ExtResource("1_amc4x")]
-position = Vector2(379, 317)
-
-[node name="Camera2D" type="Camera2D" parent="Noem"]
-position = Vector2(2, 3)
-position_smoothing_enabled = true
-
 [node name="Enemy_V1" parent="." instance=ExtResource("3_5mnk7")]
-position = Vector2(1066, 319)
+position = Vector2(449, 313)

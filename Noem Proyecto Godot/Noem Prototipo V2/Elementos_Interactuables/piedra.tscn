@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://pps6afb6esdk"]
+
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="1_8mme4"]
+[ext_resource type="Script" uid="uid://brls52fetmgta" path="res://Elementos_Interactuables/piedra.gd" id="1_tlqig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlqig"]
+radius = 6.0
+
+[node name="Piedra" type="RigidBody2D"]
+constant_force = Vector2(10, 0)
+script = ExtResource("1_tlqig")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.101563, 0.0820313)
+texture = ExtResource("1_8mme4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tlqig")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+monitorable = false

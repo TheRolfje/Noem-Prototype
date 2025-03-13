@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f3kmj4rkfnhv"]
+[gd_scene load_steps=17 format=3 uid="uid://f3kmj4rkfnhv"]
 
 [ext_resource type="Script" uid="uid://d2etw2vgekydo" path="res://Entitys/Malba/malba.gd" id="1_p86lk"]
 [ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="1_rjylw"]
@@ -7,11 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://ckcbr1vraifgl" path="res://Skills/s_movement.tscn" id="4_fq3h5"]
 [ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="6_fq3h5"]
 [ext_resource type="Script" uid="uid://b8fwqp31jpiiy" path="res://Entitys/Malba/States_comportamiento/seguir_noem.gd" id="7_657f3"]
+[ext_resource type="Script" uid="uid://r5lvnjw62rs0" path="res://Entitys/Malba/combate.gd" id="8_1sifr"]
 [ext_resource type="Script" uid="uid://d0kfpw33ims5c" path="res://Entitys/Malba/States_comportamiento/inactivo.gd" id="8_6ugjy"]
 [ext_resource type="Script" uid="uid://ctepmktan05w6" path="res://Entitys/Malba/States_action/idle.gd" id="9_eqjtp"]
 [ext_resource type="Script" uid="uid://d06s1pk60ivk3" path="res://Entitys/Malba/States_action/walk.gd" id="10_atsdh"]
 [ext_resource type="Script" uid="uid://twth3qy15ye4" path="res://Entitys/Malba/States_action/run.gd" id="11_6t4dd"]
 [ext_resource type="Script" uid="uid://bfpdwk2myqgqc" path="res://Entitys/Malba/States_action/distraida.gd" id="12_48rat"]
+[ext_resource type="Script" uid="uid://f3jep6qc4i0d" path="res://Entitys/Malba/cubrirse.gd" id="13_a5bxt"]
+[ext_resource type="Script" uid="uid://cnuwaftuvtdql" path="res://Entitys/Malba/lanzar_piedra.gd" id="14_wdovy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5bxt"]
+size = Vector2(416, 20)
 
 [node name="Malba" type="CharacterBody2D" node_paths=PackedStringArray("control", "data", "sm_comportamientos")]
 script = ExtResource("1_p86lk")
@@ -47,6 +53,10 @@ script = ExtResource("8_6ugjy")
 script = ExtResource("7_657f3")
 movimiento = NodePath("../../Control_of_Skills/S_Movement")
 
+[node name="Combate" type="Node2D" parent="S_M_Comportamientos" node_paths=PackedStringArray("sm_acciones")]
+script = ExtResource("8_1sifr")
+sm_acciones = NodePath("../../S_M_Acciones")
+
 [node name="S_M_Acciones" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data") instance=ExtResource("6_fq3h5")]
 Entity = NodePath("..")
 Control_Skills = NodePath("../Control_of_Skills")
@@ -70,12 +80,29 @@ walk_speed_distraida = 100.0
 
 [node name="Timer" type="Timer" parent="S_M_Acciones/DISTRAIDA"]
 
+[node name="Cubrirse" type="Node2D" parent="S_M_Acciones"]
+script = ExtResource("13_a5bxt")
+
+[node name="Lanzar_piedra" type="Node2D" parent="S_M_Acciones"]
+script = ExtResource("14_wdovy")
+
+[node name="Timer" type="Timer" parent="S_M_Acciones/Lanzar_piedra"]
+
 [node name="Data" type="Node" parent="."]
 script = ExtResource("3_aib0v")
+entity_name = "Malba"
 walk_speed = 200.0
 run_speed = 800.0
 health = 100
 damage = 10
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_a5bxt")
+
 [connection signal="timeout" from="S_M_Acciones/WALK/T_distraida" to="S_M_Acciones/WALK" method="_on_t_distraida_timeout"]
 [connection signal="timeout" from="S_M_Acciones/DISTRAIDA/Timer" to="S_M_Acciones/DISTRAIDA" method="_on_timer_timeout"]
+[connection signal="timeout" from="S_M_Acciones/Lanzar_piedra/Timer" to="S_M_Acciones/Lanzar_piedra" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="Control" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Control" method="_on_area_2d_body_exited"]

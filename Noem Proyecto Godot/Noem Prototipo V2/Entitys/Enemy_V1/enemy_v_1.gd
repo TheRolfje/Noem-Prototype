@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	add_to_group("Enemy")
 	
 func _physics_process(delta: float) -> void:
 	SM_comportamientos.active_state.action()

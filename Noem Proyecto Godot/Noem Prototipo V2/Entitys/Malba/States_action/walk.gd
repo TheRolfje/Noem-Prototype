@@ -18,14 +18,13 @@ func action():
 	
 	movimiento.walk()
 	
-	if(t_distraida.is_stopped()):
-		t_distraida.start()
-	
-	if(data.distraida):
-		data.direccion_distraida = data.direction_movement.x
-		state_machine._switch_state("DISTRAIDA")
-	
+	if(data.active_amotion == data.emotions.HAPPY):
+		if(t_distraida.is_stopped()):
+			t_distraida.start()
 		
+		if(data.distraida):
+			data.direccion_distraida = data.direction_movement.x
+			state_machine._switch_state("DISTRAIDA")
 
 func action_of_end():
 	t_distraida.stop()

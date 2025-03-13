@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pejx1kd6a1yp"]
+
+[ext_resource type="PackedScene" uid="uid://pps6afb6esdk" path="res://Elementos_Interactuables/piedra.tscn" id="1_k3cs0"]
+
+[node name="Sala de Pruebas 2" type="Node2D"]
+
+[node name="Piedra" parent="." instance=ExtResource("1_k3cs0")]
+position = Vector2(275, 287)

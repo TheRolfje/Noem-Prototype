@@ -4,10 +4,15 @@ class_name data_humanoid
 
 var continue_the_process:bool = true
 
+@export var entity_name:String = "entity"
+
 @export var walk_speed:float = 0
 @export var run_speed:float = 0
 @export var health:int = 1
 @export var damage:int = 0
+
+enum emotions {HAPPY,ANGRY,FEAR, NEUTRAL}
+var active_amotion:emotions = emotions.NEUTRAL
 
 var attack_received:object_attack = null
 var objetivo_atacado:CharacterBody2D = null

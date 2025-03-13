@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc1ukkvlmv0q3"]
+
+[ext_resource type="Script" uid="uid://uls5e13wxxw0" path="res://Elementos_Interactuables/roca.gd" id="1_bkn7s"]
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="1_vtw7s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bkn7s"]
+radius = 4.0
+
+[node name="Roca" type="Area2D"]
+script = ExtResource("1_bkn7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0664063, 0.0585938)
+texture = ExtResource("1_vtw7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bkn7s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -55,7 +55,6 @@ script = ExtResource("6_5o0qu")
 sm_acciones = NodePath("../../SM_acciones")
 
 [node name="Timer" type="Timer" parent="SM_comportamientos/Patrullar"]
-wait_time = 2.0
 autostart = true
 
 [node name="Combatir" type="Node2D" parent="SM_comportamientos"]
@@ -96,6 +95,7 @@ data = NodePath("../../Data")
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource("7_cu20q")
+entity_name = "Enemy"
 walk_speed = 200.0
 run_speed = 900.0
 health = 200

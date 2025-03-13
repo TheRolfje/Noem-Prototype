@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://byuwaq2hch8n"]
+
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="1_tr26q"]
+
+[node name="Cumulo_de_piedras" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.710938, 0.164063)
+texture = ExtResource("1_tr26q")

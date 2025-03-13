@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var data:Node
+@export var data:data_enemy_v1
 @export var sm_comportamientos:Node2D
 
 var entity:CharacterBody2D

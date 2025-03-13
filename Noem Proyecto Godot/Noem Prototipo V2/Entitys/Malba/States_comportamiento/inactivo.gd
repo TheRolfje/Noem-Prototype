@@ -23,7 +23,8 @@ func action():
 	
 	emit_signal("travel_to_state", "IDLE")
 	#Reproduce la animación de Idle mientras el nodo de Noem aparece
-	var noem_group = get_tree().get_nodes_in_group("Noem")  # Busca nodos en el grupo "jugador"
-	if noem_group.size() > 0:
-		data.noem = noem_group[0]  # Asigna la referencia al primer jugador encontrado
+	if(data.noem == null):
+		var noem_group = get_tree().get_nodes_in_group("Noem")  # Busca nodos en el grupo "jugador"
+		if noem_group.size() > 0:
+			data.noem = noem_group[0]  # Asigna la referencia al primer jugador encontrado
 		
