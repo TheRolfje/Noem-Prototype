@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://11e02soux7l0" path="res://Entitys/Noem/States_action/reposo.gd" id="13_30b8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78ybp"]
-size = Vector2(44, 45)
+size = Vector2(6, 5.5)
 
 [sub_resource type="GDScript" id="GDScript_78ybp"]
 script/source = "extends State_2D
@@ -62,7 +62,7 @@ sm_acciones = NodePath("State_Machine_2D")
 data = NodePath("Data")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.363281, 0.367188)
+scale = Vector2(0.064453, 0.058594)
 texture = ExtResource("2_a2hvl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
