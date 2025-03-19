@@ -9,6 +9,8 @@ func _ready():
 	state_machine = $".." 
 	entity = self.owner
 	data = state_machine.Data
+	animations = state_machine.Animations
+
 	
 	travel_to_state.connect(sm_acciones.new_state_signal)
 	

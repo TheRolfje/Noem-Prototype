@@ -13,6 +13,7 @@ func _ready():
 	state_machine = $".."
 	entity = state_machine.Entity
 	data = state_machine.Data
+	animations = state_machine.Animations
 	
 	t_piedra = $piedra
 	t_tropiezo = $tropiezo
@@ -26,7 +27,12 @@ func _ready():
 	_add_state_to_the_machine(name_of_state, self)
 
 func action():
-	data.direction_look = data.direction_movement
+	if(data.direction_look.x >= 0):
+		entity.get_node("Sprite2D").scale.x = 1
+		animations.play("Walk")
+	else:
+		entity.get_node("Sprite2D").scale.x = -1
+		animations.play("Walk")
 	
 	if(data.climbing_slope):
 		_walk_in_climbing_slope()
