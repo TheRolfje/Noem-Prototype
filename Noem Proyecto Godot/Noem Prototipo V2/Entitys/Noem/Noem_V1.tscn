@@ -96,6 +96,15 @@ script = ExtResource("4_30b8d")
 script = ExtResource("5_o2e4n")
 movimiento = NodePath("../../Control_of_Skills/S_Movement")
 
+[node name="piedra" type="Timer" parent="State_Machine_2D/WALK"]
+one_shot = true
+
+[node name="tropiezo" type="Timer" parent="State_Machine_2D/WALK"]
+one_shot = true
+
+[node name="duracion_caida" type="Timer" parent="State_Machine_2D/WALK"]
+one_shot = true
+
 [node name="RUN" type="Node2D" parent="State_Machine_2D" node_paths=PackedStringArray("movimiento")]
 script = ExtResource("6_8frgj")
 movimiento = NodePath("../../Control_of_Skills/S_Movement")
@@ -116,7 +125,11 @@ script = ExtResource("13_30b8d")
 [node name="Data" type="Node" parent="."]
 script = ExtResource("3_3l8d7")
 entity_name = "Noem"
-walk_speed = 200.0
-run_speed = 1000.0
+walk_speed = 100.0
+run_speed = 500.0
 health = 300
 damage = 100
+
+[connection signal="timeout" from="State_Machine_2D/WALK/piedra" to="State_Machine_2D/WALK" method="_on_piedra_timeout"]
+[connection signal="timeout" from="State_Machine_2D/WALK/tropiezo" to="State_Machine_2D/WALK" method="_on_tropiezo_timeout"]
+[connection signal="timeout" from="State_Machine_2D/WALK/duracion_caida" to="State_Machine_2D/WALK" method="_on_duracion_caida_timeout"]

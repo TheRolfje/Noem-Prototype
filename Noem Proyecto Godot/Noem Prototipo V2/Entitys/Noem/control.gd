@@ -16,6 +16,11 @@ func _process(delta: float) -> void:
 	
 	data.set_direction_move_x(Input.get_axis("ui_left","ui_right"))
 	
+	if(Input.is_action_pressed("support_yourself")):
+		data.sostenerse = true
+	else:
+		data.sostenerse = false
+	
 	if(data.continue_the_process):
 	
 		match state_machine.active_state.name_of_state:

@@ -1,8 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://pejx1kd6a1yp"]
+[gd_scene load_steps=5 format=3 uid="uid://pejx1kd6a1yp"]
 
-[ext_resource type="PackedScene" uid="uid://pps6afb6esdk" path="res://Elementos_Interactuables/piedra.tscn" id="1_k3cs0"]
+[ext_resource type="PackedScene" uid="uid://cc313ielffwpo" path="res://Entitys/Noem/Noem_V1.tscn" id="1_k3cs0"]
+[ext_resource type="PackedScene" uid="uid://4vahb488ygob" path="res://Elementos_Interactuables/slope.tscn" id="2_8ptq7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cs0"]
+size = Vector2(942, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tik61"]
+size = Vector2(327, 63)
 
 [node name="Sala de Pruebas 2" type="Node2D"]
 
-[node name="Piedra" parent="." instance=ExtResource("1_k3cs0")]
-position = Vector2(275, 287)
+[node name="Noem" parent="." instance=ExtResource("1_k3cs0")]
+position = Vector2(55, 17)
+
+[node name="Camera2D" type="Camera2D" parent="Noem"]
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(118, 120)
+shape = SubResource("RectangleShape2D_k3cs0")
+
+[node name="Slope" parent="." instance=ExtResource("2_8ptq7")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slope"]
+position = Vector2(237.5, 84.5)
+shape = SubResource("RectangleShape2D_tik61")

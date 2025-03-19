@@ -14,6 +14,8 @@ var continue_the_process:bool = true
 enum emotions {HAPPY,ANGRY,FEAR, NEUTRAL}
 var active_amotion:emotions = emotions.NEUTRAL
 
+var climbing_slope:bool = false
+
 var attack_received:object_attack = null
 var objetivo_atacado:CharacterBody2D = null
 
@@ -35,3 +37,6 @@ func set_direction_move_y(dir:int):
 	
 func set_walk_speed(speed:float):
 	walk_speed = speed
+	
+func on_off_climbing_slope():
+	climbing_slope =! climbing_slope
