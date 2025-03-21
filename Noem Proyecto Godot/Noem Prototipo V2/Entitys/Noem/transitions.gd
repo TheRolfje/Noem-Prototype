@@ -2,6 +2,7 @@ extends State_2D
 
 var animacion_en_proceso:bool = false
 var animation_finish:bool = false
+var old_old_state:String
 
 func _ready():
 	name_of_state = "TRANSITION"
@@ -18,41 +19,39 @@ func _ready():
 	_add_state_to_the_machine(name_of_state, self)
 
 func action():
-	data.continue_the_process = false
 	entity.velocity.x = 0
 	data.set_direction_move_x(Input.get_axis("ui_left","ui_right"))
+	
+	if(state_machine.old_state == "TRANSITION"):
+		state_machine.old_state = old_old_state
+		print(old_old_state)
 	
 	match state_machine.old_state:
 		"WALK":
 			if(!animacion_en_proceso):
 				animations.play("Transicion_walk_walk") #Aca va otra animación.
-				data.direction_look.x *= -1
 				animacion_en_proceso = true
 				
 			if(animation_finish):
-				if(data.direction_movement.x == 0):
-					state_machine._switch_state("IDLE")
-				else:
-					state_machine._switch_state("WALK")
+				data.continue_the_process = true
 					
 		"IDLE":
 			if(!animacion_en_proceso):
 				animations.play("Transicion_walk_walk") #Aca va otra animación.
-				data.direction_look.x *= -1
 				animacion_en_proceso = true
 				
 			if(animation_finish):
-				if(data.direction_movement.x == 0):
-					state_machine._switch_state("IDLE")
-				else:
-					state_machine._switch_state("WALK")
+				data.continue_the_process = true
 	
 
 func action_of_end():
-	data.continue_the_process = true
 	animacion_en_proceso = false
 	animation_finish = false
 
+func action_of_start():
+	data.direction_look.x *= -1
+	data.continue_the_process = false
+	old_old_state = state_machine.old_state
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	animation_finish = true

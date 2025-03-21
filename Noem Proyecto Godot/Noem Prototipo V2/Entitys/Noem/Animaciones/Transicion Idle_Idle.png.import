@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6kw4slme7xt"
-path="res://.godot/imported/Trotar V3.png-f6912a661801b326c64ab7c8456987c6.ctex"
+uid="uid://bin0a474tpo4q"
+path="res://.godot/imported/Transicion Idle_Idle.png-3467ab6c523458a4ab2d3b1245ee56e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entitys/Noem/Animaciones/Trotar V3.png"
-dest_files=["res://.godot/imported/Trotar V3.png-f6912a661801b326c64ab7c8456987c6.ctex"]
+source_file="res://Entitys/Noem/Animaciones/Transicion Idle_Idle.png"
+dest_files=["res://.godot/imported/Transicion Idle_Idle.png-3467ab6c523458a4ab2d3b1245ee56e1.ctex"]
 
 [params]
 

@@ -1,10 +1,12 @@
 extends Node2D
 
 @export var Entity:CharacterBody2D
-@export var state_machine:Node2D
+@export var state_machine:State_Machine
 @export var data:data_humanoid
 
 signal travel_to_state(new_state:String)
+
+var estados_sin_transicion:Array = ["RUN"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +18,12 @@ func _process(delta: float) -> void:
 	
 	data.set_direction_move_x(Input.get_axis("ui_left","ui_right"))
 	
-	if(data.continue_the_process):
+	if(data.direction_look.x == data.direction_movement.x * -1 and
+	!estados_sin_transicion.has(state_machine.active_state.name_of_state)):
+		print("llegue")
+		state_machine._switch_state("TRANSITION")
+	
+	elif(data.continue_the_process):
 		
 		if(Input.is_action_pressed("support_yourself")):
 			data.sostenerse = true
@@ -25,17 +32,13 @@ func _process(delta: float) -> void:
 	
 		match state_machine.active_state.name_of_state:
 			"IDLE":
-				if(data.direction_look.x == data.direction_movement.x * -1):
-					emit_signal("travel_to_state", "TRANSITION")
-				elif(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
+				if(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
 					emit_signal("travel_to_state", "RUN")
 				elif (data.direction_movement.x != 0):
 					emit_signal("travel_to_state", "WALK")
 					
 			"WALK":
-				if(data.direction_look.x == data.direction_movement.x * -1):
-					emit_signal("travel_to_state", "TRANSITION")
-				elif(data.direction_movement.x == 0):
+				if(data.direction_movement.x == 0):
 					emit_signal("travel_to_state", "IDLE")
 				
 				elif(Input.is_action_pressed("shift")):
@@ -45,6 +48,17 @@ func _process(delta: float) -> void:
 					emit_signal("travel_to_state", "WALK")
 				elif(data.direction_movement.x == 0):
 					emit_signal("travel_to_state", "IDLE")
+			"TRANSITION":
+				if(data.direction_look.x == data.direction_movement.x * -1 and
+				!estados_sin_transicion.has(state_machine.active_state.name_of_state)):
+					state_machine._switch_state("TRANSITION")
+				if(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
+					emit_signal("travel_to_state", "RUN")
+				elif (data.direction_movement.x != 0):
+					emit_signal("travel_to_state", "WALK")
+				elif (data.direction_movement.x == 0):
+					emit_signal("travel_to_state", "IDLE")
+				
 
 func interruption(name_of_interruption:String):
 	#la lógica es que si llega una interrupción, mientras ese estado este activo solo se procesa

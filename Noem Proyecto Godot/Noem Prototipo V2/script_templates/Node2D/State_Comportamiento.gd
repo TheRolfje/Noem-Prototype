@@ -20,10 +20,13 @@ func _ready():
 
 	_add_state_to_the_machine(name_of_state, self)
 
-func action():
-	#Acción del estado:
+func action_of_start():
+	#Acción que se ejecuta una única vez al inicio del estado.
 	pass
-		
+
+func action():
+	#Acción que se ejecuta continuamente mientras el estado este activo.
+	pass
 
 func action_of_end():
 	#Acción que se ejecuta cuando se sale del estado.

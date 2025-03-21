@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6kw4slme7xt"
-path="res://.godot/imported/Trotar V3.png-f6912a661801b326c64ab7c8456987c6.ctex"
+uid="uid://dnqs8psyv4lw7"
+path="res://.godot/imported/CorrerV2.png-cd7641327bfcbc60f587dffce924aa58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entitys/Noem/Animaciones/Trotar V3.png"
-dest_files=["res://.godot/imported/Trotar V3.png-f6912a661801b326c64ab7c8456987c6.ctex"]
+source_file="res://Entitys/Noem/Animaciones/CorrerV2.png"
+dest_files=["res://.godot/imported/CorrerV2.png-cd7641327bfcbc60f587dffce924aa58.ctex"]
 
 [params]
 

@@ -23,6 +23,9 @@ func action():
 	
 func action_of_end():
 	pass
+	
+func action_of_start():
+	pass
 
 func add_a_state_to_which_I_can_travel(name_new_state:String):
 	#La State Machine usará esta función para agregar un destino nuevo.
