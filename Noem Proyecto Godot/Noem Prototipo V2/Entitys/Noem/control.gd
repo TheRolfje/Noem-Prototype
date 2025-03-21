@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 	
 	if(data.direction_look.x == data.direction_movement.x * -1 and
 	!estados_sin_transicion.has(state_machine.active_state.name_of_state)):
-		print("llegue")
 		state_machine._switch_state("TRANSITION")
 	
 	elif(data.continue_the_process):
@@ -47,16 +46,6 @@ func _process(delta: float) -> void:
 				if(data.direction_movement.x != 0 and not Input.is_action_pressed("shift")):
 					emit_signal("travel_to_state", "WALK")
 				elif(data.direction_movement.x == 0):
-					emit_signal("travel_to_state", "IDLE")
-			"TRANSITION":
-				if(data.direction_look.x == data.direction_movement.x * -1 and
-				!estados_sin_transicion.has(state_machine.active_state.name_of_state)):
-					state_machine._switch_state("TRANSITION")
-				if(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
-					emit_signal("travel_to_state", "RUN")
-				elif (data.direction_movement.x != 0):
-					emit_signal("travel_to_state", "WALK")
-				elif (data.direction_movement.x == 0):
 					emit_signal("travel_to_state", "IDLE")
 				
 
