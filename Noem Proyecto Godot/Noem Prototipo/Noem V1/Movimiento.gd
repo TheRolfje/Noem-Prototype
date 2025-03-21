@@ -193,3 +193,4 @@ func _on_timer_timeout():
 func _on_timer_verdadero_idle_timeout():
 	if(active_state == STATE.IDLE):
 		verdadero_idle = true
+

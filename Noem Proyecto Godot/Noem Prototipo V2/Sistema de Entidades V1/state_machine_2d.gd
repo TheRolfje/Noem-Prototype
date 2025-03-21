@@ -11,7 +11,6 @@ var check_if_the_status_is_valid:bool = false
 @export var Entity:CharacterBody2D
 @export var Control_Skills:Node2D
 @export var Data:Data_class
-@export var Animations:AnimationPlayer
 
 var cant_of_childs:int = 0
 

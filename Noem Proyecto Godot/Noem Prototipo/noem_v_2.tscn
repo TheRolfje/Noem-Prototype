@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://cnxcbehk0elv1"]
 
-[ext_resource type="Script" uid="uid://c2rkkjou1y3uj" path="res://Noem V1/noem_v_1.gd" id="1_5kxts"]
+[ext_resource type="Script" path="res://Noem V1/noem_v_1.gd" id="1_5kxts"]
 [ext_resource type="Texture2D" uid="uid://csfnrn82vro3x" path="res://Noem V1/Sprites/Movimiento V1/Noem Spritesheet basico V1-3.png" id="2_24i53"]
 [ext_resource type="Animation" uid="uid://ebfrdosqoib" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Idle.res" id="3_nys80"]
 [ext_resource type="Texture2D" uid="uid://cpo83mlhxlnaq" path="res://Noem V1/Sprites/Noem Spritesheet basico V1-4 izq.png" id="4_wp6wr"]
@@ -10,15 +10,15 @@
 [ext_resource type="Animation" uid="uid://cyjiyybar4vi4" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Transition_Idle_Walk_izq.res" id="8_txyrv"]
 [ext_resource type="Texture2D" uid="uid://cp58gnk8f2y3x" path="res://Noem V1/Sprites/Movimiento V1/Noem Spritesheet basico V1-2 IZQ.png" id="9_pf18j"]
 [ext_resource type="Animation" uid="uid://ob5v73o5a0pd" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Walk.res" id="10_ywdbh"]
-[ext_resource type="Script" uid="uid://d4hgf8k6pgarc" path="res://Noem V1/Animaciones.gd" id="11_5toep"]
+[ext_resource type="Script" path="res://Noem V1/Animaciones.gd" id="11_5toep"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://leohjmwux110" path="res://Noem V1/Noem animaciones/Movimiento Basico V1/Noem_Animation_StateMachine.tres" id="12_4biyo"]
 [ext_resource type="PackedScene" uid="uid://qg3n2iddtuy6" path="res://state_machine_2d.tscn" id="13_d0qma"]
-[ext_resource type="Script" uid="uid://c1nj1ftuehgcu" path="res://Transition_from_idle.gd" id="14_t8aay"]
-[ext_resource type="Script" uid="uid://dvpmau1aocmws" path="res://Transition_from_walk.gd" id="15_udxt5"]
-[ext_resource type="Script" uid="uid://h1j0rf0te6ox" path="res://Transition_idle_walk.gd" id="16_of3db"]
-[ext_resource type="Script" uid="uid://b8l6mdacresup" path="res://Desenfundar.gd" id="17_gw8eo"]
-[ext_resource type="Script" uid="uid://gcpki723qvhr" path="res://Descansando.gd" id="18_dtlh1"]
-[ext_resource type="Script" uid="uid://u1pnxw8ggo8o" path="res://Control_of_player.gd" id="18_npnie"]
+[ext_resource type="Script" path="res://Transition_from_idle.gd" id="14_t8aay"]
+[ext_resource type="Script" path="res://Transition_from_walk.gd" id="15_udxt5"]
+[ext_resource type="Script" path="res://Transition_idle_walk.gd" id="16_of3db"]
+[ext_resource type="Script" path="res://Desenfundar.gd" id="17_gw8eo"]
+[ext_resource type="Script" path="res://Descansando.gd" id="18_dtlh1"]
+[ext_resource type="Script" path="res://Control_of_player.gd" id="18_npnie"]
 
 [sub_resource type="Animation" id="Animation_wfcjj"]
 resource_name = "Idle_izq"
@@ -163,17 +163,17 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8cahn"]
 _data = {
-&"Idle": ExtResource("3_nys80"),
-&"Idle_izq": SubResource("Animation_wfcjj"),
-&"RESET": SubResource("Animation_kviug"),
-&"Transition": ExtResource("5_sut02"),
-&"Transition_Idle_Idle": ExtResource("6_fmrmg"),
-&"Transition_Idle_Idle_izq": SubResource("Animation_ely50"),
-&"Transition_Idle_Walk": ExtResource("7_fs880"),
-&"Transition_Idle_Walk_izq": ExtResource("8_txyrv"),
-&"Transition_izq": SubResource("Animation_15ycj"),
-&"Walk": ExtResource("10_ywdbh"),
-&"Walk_izq": SubResource("Animation_52q8s")
+"Idle": ExtResource("3_nys80"),
+"Idle_izq": SubResource("Animation_wfcjj"),
+"RESET": SubResource("Animation_kviug"),
+"Transition": ExtResource("5_sut02"),
+"Transition_Idle_Idle": ExtResource("6_fmrmg"),
+"Transition_Idle_Idle_izq": SubResource("Animation_ely50"),
+"Transition_Idle_Walk": ExtResource("7_fs880"),
+"Transition_Idle_Walk_izq": ExtResource("8_txyrv"),
+"Transition_izq": SubResource("Animation_15ycj"),
+"Walk": ExtResource("10_ywdbh"),
+"Walk_izq": SubResource("Animation_52q8s")
 }
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_f12wn"]
@@ -354,7 +354,7 @@ vframes = 3
 
 [node name="Animaciones" type="AnimationPlayer" parent="Sprite_Noem_V1"]
 libraries = {
-&"": SubResource("AnimationLibrary_8cahn")
+"": SubResource("AnimationLibrary_8cahn")
 }
 script = ExtResource("11_5toep")
 

@@ -5,8 +5,6 @@ func _ready():
 	state_machine = $".." 
 	entity = self.owner
 	data = state_machine.Data
-	animations = state_machine.Animations
-
 	
 	states_to_which_I_can_travel = []
 	states_that_can_travel_to_me = []

@@ -5,8 +5,6 @@ class_name State_2D
 var state_machine:State_Machine = null
 var entity:CharacterBody2D = null
 var data:data_humanoid = null
-var 	animations:AnimationPlayer = null
-
 
 var name_of_state:String
 
