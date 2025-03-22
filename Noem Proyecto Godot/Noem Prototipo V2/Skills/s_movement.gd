@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name movement_skills
+
 var entity:CharacterBody2D
 @export var data:Node
 

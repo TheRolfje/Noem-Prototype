@@ -2,8 +2,11 @@ extends Node2D
 
 class_name State_Machine
 
-var active_state:State_2D #Es necesario que sea un Node2D porque se usará su metodo "Action"
-var old_state:String
+var active_state:State_2D 
+var old_state:State_2D
+
+var state_activated:bool = true
+var old_state_finished:bool = false
 
 var check_if_the_status_is_valid:bool = false
 #Si se pone en true, la S.M. pregunta si el estado es valido antes de cambiarlo.
@@ -65,12 +68,9 @@ func _switch_state(name_of_new_active_state:String):
 	#Registra el estado activo como old_state y luego busca la clave del nuevo
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
-		action_end_of_active_state()
-		
-		old_state = active_state.name_of_state
+		old_state = active_state
 		active_state = States_in_the_Machine[name_of_new_active_state]
-		#print("Estado cambiado a: ", active_state.name_of_state)
-		action_start_of_active_state()
+		print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
 	else:
 		push_error("El estado: ", name_of_new_active_state, " no fue creado o añadido a la StateMachine")
 		
@@ -119,15 +119,27 @@ func _add_new_state_to_network_of_states(new_state:State_2D):
 	
 func action_of_active_state():
 	#Ejecuta la acción del estado activo.
-	active_state.action()
+	if(old_state_finished):
+		if(state_activated):
+			active_state.action()
+		else:
+			action_start_of_active_state()
+	else:
+		action_end_of_old_state()
 	
-func action_end_of_active_state():
-	active_state.action_of_end()
+func action_end_of_old_state():
+	state_activated = false
+	
+	old_state_finished = old_state.action_of_end()
+	
+	return old_state_finished
 	
 func action_start_of_active_state():
-	active_state.action_of_start()
+	state_activated = active_state.action_of_start()
+		
+	return state_activated
 
 func assign_default_state(state:State_2D):
 	#Asigna un estado como estado por default de la entidad. Normalmente IDLE.
 	active_state = state
-	old_state = active_state.name_of_state
+	old_state = active_state

@@ -1,6 +1,6 @@
 extends State_2D
 
-@export var movimiento:Node2D
+@export var movimiento:movement_skills
 
 var t_piedra:Timer
 var t_tropiezo:Timer
@@ -27,12 +27,9 @@ func _ready():
 	_add_state_to_the_machine(name_of_state, self)
 
 func action():
-	if(data.direction_look.x >= 0):
-		entity.get_node("Sprite2D").scale.x = 1
-		animations.play("Walk")
-	else:
-		entity.get_node("Sprite2D").scale.x = -1
-		animations.play("Walk")
+	_flip_sprite_according_to_direction()
+	
+	animations.play("Walk")
 	
 	if(data.climbing_slope):
 		_walk_in_climbing_slope()

@@ -16,12 +16,8 @@ func _ready():
 	state_machine.assign_default_state(self)
 
 func action():
-	if(data.direction_look.x >= 0):
-		entity.get_node("Sprite2D").scale.x = 1
-		animations.play("Idle")
-	else:
-		entity.get_node("Sprite2D").scale.x = -1
-		animations.play("Idle")
+	_flip_sprite_according_to_direction()
+	
+	animations.play("Idle")
 	
 	entity.velocity.x = 0
-		

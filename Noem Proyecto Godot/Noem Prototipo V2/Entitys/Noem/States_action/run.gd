@@ -1,6 +1,6 @@
 extends State_2D
 
-@export var movimiento:Node2D
+@export var movimiento:movement_skills
 
 func _ready():
 	name_of_state = "RUN"
@@ -16,12 +16,9 @@ func _ready():
 	_add_state_to_the_machine(name_of_state, self)
 
 func action():
-	if(data.direction_look.x >= 0):
-		entity.get_node("Sprite2D").scale.x = 1
-		animations.play("Run")
-	else:
-		entity.get_node("Sprite2D").scale.x = -1
-		animations.play("Run")
+	_flip_sprite_according_to_direction()
+	
+	animations.play("Run")
 		
 	movimiento.run()
 		

@@ -16,6 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	
 	data.set_direction_move_x(Input.get_axis("ui_left","ui_right"))
 	
 	if(data.continue_the_process):
@@ -28,18 +29,26 @@ func _process(delta: float) -> void:
 				data.sostenerse = true
 			else:
 				data.sostenerse = false
+				
+			if(Input.is_action_pressed("Stealth")):
+				data.stealth = true
+			else:
+				data.stealth = false
 		
 			match state_machine.active_state.name_of_state:
 				"IDLE":
-					if(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
+					if(data.stealth):
+						emit_signal("travel_to_state", "STEALTH")
+					elif(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
 						emit_signal("travel_to_state", "RUN")
 					elif (data.direction_movement.x != 0):
 						emit_signal("travel_to_state", "WALK")
 						
 				"WALK":
-					if(data.direction_movement.x == 0):
+					if(data.stealth):
+						emit_signal("travel_to_state", "STEALTH")
+					elif(data.direction_movement.x == 0):
 						emit_signal("travel_to_state", "IDLE")
-					
 					elif(Input.is_action_pressed("shift")):
 						emit_signal("travel_to_state", "RUN")
 				"RUN":
@@ -47,6 +56,12 @@ func _process(delta: float) -> void:
 						emit_signal("travel_to_state", "WALK")
 					elif(data.direction_movement.x == 0):
 						emit_signal("travel_to_state", "IDLE")
+				"STEALTH":
+					if(!data.stealth):
+						if(data.direction_movement.x != 0):
+							emit_signal("travel_to_state", "WALK")
+						else:
+							emit_signal("travel_to_state", "IDLE")
 
 func interruption(name_of_interruption:String):
 	#la lógica es que si llega una interrupción, mientras ese estado este activo solo se procesa

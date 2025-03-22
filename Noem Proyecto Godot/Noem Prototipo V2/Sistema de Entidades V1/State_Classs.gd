@@ -22,11 +22,17 @@ func action():
 	assert(false, "¡El método 'action()' debe ser sobrescrito en la subclase!")
 	
 func action_of_end():
-	pass
+	return true
 	
 func action_of_start():
-	pass
+	return true
 
 func add_a_state_to_which_I_can_travel(name_new_state:String):
 	#La State Machine usará esta función para agregar un destino nuevo.
 	states_to_which_I_can_travel.append(name_new_state)
+	
+func _flip_sprite_according_to_direction():
+	if(data.direction_look.x >= 0):
+		entity.get_node("Sprite2D").scale.x = 1
+	else:
+		entity.get_node("Sprite2D").scale.x = -1
