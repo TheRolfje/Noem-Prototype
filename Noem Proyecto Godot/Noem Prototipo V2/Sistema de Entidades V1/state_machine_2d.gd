@@ -70,7 +70,7 @@ func _switch_state(name_of_new_active_state:String):
 		
 		old_state = active_state.name_of_state
 		active_state = States_in_the_Machine[name_of_new_active_state]
-		#print("Estado cambiado a: ", active_state.name_of_state)
+		print("Estado cambiado a: ", active_state.name_of_state)
 		action_start_of_active_state()
 	else:
 		push_error("El estado: ", name_of_new_active_state, " no fue creado o añadido a la StateMachine")
