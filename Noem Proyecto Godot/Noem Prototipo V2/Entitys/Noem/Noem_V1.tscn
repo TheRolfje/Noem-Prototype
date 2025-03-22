@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cc313ielffwpo"]
+[gd_scene load_steps=59 format=3 uid="uid://cc313ielffwpo"]
 
 [ext_resource type="Script" uid="uid://bukmchxswihd0" path="res://Entitys/Noem/Noem_V1.gd" id="1_mh20s"]
 [ext_resource type="Texture2D" uid="uid://bjipuhthbkjmg" path="res://Entitys/Noem/Idle V2.png" id="2_4m6my"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://b6kw4slme7xt" path="res://Entitys/Noem/Animaciones/Trotar V3.png" id="8_tmpxb"]
 [ext_resource type="Script" uid="uid://bgflfojdllcr8" path="res://Entitys/Noem/control.gd" id="10_waedq"]
 [ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="11_a2hvl"]
-[ext_resource type="Script" uid="uid://11e02soux7l0" path="res://Entitys/Noem/States_action/reposo.gd" id="13_30b8d"]
 [ext_resource type="Script" uid="uid://crp358nhr6umm" path="res://Entitys/Noem/transitions.gd" id="19_yssdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wwlv"]
@@ -619,6 +618,105 @@ _data = {
 &"Walk_agachado": SubResource("Animation_tmpxb")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yssdh"]
+animation = &"Agacharse"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4m6my"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfy3o"]
+animation = &"Levantarse_de_agachado"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hw12w"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ad507"]
+animation = &"Transicion_walk_walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0nnda"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fa0so"]
+animation = &"Walk_agachado"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iogdb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbvw6"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eocac"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7jgih"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6yar"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hucr4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0k53c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6u21r"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3kl6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ri8u1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ljtj3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n3xh1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1m5of"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lkjne"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ap1rq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npko7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yaf8u"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1wwlv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sklxw"]
+states/Agacharse/node = SubResource("AnimationNodeAnimation_yssdh")
+states/Agacharse/position = Vector2(370, 766)
+states/Idle/node = SubResource("AnimationNodeAnimation_4m6my")
+states/Idle/position = Vector2(370, 342)
+states/Levantarse_de_agachado/node = SubResource("AnimationNodeAnimation_dfy3o")
+states/Levantarse_de_agachado/position = Vector2(697, 641)
+states/Run/node = SubResource("AnimationNodeAnimation_hw12w")
+states/Run/position = Vector2(545, 252)
+states/Transicion_walk_walk/node = SubResource("AnimationNodeAnimation_ad507")
+states/Transicion_walk_walk/position = Vector2(545, 72)
+states/Walk/node = SubResource("AnimationNodeAnimation_0nnda")
+states/Walk/position = Vector2(702, 342)
+states/Walk_agachado/node = SubResource("AnimationNodeAnimation_fa0so")
+states/Walk_agachado/position = Vector2(697, 766)
+transitions = ["Idle", "Agacharse", SubResource("AnimationNodeStateMachineTransition_iogdb"), "Agacharse", "Walk_agachado", SubResource("AnimationNodeStateMachineTransition_xbvw6"), "Walk_agachado", "Levantarse_de_agachado", SubResource("AnimationNodeStateMachineTransition_eocac"), "Levantarse_de_agachado", "Idle", SubResource("AnimationNodeStateMachineTransition_7jgih"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_q6yar"), "Walk", "Agacharse", SubResource("AnimationNodeStateMachineTransition_hucr4"), "Levantarse_de_agachado", "Walk", SubResource("AnimationNodeStateMachineTransition_0k53c"), "Walk", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_6u21r"), "Idle", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_i3kl6"), "Run", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_ri8u1"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ljtj3"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_n3xh1"), "Transicion_walk_walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1m5of"), "Transicion_walk_walk", "Run", SubResource("AnimationNodeStateMachineTransition_lkjne"), "Transicion_walk_walk", "Walk", SubResource("AnimationNodeStateMachineTransition_ap1rq"), "Run", "Agacharse", SubResource("AnimationNodeStateMachineTransition_npko7"), "Levantarse_de_agachado", "Run", SubResource("AnimationNodeStateMachineTransition_yaf8u"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1wwlv")]
+
 [sub_resource type="GDScript" id="GDScript_78ybp"]
 script/source = "extends State_2D
 
@@ -641,24 +739,6 @@ func action_of_end():
 	data.continue_the_process = true
 "
 
-[sub_resource type="GDScript" id="GDScript_e8ciq"]
-script/source = "extends State_2D
-
-func _ready():
-	name_of_state = \"B\"
-	state_machine = $\"..\"
-	entity = state_machine.Entity
-
-	states_to_which_I_can_travel = [\"A\"]
-	states_that_can_travel_to_me = [\"A\"]
-
-	_add_state_to_the_machine(name_of_state, self)
-
-func action():
-	print(\"Estoy en B\")
-		
-"
-
 [node name="Noem" type="CharacterBody2D" node_paths=PackedStringArray("sm_acciones", "data")]
 script = ExtResource("1_mh20s")
 sm_acciones = NodePath("State_Machine_2D")
@@ -677,6 +757,10 @@ libraries = {
 }
 speed_scale = 0.4
 
+[node name="AnimationTree" type="AnimationTree" parent="Sprite2D"]
+tree_root = SubResource("AnimationNodeStateMachine_sklxw")
+anim_player = NodePath("../AnimationPlayer")
+
 [node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("Entity", "state_machine", "data")]
 script = ExtResource("10_waedq")
 Entity = NodePath("..")
@@ -691,11 +775,12 @@ data = NodePath("../../Data")
 [node name="s_combat" parent="Control_of_Skills" node_paths=PackedStringArray("data") instance=ExtResource("5_e8ciq")]
 data = NodePath("../../Data")
 
-[node name="State_Machine_2D" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data", "Animations") instance=ExtResource("11_a2hvl")]
+[node name="State_Machine_2D" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data", "Animation_tree", "Animation_player") instance=ExtResource("11_a2hvl")]
 Entity = NodePath("..")
 Control_Skills = NodePath("../Control_of_Skills")
 Data = NodePath("../Data")
-Animations = NodePath("../Sprite2D/AnimationPlayer")
+Animation_tree = NodePath("../Sprite2D/AnimationTree")
+Animation_player = NodePath("../Sprite2D/AnimationPlayer")
 
 [node name="IDLE" type="Node2D" parent="State_Machine_2D"]
 script = ExtResource("4_30b8d")
@@ -723,12 +808,6 @@ script = ExtResource("7_71f5c")
 [node name="Take_Damage" type="Node2D" parent="State_Machine_2D" node_paths=PackedStringArray("combat")]
 script = SubResource("GDScript_78ybp")
 combat = NodePath("../../Control_of_Skills/s_combat")
-
-[node name="B" type="Node2D" parent="State_Machine_2D"]
-script = SubResource("GDScript_e8ciq")
-
-[node name="Reposo" type="Node2D" parent="State_Machine_2D"]
-script = ExtResource("13_30b8d")
 
 [node name="Transitions" type="Node2D" parent="State_Machine_2D"]
 script = ExtResource("19_yssdh")

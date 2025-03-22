@@ -5,7 +5,9 @@ func _ready():
 	state_machine = $".."
 	entity = self.owner
 	data = state_machine.Data
-	animations = state_machine.Animations
+	animations = state_machine.animations_control
+	
+	
 
 
 	states_to_which_I_can_travel = []
@@ -18,10 +20,10 @@ func _ready():
 func action():
 	if(data.direction_look.x >= 0):
 		entity.get_node("Sprite2D").scale.x = 1
-		animations.play("Idle")
+		animations.travel("Idle")
 	else:
 		entity.get_node("Sprite2D").scale.x = -1
-		animations.play("Idle")
+		animations.travel("Idle")
 	
 	entity.velocity.x = 0
 		

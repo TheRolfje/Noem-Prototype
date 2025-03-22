@@ -11,7 +11,7 @@ func _ready():
 	state_machine = $".." 
 	entity = self.owner
 	data = state_machine.Data
-	animations = state_machine.Animations
+	animations = state_machine.animations_control
 
 	
 	states_to_which_I_can_travel = []
@@ -23,7 +23,6 @@ func _ready():
 func action():
 	#Hay que crear grupos de estados a los que Transición reacciona. 
 	
-	entity.velocity.x = 0
 	data.set_direction_move_x(Input.get_axis("ui_left","ui_right"))
 	
 	if(data.direction_look.x == data.direction_movement.x * -1):
@@ -49,13 +48,15 @@ func action():
 func _accion_segun_old_state():
 	match state_machine.old_state:
 		"WALK":
+			entity.velocity.x = 0
 			if(!animacion_en_proceso):
-				animations.play("Transicion_walk_walk") #Aca va otra animación.
+				animations.travel("Transicion_walk_walk") #Aca va otra animación.
 				animacion_en_proceso = true
 					
 		"IDLE":
+			entity.velocity.x = 0
 			if(!animacion_en_proceso):
-				animations.play("Transicion_walk_walk") #Aca va otra animación.
+				animations.travel("Transicion_walk_walk") #Aca va otra animación.
 				animacion_en_proceso = true
 
 func action_of_end():
