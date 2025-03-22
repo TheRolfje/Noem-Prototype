@@ -14,8 +14,6 @@ var check_if_the_status_is_valid:bool = false
 @export var Animation_tree:AnimationTree
 @export var Animation_player:AnimationPlayer
 
-var animations_control:AnimationNodeStateMachinePlayback
-
 var cant_of_childs:int = 0
 
 var States_in_the_Machine:Dictionary = {}
@@ -25,8 +23,6 @@ var States_whit_pending_connections:Array = []
 func _ready():
 	#Guarda la ruta de la entidad en una variable para que los estados la usen.
 	Entity = self.owner
-	
-	animations_control = Animation_tree.get("parameters/playback")
 	
 func interruption_is_valid(name_of_interruption:String):
 	if(active_state.name_of_state != name_of_interruption):

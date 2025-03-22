@@ -11,7 +11,7 @@ func _ready():
 	state_machine = $".." 
 	entity = self.owner
 	data = state_machine.Data
-	animations = state_machine.animations_control
+	animations = state_machine.Animation_tree.get("parameters/playback")
 
 	
 	states_to_which_I_can_travel = []
@@ -50,13 +50,13 @@ func _accion_segun_old_state():
 		"WALK":
 			entity.velocity.x = 0
 			if(!animacion_en_proceso):
-				animations.travel("Transicion_walk_walk") #Aca va otra animación.
+				animations.start("Transicion_walk_walk") #Aca va otra animación.
 				animacion_en_proceso = true
 					
 		"IDLE":
 			entity.velocity.x = 0
 			if(!animacion_en_proceso):
-				animations.travel("Transicion_walk_walk") #Aca va otra animación.
+				animations.start("Transicion_walk_walk") #Aca va otra animación.
 				animacion_en_proceso = true
 
 func action_of_end():

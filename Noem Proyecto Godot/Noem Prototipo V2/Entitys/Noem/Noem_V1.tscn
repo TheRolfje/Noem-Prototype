@@ -414,6 +414,7 @@ load_path = "res://.godot/imported/Trotar V3.png-f6912a661801b326c64ab7c8456987c
 [sub_resource type="Animation" id="Animation_yssdh"]
 resource_name = "Trotar"
 length = 0.36667
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -618,104 +619,83 @@ _data = {
 &"Walk_agachado": SubResource("Animation_tmpxb")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yssdh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1wwlv"]
 animation = &"Agacharse"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4m6my"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yssdh"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfy3o"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4m6my"]
 animation = &"Levantarse_de_agachado"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hw12w"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dfy3o"]
 animation = &"Run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ad507"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hw12w"]
 animation = &"Transicion_walk_walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0nnda"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ad507"]
 animation = &"Walk"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fa0so"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0nnda"]
 animation = &"Walk_agachado"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fa0so"]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iogdb"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbvw6"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eocac"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7jgih"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6yar"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hucr4"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0k53c"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6u21r"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3kl6"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ri8u1"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ljtj3"]
-advance_mode = 2
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n3xh1"]
-advance_mode = 2
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1m5of"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lkjne"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ap1rq"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npko7"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yaf8u"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1wwlv"]
-advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sklxw"]
-states/Agacharse/node = SubResource("AnimationNodeAnimation_yssdh")
-states/Agacharse/position = Vector2(370, 766)
-states/Idle/node = SubResource("AnimationNodeAnimation_4m6my")
-states/Idle/position = Vector2(370, 342)
-states/Levantarse_de_agachado/node = SubResource("AnimationNodeAnimation_dfy3o")
-states/Levantarse_de_agachado/position = Vector2(697, 641)
-states/Run/node = SubResource("AnimationNodeAnimation_hw12w")
-states/Run/position = Vector2(545, 252)
-states/Transicion_walk_walk/node = SubResource("AnimationNodeAnimation_ad507")
-states/Transicion_walk_walk/position = Vector2(545, 72)
-states/Walk/node = SubResource("AnimationNodeAnimation_0nnda")
-states/Walk/position = Vector2(702, 342)
-states/Walk_agachado/node = SubResource("AnimationNodeAnimation_fa0so")
-states/Walk_agachado/position = Vector2(697, 766)
-transitions = ["Idle", "Agacharse", SubResource("AnimationNodeStateMachineTransition_iogdb"), "Agacharse", "Walk_agachado", SubResource("AnimationNodeStateMachineTransition_xbvw6"), "Walk_agachado", "Levantarse_de_agachado", SubResource("AnimationNodeStateMachineTransition_eocac"), "Levantarse_de_agachado", "Idle", SubResource("AnimationNodeStateMachineTransition_7jgih"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_q6yar"), "Walk", "Agacharse", SubResource("AnimationNodeStateMachineTransition_hucr4"), "Levantarse_de_agachado", "Walk", SubResource("AnimationNodeStateMachineTransition_0k53c"), "Walk", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_6u21r"), "Idle", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_i3kl6"), "Run", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_ri8u1"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_ljtj3"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_n3xh1"), "Transicion_walk_walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1m5of"), "Transicion_walk_walk", "Run", SubResource("AnimationNodeStateMachineTransition_lkjne"), "Transicion_walk_walk", "Walk", SubResource("AnimationNodeStateMachineTransition_ap1rq"), "Run", "Agacharse", SubResource("AnimationNodeStateMachineTransition_npko7"), "Levantarse_de_agachado", "Run", SubResource("AnimationNodeStateMachineTransition_yaf8u"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1wwlv")]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yaf8u"]
+states/Agacharse/node = SubResource("AnimationNodeAnimation_1wwlv")
+states/Agacharse/position = Vector2(200, 648)
+states/Idle/node = SubResource("AnimationNodeAnimation_yssdh")
+states/Idle/position = Vector2(200, 324)
+states/Levantarse_de_agachado/node = SubResource("AnimationNodeAnimation_4m6my")
+states/Levantarse_de_agachado/position = Vector2(604, 517)
+states/Run/node = SubResource("AnimationNodeAnimation_dfy3o")
+states/Run/position = Vector2(411, 236)
+states/Transicion_walk_walk/node = SubResource("AnimationNodeAnimation_hw12w")
+states/Transicion_walk_walk/position = Vector2(411, 100)
+states/Walk/node = SubResource("AnimationNodeAnimation_ad507")
+states/Walk/position = Vector2(604, 324)
+states/Walk_agachado/node = SubResource("AnimationNodeAnimation_0nnda")
+states/Walk_agachado/position = Vector2(604, 648)
+transitions = ["Idle", "Agacharse", SubResource("AnimationNodeStateMachineTransition_fa0so"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_iogdb"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_xbvw6"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_eocac"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_7jgih"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_q6yar"), "Run", "Walk", SubResource("AnimationNodeStateMachineTransition_hucr4"), "Idle", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_0k53c"), "Run", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_6u21r"), "Walk", "Transicion_walk_walk", SubResource("AnimationNodeStateMachineTransition_i3kl6"), "Walk_agachado", "Levantarse_de_agachado", SubResource("AnimationNodeStateMachineTransition_ri8u1"), "Levantarse_de_agachado", "Walk", SubResource("AnimationNodeStateMachineTransition_ljtj3"), "Levantarse_de_agachado", "Run", SubResource("AnimationNodeStateMachineTransition_n3xh1"), "Levantarse_de_agachado", "Idle", SubResource("AnimationNodeStateMachineTransition_1m5of"), "Run", "Agacharse", SubResource("AnimationNodeStateMachineTransition_lkjne"), "Walk", "Agacharse", SubResource("AnimationNodeStateMachineTransition_ap1rq"), "Agacharse", "Walk_agachado", SubResource("AnimationNodeStateMachineTransition_npko7"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1wwlv")]
 
 [sub_resource type="GDScript" id="GDScript_78ybp"]
 script/source = "extends State_2D
@@ -758,7 +738,7 @@ libraries = {
 speed_scale = 0.4
 
 [node name="AnimationTree" type="AnimationTree" parent="Sprite2D"]
-tree_root = SubResource("AnimationNodeStateMachine_sklxw")
+tree_root = SubResource("AnimationNodeStateMachine_yaf8u")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("Entity", "state_machine", "data")]
