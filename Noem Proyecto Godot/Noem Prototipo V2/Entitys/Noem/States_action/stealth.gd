@@ -24,7 +24,6 @@ func action_of_start():
 	await animations.animation_finished
 
 func action():
-	print("AGACHADO")
 	_flip_sprite_according_to_direction()
 	
 	if(data.direction_movement.x != 0):
@@ -37,9 +36,3 @@ func action():
 func action_of_end():
 	animations.play("Levantarse_de_agachado")
 	await animations.animation_finished
-	print("termine")
-
-
-func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	if(anim_name == "Levantarse_de_agachado"):
-		print("animación iniciada")

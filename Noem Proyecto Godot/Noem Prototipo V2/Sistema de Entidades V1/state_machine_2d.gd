@@ -5,7 +5,8 @@ class_name State_Machine
 var active_state:State_2D 
 var old_state:State_2D
 
-var state_initiated:bool = true
+var new_state_initiated:bool = true
+var active_state_finished:bool = true
 
 var check_if_the_status_is_valid:bool = false
 #Si se pone en true, la S.M. pregunta si el estado es valido antes de cambiarlo.
@@ -66,13 +67,14 @@ func _switch_state(name_of_new_active_state:String):
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
 		await action_end_of_active_state()
+		active_state_finished = true
 		
 		old_state = active_state
 		active_state = States_in_the_Machine[name_of_new_active_state]
 		
 		await action_start_of_active_state()
-		state_initiated = true
-		#print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
+		new_state_initiated = true
+		print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
 	else:
 		push_error("El estado: ", name_of_new_active_state, " no fue creado o añadido a la StateMachine")
 		
@@ -121,14 +123,15 @@ func _add_new_state_to_network_of_states(new_state:State_2D):
 	
 func action_of_active_state():
 	#Ejecuta la acción del estado activo.
-	if(state_initiated):
+	if(active_state_finished and new_state_initiated):
 		active_state.action()
 	
 func action_end_of_active_state():
+	active_state_finished = false
 	await active_state.action_of_end()
 	
 func action_start_of_active_state():
-	state_initiated = false
+	new_state_initiated = false
 	await active_state.action_of_start()
 
 func assign_default_state(state:State_2D):

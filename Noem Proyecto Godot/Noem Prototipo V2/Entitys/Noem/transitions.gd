@@ -38,7 +38,9 @@ func action():
 			_flip_sprite_according_to_direction()
 			_accion_segun_old_state()
 		else:
-			if(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
+			if(state_machine.old_state.name_of_state == "STEALTH"):
+				state_machine._switch_state("STEALTH")
+			elif(data.direction_movement.x != 0 and Input.is_action_pressed("shift")):
 				state_machine._switch_state("RUN")
 			elif (data.direction_movement.x != 0):
 				state_machine._switch_state("WALK")
@@ -56,14 +58,14 @@ func _accion_segun_old_state():
 			if(!animacion_en_proceso):
 				animations.play("Transicion_walk_walk") #Aca va otra animación.
 				animacion_en_proceso = true
+		"STEALTH":
+			pass
 		_:
 			#print("no se que mas hacer ", state_machine.old_state.name_of_state)
 			pass
 
 func action_of_end():
 	data.continue_the_process = true
-	
-	return true
 
 func action_of_start():
 	data.direction_look.x *= -1
@@ -71,8 +73,6 @@ func action_of_start():
 	animacion_en_proceso = false
 	animation_finish = false
 	transicionar_de_nuevo = false
-	
-	return true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	animation_finish = true
