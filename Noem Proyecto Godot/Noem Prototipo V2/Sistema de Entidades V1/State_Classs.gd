@@ -22,10 +22,10 @@ func action():
 	assert(false, "¡El método 'action()' debe ser sobrescrito en la subclase!")
 	
 func action_of_end():
-	return true
+	pass
 	
 func action_of_start():
-	return true
+	pass
 
 func add_a_state_to_which_I_can_travel(name_new_state:String):
 	#La State Machine usará esta función para agregar un destino nuevo.

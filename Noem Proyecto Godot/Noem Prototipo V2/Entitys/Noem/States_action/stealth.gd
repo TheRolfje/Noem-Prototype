@@ -20,17 +20,11 @@ func _ready():
 	_add_state_to_the_machine(name_of_state, self)
 	
 func action_of_start():
-	if(!animation_in_progres):
-		animations.play("Agacharse")
-		animation_in_progres = true
-	
-	if(animation_finished):
-		animation_finished = false
-		return true
-	else:
-		return false
+	animations.play("Agacharse")
+	await animations.animation_finished
 
 func action():
+	print("AGACHADO")
 	_flip_sprite_according_to_direction()
 	
 	if(data.direction_movement.x != 0):
@@ -41,17 +35,11 @@ func action():
 		animations.play("Agachado")
 
 func action_of_end():
-	if(!animation_in_progres):
-		animations.play("Levantarse_de_agachado")
-		animation_in_progres = true
-	
-	if(animation_finished):
-		animation_finished = false
-		return true
-	else:
-		return false
+	animations.play("Levantarse_de_agachado")
+	await animations.animation_finished
+	print("termine")
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	animation_finished = true
-	animation_in_progres = false
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if(anim_name == "Levantarse_de_agachado"):
+		print("animación iniciada")
