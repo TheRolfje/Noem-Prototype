@@ -37,7 +37,6 @@ func action():
 		action_run = false
 			
 		if(transicionar_de_nuevo):
-			print("entre")
 			_flip_sprite_according_to_direction()
 			action_of_start()
 			state_machine.old_state = state_machine.States_in_the_Machine[old_old_state]

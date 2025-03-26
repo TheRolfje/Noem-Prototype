@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cc313ielffwpo"]
+[gd_scene load_steps=38 format=3 uid="uid://cc313ielffwpo"]
 
 [ext_resource type="Script" uid="uid://bukmchxswihd0" path="res://Entitys/Noem/Noem_V1.gd" id="1_mh20s"]
 [ext_resource type="Texture2D" uid="uid://bjipuhthbkjmg" path="res://Entitys/Noem/Idle V2.png" id="2_4m6my"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c163wakbopnum" path="res://Entitys/Noem/Animaciones/Agachado.png" id="10_4m6my"]
 [ext_resource type="Script" uid="uid://bgflfojdllcr8" path="res://Entitys/Noem/control.gd" id="10_waedq"]
 [ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="11_a2hvl"]
+[ext_resource type="Script" uid="uid://bn4lu118b7jbr" path="res://Entitys/Noem/animation_player.gd" id="11_dfy3o"]
 [ext_resource type="Script" uid="uid://11e02soux7l0" path="res://Entitys/Noem/States_action/reposo.gd" id="13_30b8d"]
 [ext_resource type="Script" uid="uid://crp358nhr6umm" path="res://Entitys/Noem/transitions.gd" id="19_yssdh"]
 
@@ -593,6 +594,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.433333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_optimal_frame"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_tmpxb"]
 resource_name = "Walk_agachado"
@@ -725,18 +740,21 @@ shape = SubResource("RectangleShape2D_1wwlv")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4m6my")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" node_paths=PackedStringArray("state_machine")]
 libraries = {
 &"": SubResource("AnimationLibrary_asqcj")
 }
 autoplay = "Idle"
 speed_scale = 0.4
+script = ExtResource("11_dfy3o")
+state_machine = NodePath("../../State_Machine_2D")
 
-[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("Entity", "state_machine", "data")]
+[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("Entity", "state_machine", "data", "animations")]
 script = ExtResource("10_waedq")
 Entity = NodePath("..")
 state_machine = NodePath("../State_Machine_2D")
 data = NodePath("../Data")
+animations = NodePath("../Sprite2D/AnimationPlayer")
 
 [node name="Control_of_Skills" type="Node2D" parent="."]
 

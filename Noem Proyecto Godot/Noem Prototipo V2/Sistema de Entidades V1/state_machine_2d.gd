@@ -2,6 +2,9 @@ extends Node2D
 
 class_name State_Machine
 
+signal request_of_change_of_state
+signal state_changed
+
 var active_state:State_2D 
 var old_state:State_2D
 var state_to_travel:String
@@ -67,6 +70,8 @@ func _switch_state(name_of_new_active_state:String):
 	#Registra el estado activo como old_state y luego busca la clave del nuevo
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
+		emit_signal("request_of_change_of_state")
+		
 		state_to_travel = name_of_new_active_state
 		
 		await action_end_of_active_state()
@@ -77,7 +82,8 @@ func _switch_state(name_of_new_active_state:String):
 		
 		await action_start_of_active_state()
 		new_state_initiated = true
-		print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
+		#print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
+		#emit_signal("state_changed")
 	else:
 		push_error("El estado: ", name_of_new_active_state, " no fue creado o añadido a la StateMachine")
 		
