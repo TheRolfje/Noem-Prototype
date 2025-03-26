@@ -5,6 +5,8 @@ extends State_2D
 var animation_finished:bool = false
 var animation_in_progres:bool = false
 
+var run_action_of_end:bool = true
+
 func _ready():
 	name_of_state = "STEALTH"
 	state_machine = $".." 
@@ -20,11 +22,13 @@ func _ready():
 	_add_state_to_the_machine(name_of_state, self)
 	
 func action_of_start():
-	animations.play("Agacharse")
-	await animations.animation_finished
+	_flip_sprite_according_to_direction()
+	
+	if(state_machine.old_state.name_of_state != "TRANSITION"):
+		animations.play("Agacharse")
+		await animations.animation_finished
 
 func action():
-	_flip_sprite_according_to_direction()
 	
 	if(data.direction_movement.x != 0):
 		movimiento._move_entity_x(20)
@@ -34,5 +38,10 @@ func action():
 		animations.play("Agachado")
 
 func action_of_end():
-	animations.play("Levantarse_de_agachado")
-	await animations.animation_finished
+	if(state_machine.state_to_travel != "TRANSITION"):
+		animations.play("Levantarse_de_agachado")
+		data.continue_the_process = false
+		await animations.animation_finished
+		data.continue_the_process = true
+	else:
+		pass

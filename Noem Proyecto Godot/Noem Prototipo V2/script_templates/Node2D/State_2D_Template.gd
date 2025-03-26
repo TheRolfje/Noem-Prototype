@@ -16,8 +16,7 @@ func _ready():
 	
 func action_of_start():
 	#Acción que se ejecuta una única vez al inicio del estado.
-	#"action()" solo empieza a ejecutarse si esta función devuelve true.
-	return true
+	pass
 
 func action():
 	#Acción que se ejecuta continuamente mientras el estado este activo.
@@ -25,5 +24,4 @@ func action():
 
 func action_of_end():
 	#Acción que se ejecuta cuando se sale del estado.
-	#El estado activo solo puede cambiarse si esta función devuelve true.
-	return true
+	pass

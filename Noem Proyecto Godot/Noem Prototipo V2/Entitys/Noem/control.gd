@@ -20,6 +20,8 @@ func _process(delta: float) -> void:
 	data.set_direction_move_x(Input.get_axis("ui_left","ui_right"))
 	
 	if(data.continue_the_process):
+		#print("Process ON")
+		
 		if(data.direction_look.x == data.direction_movement.x * -1 and
 		!estados_sin_transicion.has(state_machine.active_state.name_of_state)):
 			state_machine._switch_state("TRANSITION")
@@ -62,6 +64,9 @@ func _process(delta: float) -> void:
 							emit_signal("travel_to_state", "WALK")
 						else:
 							emit_signal("travel_to_state", "IDLE")
+	else:
+		#print("Process OFF")
+		pass
 
 func interruption(name_of_interruption:String):
 	#la lógica es que si llega una interrupción, mientras ese estado este activo solo se procesa

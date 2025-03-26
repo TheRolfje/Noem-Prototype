@@ -4,6 +4,7 @@ class_name State_Machine
 
 var active_state:State_2D 
 var old_state:State_2D
+var state_to_travel:String
 
 var new_state_initiated:bool = true
 var active_state_finished:bool = true
@@ -66,6 +67,8 @@ func _switch_state(name_of_new_active_state:String):
 	#Registra el estado activo como old_state y luego busca la clave del nuevo
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
+		state_to_travel = name_of_new_active_state
+		
 		await action_end_of_active_state()
 		active_state_finished = true
 		

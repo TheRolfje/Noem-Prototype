@@ -2,7 +2,8 @@ extends State_2D
 
 var animacion_en_proceso:bool = false
 var animation_finish:bool = false
-var old_old_state:State_2D
+var old_old_state:String
+var action_run:bool = false
 
 var transicionar_de_nuevo:bool = false
 
@@ -27,15 +28,19 @@ func action():
 	
 	if(data.direction_look.x == data.direction_movement.x * -1):
 		transicionar_de_nuevo = true
-		old_old_state = state_machine.old_state
+		old_old_state = state_machine.old_state.name_of_state
 		
-	_accion_segun_old_state()
+	if(!action_run):
+		_accion_segun_old_state() # <- Esto ejecuta una animación
 	
 	if(animation_finish):
+		action_run = false
+			
 		if(transicionar_de_nuevo):
-			action_of_start()
-			state_machine.old_state = old_old_state
+			print("entre")
 			_flip_sprite_according_to_direction()
+			action_of_start()
+			state_machine.old_state = state_machine.States_in_the_Machine[old_old_state]
 			_accion_segun_old_state()
 		else:
 			if(state_machine.old_state.name_of_state == "STEALTH"):
@@ -48,6 +53,8 @@ func action():
 				state_machine._switch_state("IDLE")
 				
 func _accion_segun_old_state():
+	action_run = true
+	
 	match state_machine.old_state.name_of_state:
 		"WALK":
 			if(!animacion_en_proceso):
@@ -59,9 +66,9 @@ func _accion_segun_old_state():
 				animations.play("Transicion_walk_walk") #Aca va otra animación.
 				animacion_en_proceso = true
 		"STEALTH":
-			pass
+			animation_finish = true
 		_:
-			#print("no se que mas hacer ", state_machine.old_state.name_of_state)
+			action_run = false
 			pass
 
 func action_of_end():
