@@ -1,6 +1,7 @@
 extends State_2D
 
 @export var movimiento:movement_skills
+@export var animation_node:AnimationPlayer
 
 var t_piedra:Timer
 var t_tropiezo:Timer
@@ -8,12 +9,17 @@ var t_caida:Timer
 var tropiezo:bool = false
 var caer:bool = false
 
+var critical_frame_achieved:bool = false
+var last_direction:float = 0
+
 func _ready():
 	name_of_state = "WALK"
 	state_machine = $".."
 	entity = state_machine.Entity
 	data = state_machine.Data
 	animations = state_machine.Animations
+	
+	#animations.point_of_inflection.connect(_critial_frame_achieved)
 	
 	t_piedra = $piedra
 	t_tropiezo = $tropiezo
@@ -29,6 +35,9 @@ func _ready():
 func action():
 	_flip_sprite_according_to_direction()
 	
+	if(data.direction_movement.x != 0):
+		last_direction = data.direction_movement.x
+	
 	animations.play("Walk")
 	
 	if(data.climbing_slope):
@@ -38,6 +47,21 @@ func action():
 		
 	if(!tropiezo or !caer):
 		movimiento.walk()
+		
+func action_of_end():
+	pass
+	#data.continue_the_process = false
+	#
+	#if(animations.point_of_inflection_reached):
+		#entity.velocity.x = last_direction * data.walk_speed
+		#await animations.optimal_frame
+	#else:
+		#animations.play_backwards("Walk")
+		#entity.velocity.x = last_direction * data.walk_speed * -1
+		#await animations.optimal_frame
+		#
+	#critical_frame_achieved = false
+	#data.continue_the_process = true
 		
 func _walk_in_climbing_slope():
 	if(data.sostenerse):
@@ -74,3 +98,6 @@ func _on_duracion_caida_timeout() -> void:
 	tropiezo = true
 	if(t_tropiezo.is_stopped()):
 		t_tropiezo.start(1)
+		
+#func _critial_frame_achieved():
+	#critical_frame_achieved = true

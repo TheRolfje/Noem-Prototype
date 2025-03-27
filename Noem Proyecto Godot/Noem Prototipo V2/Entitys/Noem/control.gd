@@ -51,9 +51,7 @@ func _process(delta: float) -> void:
 					if(data.stealth):
 						emit_signal("travel_to_state", "STEALTH")
 					elif(data.direction_movement.x == 0):
-						await animations.optimal_frame
 						emit_signal("travel_to_state", "IDLE")
-						state_machine.emit_signal("state_changed")
 					elif(Input.is_action_pressed("shift")):
 						emit_signal("travel_to_state", "RUN")
 				"RUN":

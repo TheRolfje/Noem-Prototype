@@ -70,7 +70,7 @@ func _switch_state(name_of_new_active_state:String):
 	#Registra el estado activo como old_state y luego busca la clave del nuevo
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
-		emit_signal("request_of_change_of_state")
+		request_of_change_of_state.emit()
 		
 		state_to_travel = name_of_new_active_state
 		
@@ -80,10 +80,11 @@ func _switch_state(name_of_new_active_state:String):
 		old_state = active_state
 		active_state = States_in_the_Machine[name_of_new_active_state]
 		
+		state_changed.emit()
+		
 		await action_start_of_active_state()
 		new_state_initiated = true
 		#print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
-		#emit_signal("state_changed")
 	else:
 		push_error("El estado: ", name_of_new_active_state, " no fue creado o añadido a la StateMachine")
 		

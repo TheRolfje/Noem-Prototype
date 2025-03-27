@@ -1,11 +1,15 @@
 extends AnimationPlayer
 
+class_name animation_entitys
+
 @export var state_machine:State_Machine
 
 var change_of_state_requested:bool = false
 
 signal optimal_frame
-signal point_of_inflection
+#signal point_of_inflection(bool)
+
+var point_of_inflection_reached:bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,10 +24,13 @@ func state_changed():
 	change_of_state_requested = false
 
 func emit_optimal_frame():
+	point_of_inflection_reached = false
+	
 	if(change_of_state_requested):
-		print("señal emitida")
-		emit_signal("optimal_frame")
+		optimal_frame.emit()
 	
 func emit_point_of_inflection():
-	if(change_of_state_requested):
-		emit_signal("point_of_inflection")
+	point_of_inflection_reached = true
+	
+	#if(change_of_state_requested):
+		#point_of_inflection.emit(point_of_inflection_reached)
