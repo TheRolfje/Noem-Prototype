@@ -3,6 +3,7 @@ extends Data_class
 class_name data_humanoid
 
 var continue_the_process:bool = true
+var action_pressed:bool = true
 
 @export var entity_name:String = "entity"
 
@@ -12,9 +13,13 @@ var continue_the_process:bool = true
 @export var damage:int = 0
 
 enum emotions {HAPPY,ANGRY,FEAR, NEUTRAL}
-var active_amotion:emotions = emotions.NEUTRAL
+var active_emotion:emotions = emotions.NEUTRAL
+
+enum Terrain {NEUTRAL_TERRAIN,SLOPE,LADDER}
+var moving_in:Terrain = Terrain.NEUTRAL_TERRAIN
 
 var climbing_slope:bool = false
+var ladder:bool = false
 
 var attack_received:object_attack = null
 var objetivo_atacado:CharacterBody2D = null
@@ -40,3 +45,14 @@ func set_walk_speed(speed:float):
 	
 func on_off_climbing_slope():
 	climbing_slope =! climbing_slope
+	
+	if(moving_in == Terrain.SLOPE):
+		moving_in = Terrain.NEUTRAL_TERRAIN
+	else:
+		moving_in = Terrain.SLOPE
+	
+func on_off_ladder():
+	if(moving_in == Terrain.LADDER):
+		moving_in = Terrain.NEUTRAL_TERRAIN
+	else:
+		moving_in = Terrain.LADDER

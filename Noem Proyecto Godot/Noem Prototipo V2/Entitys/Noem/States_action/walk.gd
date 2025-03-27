@@ -40,6 +40,8 @@ func action():
 	
 	animations.play("Walk")
 	
+	walk_according_to_the_active_terrain()
+	
 	if(data.climbing_slope):
 		_walk_in_climbing_slope()
 	else:
@@ -62,14 +64,22 @@ func action_of_end():
 		#
 	#critical_frame_achieved = false
 	#data.continue_the_process = true
-		
+
+func walk_according_to_the_active_terrain():
+	match data.moving_in:
+		data.Terrain.NEUTRAL_TERRAIN:
+			print("camino normal")
+		data.Terrain.SLOPE:
+			print("escalando pendiente")
+		data.Terrain.LADDER:
+			print("subiendo escalera")
+
 func _walk_in_climbing_slope():
 	if(data.sostenerse):
 		t_piedra.stop()
 	else:
 		if(t_piedra.is_stopped() and !tropiezo):
 			t_piedra.start(1)
-
 
 func _tropezar():
 	if(data.climbing_slope):

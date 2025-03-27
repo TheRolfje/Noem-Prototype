@@ -33,6 +33,11 @@ func _process(delta: float) -> void:
 			else:
 				data.sostenerse = false
 				
+			if(Input.is_action_pressed("ui_up")):
+				data.action_pressed = true
+			else:
+				data.action_pressed = false
+				
 			if(Input.is_action_pressed("Stealth")):
 				data.stealth = true
 			else:
