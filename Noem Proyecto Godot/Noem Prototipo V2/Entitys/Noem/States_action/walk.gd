@@ -15,7 +15,7 @@ var last_direction:float = 0
 func _ready():
 	name_of_state = "WALK"
 	state_machine = $".."
-	entity = state_machine.Entity
+	entity = self.owner
 	data = state_machine.Data
 	animations = state_machine.Animations
 	

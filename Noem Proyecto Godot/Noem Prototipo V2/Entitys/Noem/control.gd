@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	
 	if(data.continue_the_process):
 		#print("Process ON")
-		
+		#DESDE ACA...
 		if(data.direction_look.x == data.direction_movement.x * -1 and
 		!estados_sin_transicion.has(state_machine.active_state.name_of_state)):
 			state_machine._switch_state("TRANSITION")
@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 				data.stealth = true
 			else:
 				data.stealth = false
-		
+			#...HASTA ACA, tendría que estar en un nodo aparte encargado de las entradas de teclado.
 			match state_machine.active_state.name_of_state:
 				"IDLE":
 					if(data.stealth):

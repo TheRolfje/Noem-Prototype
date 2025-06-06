@@ -8,6 +8,7 @@ var entity:CharacterBody2D
 func _ready() -> void:
 	entity = self.owner
 
+#ESTE METODO DEBERÍA ÚNICO PARA CADA ENTIDAD O MUCHO MÁS GENERAL.
 func take_damage():
 	var attack:object_attack = data.attack_received
 	

@@ -7,7 +7,6 @@ signal state_changed
 
 var active_state:State_2D 
 var old_state:State_2D
-var state_to_travel:String
 
 var new_state_initiated:bool = true
 var active_state_finished:bool = true
@@ -16,15 +15,13 @@ var check_if_the_status_is_valid:bool = false
 #Si se pone en true, la S.M. pregunta si el estado es valido antes de cambiarlo.
 
 @export var Entity:CharacterBody2D
-@export var Control_Skills:Node2D
+@export var Control_Skills:Node2D #Esto capáz debería ser Library_of_Skills o algo así.
 @export var Data:Data_class
 @export var Animations:AnimationPlayer
 
-var cant_of_childs:int = 0
-
 var States_in_the_Machine:Dictionary = {}
 
-var States_whit_pending_connections:Array = []
+var States_whit_pending_connections:Array = [] #Funciona cuando los estados se van agregando a la SM, solo si se quiere.
 	
 func _ready():
 	#Guarda la ruta de la entidad en una variable para que los estados la usen.
@@ -36,8 +33,8 @@ func interruption_is_valid(name_of_interruption:String):
 			return true
 		else:
 			return false
-
-	return true
+	else:
+		return false
 	
 func new_state_signal(name_of_state:String): #Cambiar nombre
 	#Recibe una señal desde fuera con el nombre del estado al que se quiere cambiar.
@@ -70,9 +67,7 @@ func _switch_state(name_of_new_active_state:String):
 	#Registra el estado activo como old_state y luego busca la clave del nuevo
 	#estado en el diccionario para asignarlo como estado activo.
 	if(States_in_the_Machine.has(name_of_new_active_state)):
-		request_of_change_of_state.emit()
-		
-		state_to_travel = name_of_new_active_state
+		request_of_change_of_state.emit() #Es para uso externo.
 		
 		await action_end_of_active_state()
 		active_state_finished = true
@@ -80,7 +75,7 @@ func _switch_state(name_of_new_active_state:String):
 		old_state = active_state
 		active_state = States_in_the_Machine[name_of_new_active_state]
 		
-		state_changed.emit()
+		state_changed.emit() #Tambien uso externo.
 		
 		await action_start_of_active_state()
 		new_state_initiated = true
@@ -96,8 +91,8 @@ func add_new_state_to_dictionary(name_new_state:String, new_state:State_2D):
 		#Antes de añadir el nuevo estado a la red, primero reinta añadir estados con conecciones
 		#pendientes, ya que gracias a la nueva inclusión en el diccionario ahora quizá si se pueda.
 		if(!States_whit_pending_connections.is_empty()):
-			for state in States_whit_pending_connections:
-				_add_new_state_to_network_of_states(States_in_the_Machine[state])
+			for state_pending in States_whit_pending_connections:
+				_add_new_state_to_network_of_states(States_in_the_Machine[state_pending])
 	
 		#Ahora añade el nuevo estado a la red.
 		_add_new_state_to_network_of_states(new_state)
@@ -124,7 +119,7 @@ func _add_new_state_to_network_of_states(new_state:State_2D):
 			ingreso_a_pendientes = true
 			if(!States_whit_pending_connections.has(new_state.name_of_state)):
 				States_whit_pending_connections.append(new_state.name_of_state)
-				#Si no existe en el diccionario, lo agrega como la lista si no estaba antes.
+				#Si no existe en el diccionario de pendientes, lo agrega.
 				
 	if(!ingreso_a_pendientes and States_whit_pending_connections.has(new_state.name_of_state)):
 		#Si estaba en la lista de pendientes, pero no volvió a ingresar significa que pudo hacer todas
