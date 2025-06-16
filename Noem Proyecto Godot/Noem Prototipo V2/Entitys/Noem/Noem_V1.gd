@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+class_name Noem_Entity
+
 @export var sm_acciones:Node2D
-@export var data:Node
+@export var data:data_humanoid
 
 func _ready():
 	add_to_group("Noem")

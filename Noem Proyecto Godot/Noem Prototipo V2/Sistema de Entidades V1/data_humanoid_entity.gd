@@ -12,8 +12,8 @@ var action_pressed:bool = true
 @export var health:int = 1
 @export var damage:int = 0
 
-enum emotions {HAPPY,ANGRY,FEAR, NEUTRAL}
-var active_emotion:emotions = emotions.NEUTRAL
+enum emotions {HAPPY,ANGRY,FEAR,NEUTRAL,ALERT}
+var emotional_state:emotions = emotions.NEUTRAL
 
 enum Terrain {NEUTRAL_TERRAIN,SLOPE,LADDER}
 var moving_in:Terrain = Terrain.NEUTRAL_TERRAIN

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ffk7dynxpbip"]
+
+[ext_resource type="Script" uid="uid://bbp3xluddiscb" path="res://Sistema de Emociones/sistema_de_emociones_de_noem.gd" id="1_cmwh2"]
+[ext_resource type="Script" uid="uid://cr3vsxj8yb8c8" path="res://Sistema de Emociones/procesador.gd" id="2_kuukq"]
+
+[node name="Sistema_de_Emociones" type="Node2D"]
+script = ExtResource("1_cmwh2")
+
+[node name="Visores" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visores"]
+
+[node name="Procesador" type="Node" parent="."]
+script = ExtResource("2_kuukq")
+
+[node name="Contencion" type="Node" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cc313ielffwpo"]
+[gd_scene load_steps=40 format=3 uid="uid://cc313ielffwpo"]
 
 [ext_resource type="Script" uid="uid://bukmchxswihd0" path="res://Entitys/Noem/Noem_V1.gd" id="1_mh20s"]
 [ext_resource type="Texture2D" uid="uid://bjipuhthbkjmg" path="res://Entitys/Noem/Idle V2.png" id="2_4m6my"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bn4lu118b7jbr" path="res://Entitys/Noem/animation_player.gd" id="11_dfy3o"]
 [ext_resource type="Script" uid="uid://11e02soux7l0" path="res://Entitys/Noem/States_action/reposo.gd" id="13_30b8d"]
 [ext_resource type="Script" uid="uid://crp358nhr6umm" path="res://Entitys/Noem/transitions.gd" id="19_yssdh"]
+[ext_resource type="PackedScene" uid="uid://ffk7dynxpbip" path="res://Sistema de Emociones/sistema_de_emociones_de_Noem.tscn" id="23_hw12w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wwlv"]
 size = Vector2(15, 27.9)
@@ -876,6 +877,8 @@ walk_speed = 30.0
 run_speed = 70.0
 health = 300
 damage = 100
+
+[node name="Sistema_de_Emociones" parent="." instance=ExtResource("23_hw12w")]
 
 [connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="State_Machine_2D/Transitions" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="State_Machine_2D/WALK/piedra" to="State_Machine_2D/WALK" method="_on_piedra_timeout"]
