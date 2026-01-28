@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbi681onu67hd"]
+
+[ext_resource type="Texture2D" uid="uid://c2ftbdlkbodau" path="res://Elementos_de_Prueba/Sprites para pruebas/Terreno inclinacion baja de prueba.png" id="1_toswq"]
+
+[node name="Suelo inclinacion baja" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_toswq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-128, 28, -106, 28, 118, 12, 125, 12, 125, 64, -128, 64)

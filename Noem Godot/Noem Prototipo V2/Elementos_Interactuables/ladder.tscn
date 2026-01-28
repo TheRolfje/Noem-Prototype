@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1xoln7n3eij0"]
+
+[ext_resource type="Script" uid="uid://pwfaa73wotyc" path="res://ladder.gd" id="1_5ia2s"]
+
+[node name="Ladder" type="Area2D"]
+script = ExtResource("1_5ia2s")

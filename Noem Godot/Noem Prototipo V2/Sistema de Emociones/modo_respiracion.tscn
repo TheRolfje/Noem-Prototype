@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxacrkdn24sxk"]
+
+[ext_resource type="PackedScene" uid="uid://b42rgqe1tvrww" path="res://Sistema de Emociones/cube_builder.tscn" id="1_ol1ag"]
+[ext_resource type="PackedScene" uid="uid://dj8dtqc0ka7y5" path="res://Sistema de Emociones/cube_destroyer.tscn" id="2_o7tyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fhjd"]
+
+[node name="Modo_Respiracion" type="Node"]
+
+[node name="Cube_Builder" parent="." node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("1_ol1ag")]
+destructor_de_cubo = NodePath("../Cube_Destroyer")
+
+[node name="Cube_Builder2" parent="." node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("1_ol1ag")]
+destructor_de_cubo = NodePath("../Cube_Destroyer2")
+
+[node name="Cube_Builder3" parent="." node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("1_ol1ag")]
+destructor_de_cubo = NodePath("../Cube_Destroyer3")
+
+[node name="Cube_Builder4" parent="." node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("1_ol1ag")]
+destructor_de_cubo = NodePath("../Cube_Destroyer4")
+
+[node name="Cube_Destroyer" parent="." instance=ExtResource("2_o7tyy")]
+
+[node name="Cube_Destroyer2" parent="." instance=ExtResource("2_o7tyy")]
+
+[node name="Cube_Destroyer3" parent="." instance=ExtResource("2_o7tyy")]
+
+[node name="Cube_Destroyer4" parent="." instance=ExtResource("2_o7tyy")]
+
+[node name="Area_de_Liberacion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_de_Liberacion"]
+shape = SubResource("RectangleShape2D_5fhjd")

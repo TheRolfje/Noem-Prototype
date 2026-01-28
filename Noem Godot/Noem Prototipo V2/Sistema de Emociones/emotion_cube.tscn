@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b22umqjis0mk5"]
+
+[ext_resource type="Script" uid="uid://dwc2v5j0bfdal" path="res://Sistema de Emociones/emotion_cube.gd" id="1_lyq6k"]
+[ext_resource type="Texture2D" uid="uid://dailpu7du8b5s" path="res://Sistema de Emociones/Animaciones_del_Visor/Emocion.png" id="2_jn51v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyq6k"]
+size = Vector2(2, 2)
+
+[node name="Emotion_Cube" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_lyq6k")
+velocity = 20.0
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jn51v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lyq6k")

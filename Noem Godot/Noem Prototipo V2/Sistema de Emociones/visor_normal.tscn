@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt0eyamylvaoa"]
+
+[ext_resource type="PackedScene" uid="uid://b42rgqe1tvrww" path="res://Sistema de Emociones/cube_builder.tscn" id="1_lmsua"]
+[ext_resource type="PackedScene" uid="uid://dj8dtqc0ka7y5" path="res://Sistema de Emociones/cube_destroyer.tscn" id="2_b1wpw"]
+[ext_resource type="Script" uid="uid://ctdvphowqo38p" path="res://Sistema de Emociones/area_2d.gd" id="3_a3nqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mqys"]
+size = Vector2(9, 2)
+
+[node name="Visor_Normal" type="Node"]
+
+[node name="Cube_Builder" parent="." node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("1_lmsua")]
+position = Vector2(11, 0)
+destructor_de_cubo = NodePath("../Cube_Destroyer")
+
+[node name="Cube_Destroyer" parent="." node_paths=PackedStringArray("contention_node") instance=ExtResource("2_b1wpw")]
+position = Vector2(-11, 0)
+contention_node = NodePath("")
+
+[node name="Area_de_Contencion" type="Area2D" parent="." node_paths=PackedStringArray("timer_desbloqueo")]
+script = ExtResource("3_a3nqt")
+timer_desbloqueo = NodePath("Timer")
+
+[node name="collisionshape2D" type="CollisionShape2D" parent="Area_de_Contencion"]
+position = Vector2(-3.5, 0)
+shape = SubResource("RectangleShape2D_0mqys")
+
+[node name="Timer" type="Timer" parent="Area_de_Contencion"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Area_de_Contencion" to="Area_de_Contencion" method="_on_body_entered"]
+[connection signal="timeout" from="Area_de_Contencion/Timer" to="Area_de_Contencion" method="_on_timer_timeout"]
