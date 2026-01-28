@@ -1,0 +1,367 @@
+[gd_scene load_steps=20 format=3 uid="uid://ffk7dynxpbip"]
+
+[ext_resource type="Script" uid="uid://bbp3xluddiscb" path="res://Sistema de Emociones/sistema_de_emociones_de_noem.gd" id="1_cmwh2"]
+[ext_resource type="Texture2D" uid="uid://p0heii88cjag" path="res://Sistema de Emociones/Animaciones_del_Visor/Abrir visor de emociones.png" id="2_3wg01"]
+[ext_resource type="Script" uid="uid://cr3vsxj8yb8c8" path="res://Sistema de Emociones/procesador.gd" id="2_kuukq"]
+[ext_resource type="Texture2D" uid="uid://crp2avyxwji6k" path="res://Sistema de Emociones/Animaciones_del_Visor/Abrir modo respiracion.png" id="3_3pqn4"]
+[ext_resource type="Script" uid="uid://dc26ech7dqg7w" path="res://Sistema de Emociones/contencion.gd" id="3_q1xaj"]
+[ext_resource type="Script" uid="uid://b0st28y8istrj" path="res://Sistema de Emociones/visores.gd" id="3_ukljk"]
+[ext_resource type="Texture2D" uid="uid://xcufsgytxi7c" path="res://Sistema de Emociones/Animaciones_del_Visor/Modo respiracion.png" id="4_nn7sl"]
+[ext_resource type="PackedScene" uid="uid://b42rgqe1tvrww" path="res://Sistema de Emociones/cube_builder.tscn" id="4_qtr3u"]
+[ext_resource type="Texture2D" uid="uid://claxnur1kslhx" path="res://Sistema de Emociones/Animaciones_del_Visor/Visor de emociones.png" id="5_kkoya"]
+[ext_resource type="PackedScene" uid="uid://dj8dtqc0ka7y5" path="res://Sistema de Emociones/cube_destroyer.tscn" id="5_o2wwl"]
+[ext_resource type="Script" uid="uid://ctdvphowqo38p" path="res://Sistema de Emociones/area_2d.gd" id="11_qtr3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fhjd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mqys"]
+size = Vector2(9, 2)
+
+[sub_resource type="Animation" id="Animation_kkoya"]
+resource_name = "Breathing_Mode_Idle"
+length = 0.0333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_nn7sl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nn7sl"]
+resource_name = "Open_Breathing_Mode"
+length = 0.400003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_3pqn4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_3wg01"]
+resource_name = "Open_Emotion_Viewver"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.329073),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3wg01")]
+}
+
+[sub_resource type="Animation" id="Animation_3pqn4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3wg01")]
+}
+
+[sub_resource type="Animation" id="Animation_ukljk"]
+resource_name = "Viewver_of_Emotions"
+length = 0.0333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_kkoya")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nn7sl"]
+_data = {
+&"Breathing_Mode_Idle": SubResource("Animation_kkoya"),
+&"Open_Breathing_Mode": SubResource("Animation_nn7sl"),
+&"Open_Emotion_Viewver": SubResource("Animation_3wg01"),
+&"RESET": SubResource("Animation_3pqn4"),
+&"Viewver_of_Emotions": SubResource("Animation_ukljk")
+}
+
+[node name="Sistema_de_Emociones" type="Node2D"]
+script = ExtResource("1_cmwh2")
+
+[node name="Procesador" type="Node" parent="." node_paths=PackedStringArray("visores", "cube_builder")]
+script = ExtResource("2_kuukq")
+visores = NodePath("../Visores")
+cube_builder = NodePath("../Visor_Normal/Cube_Builder")
+
+[node name="Contencion" type="Node" parent="."]
+script = ExtResource("3_q1xaj")
+
+[node name="Modo_Respiracion" type="Node" parent="."]
+
+[node name="Cube_Builder" parent="Modo_Respiracion" node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("4_qtr3u")]
+destructor_de_cubo = NodePath("../Cube_Destroyer")
+
+[node name="Cube_Builder2" parent="Modo_Respiracion" node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("4_qtr3u")]
+destructor_de_cubo = NodePath("../Cube_Destroyer2")
+
+[node name="Cube_Builder3" parent="Modo_Respiracion" node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("4_qtr3u")]
+destructor_de_cubo = NodePath("../Cube_Destroyer3")
+
+[node name="Cube_Builder4" parent="Modo_Respiracion" node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("4_qtr3u")]
+destructor_de_cubo = NodePath("../Cube_Destroyer4")
+
+[node name="Cube_Destroyer" parent="Modo_Respiracion" instance=ExtResource("5_o2wwl")]
+
+[node name="Cube_Destroyer2" parent="Modo_Respiracion" instance=ExtResource("5_o2wwl")]
+
+[node name="Cube_Destroyer3" parent="Modo_Respiracion" instance=ExtResource("5_o2wwl")]
+
+[node name="Cube_Destroyer4" parent="Modo_Respiracion" instance=ExtResource("5_o2wwl")]
+
+[node name="Area_de_Liberacion" type="Area2D" parent="Modo_Respiracion"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Modo_Respiracion/Area_de_Liberacion"]
+shape = SubResource("RectangleShape2D_5fhjd")
+
+[node name="Visor_Normal" type="Node" parent="."]
+
+[node name="Cube_Builder" parent="Visor_Normal" node_paths=PackedStringArray("destructor_de_cubo") instance=ExtResource("4_qtr3u")]
+position = Vector2(11, 0)
+destructor_de_cubo = NodePath("../Cube_Destroyer")
+
+[node name="Cube_Destroyer" parent="Visor_Normal" node_paths=PackedStringArray("contention_node") instance=ExtResource("5_o2wwl")]
+position = Vector2(-11, 0)
+contention_node = NodePath("../../Contencion")
+
+[node name="Area_de_Contencion" type="Area2D" parent="Visor_Normal" node_paths=PackedStringArray("timer_desbloqueo")]
+script = ExtResource("11_qtr3u")
+timer_desbloqueo = NodePath("Timer")
+
+[node name="collisionshape2D" type="CollisionShape2D" parent="Visor_Normal/Area_de_Contencion"]
+position = Vector2(-3.5, 0)
+shape = SubResource("RectangleShape2D_0mqys")
+
+[node name="Timer" type="Timer" parent="Visor_Normal/Area_de_Contencion"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Visores" type="Sprite2D" parent="." node_paths=PackedStringArray("animations", "close_viewver_timer")]
+texture = ExtResource("2_3wg01")
+hframes = 4
+vframes = 3
+script = ExtResource("3_ukljk")
+animations = NodePath("AnimationPlayer")
+close_viewver_timer = NodePath("Timer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visores"]
+libraries = {
+&"": SubResource("AnimationLibrary_nn7sl")
+}
+
+[node name="Timer" type="Timer" parent="Visores"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Visor_Normal/Area_de_Contencion" to="Visor_Normal/Area_de_Contencion" method="_on_body_entered"]
+[connection signal="timeout" from="Visor_Normal/Area_de_Contencion/Timer" to="Visor_Normal/Area_de_Contencion" method="_on_timer_timeout"]
+[connection signal="timeout" from="Visores/Timer" to="Visores" method="_on_timer_timeout"]

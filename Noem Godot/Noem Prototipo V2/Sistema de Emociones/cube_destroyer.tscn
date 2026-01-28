@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj8dtqc0ka7y5"]
+
+[ext_resource type="Script" uid="uid://dfu6so0vb5oie" path="res://Sistema de Emociones/cubo_fin.gd" id="1_sxskb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2wwl"]
+size = Vector2(2, 2)
+
+[node name="Cube_Destroyer" type="Area2D" node_paths=PackedStringArray("contention_node")]
+script = ExtResource("1_sxskb")
+contention_node = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o2wwl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

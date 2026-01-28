@@ -1,0 +1,120 @@
+[gd_scene load_steps=19 format=3 uid="uid://ef04eq62jljj"]
+
+[ext_resource type="Script" uid="uid://co18ik0htr4mh" path="res://Entitys/Enemy_V1/enemy_v_1.gd" id="1_1vxrr"]
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_cu20q"]
+[ext_resource type="PackedScene" uid="uid://c0rcjdqlbiku4" path="res://Sistema de Entidades V1/state_machine_2d.tscn" id="4_5o0qu"]
+[ext_resource type="PackedScene" uid="uid://ckcbr1vraifgl" path="res://Skills/s_movement.tscn" id="5_eggin"]
+[ext_resource type="Script" uid="uid://4mwfgb8ux4ij" path="res://Entitys/Enemy_V1/perseguir.gd" id="5_pgita"]
+[ext_resource type="Script" uid="uid://dh660gr7g7otw" path="res://Entitys/Enemy_V1/patrullar.gd" id="6_5o0qu"]
+[ext_resource type="PackedScene" uid="uid://blhm488h600g2" path="res://Skills/s_interaction.tscn" id="6_npoe7"]
+[ext_resource type="Script" uid="uid://cajjbqgfbrj5q" path="res://Entitys/Enemy_V1/data.gd" id="7_cu20q"]
+[ext_resource type="Script" uid="uid://bv3qubv7s0wvl" path="res://Entitys/Enemy_V1/combatir.gd" id="7_eggin"]
+[ext_resource type="Script" uid="uid://ckk1p2425rtbw" path="res://Entitys/Enemy_V1/atacar.gd" id="8_npoe7"]
+[ext_resource type="Script" uid="uid://c7lrtef7ggrjy" path="res://Entitys/Enemy_V1/take_damage.gd" id="9_2c7p6"]
+[ext_resource type="Script" uid="uid://dh5oynl8wkd6i" path="res://Entitys/Enemy_V1/walk.gd" id="10_h14qd"]
+[ext_resource type="Script" uid="uid://cpqu5j7ifwpvn" path="res://Entitys/Enemy_V1/run.gd" id="11_b1b0j"]
+[ext_resource type="Script" uid="uid://lbtjjwownjhr" path="res://Entitys/Enemy_V1/idle.gd" id="12_rlyyk"]
+[ext_resource type="Script" uid="uid://btwyac211dhcl" path="res://Entitys/Enemy_V1/control.gd" id="15_b1b0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlyyk"]
+size = Vector2(13, 10.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1b0j"]
+size = Vector2(209.25, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53p5i"]
+size = Vector2(111.5, 12)
+
+[node name="Enemy_V1" type="CharacterBody2D" node_paths=PackedStringArray("SM_comportamientos", "SM_acciones")]
+script = ExtResource("1_1vxrr")
+SM_comportamientos = NodePath("SM_comportamientos")
+SM_acciones = NodePath("SM_acciones")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.117188)
+texture = ExtResource("2_cu20q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rlyyk")
+
+[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("data", "sm_comportamientos")]
+script = ExtResource("15_b1b0j")
+data = NodePath("../Data")
+sm_comportamientos = NodePath("../SM_comportamientos")
+
+[node name="SM_comportamientos" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data") instance=ExtResource("4_5o0qu")]
+Entity = NodePath("..")
+Control_Skills = NodePath("../Control_Skills")
+Data = NodePath("../Data")
+
+[node name="Perseguir" type="Node2D" parent="SM_comportamientos" node_paths=PackedStringArray("sm_acciones")]
+script = ExtResource("5_pgita")
+sm_acciones = NodePath("../../SM_acciones")
+
+[node name="Patrullar" type="Node2D" parent="SM_comportamientos" node_paths=PackedStringArray("sm_acciones")]
+script = ExtResource("6_5o0qu")
+sm_acciones = NodePath("../../SM_acciones")
+
+[node name="Timer" type="Timer" parent="SM_comportamientos/Patrullar"]
+autostart = true
+
+[node name="Combatir" type="Node2D" parent="SM_comportamientos"]
+script = ExtResource("7_eggin")
+
+[node name="SM_acciones" parent="." node_paths=PackedStringArray("Entity", "Control_Skills", "Data") instance=ExtResource("4_5o0qu")]
+Entity = NodePath("..")
+Control_Skills = NodePath("../Control_Skills")
+Data = NodePath("../Data")
+
+[node name="Atacar" type="Node2D" parent="SM_acciones" node_paths=PackedStringArray("attack_area")]
+script = ExtResource("8_npoe7")
+attack_area = NodePath("../../Area_De_Ataque")
+
+[node name="Timer" type="Timer" parent="SM_acciones/Atacar"]
+one_shot = true
+
+[node name="Take_damage" type="Node2D" parent="SM_acciones"]
+script = ExtResource("9_2c7p6")
+
+[node name="walk" type="Node2D" parent="SM_acciones" node_paths=PackedStringArray("movimiento")]
+script = ExtResource("10_h14qd")
+movimiento = NodePath("../../Control_Skills/S_Movement")
+
+[node name="run" type="Node2D" parent="SM_acciones" node_paths=PackedStringArray("movimiento")]
+script = ExtResource("11_b1b0j")
+movimiento = NodePath("../../Control_Skills/S_Movement")
+
+[node name="idle" type="Node2D" parent="SM_acciones"]
+script = ExtResource("12_rlyyk")
+
+[node name="Control_Skills" type="Node2D" parent="."]
+
+[node name="S_Movement" parent="Control_Skills" node_paths=PackedStringArray("data") instance=ExtResource("5_eggin")]
+data = NodePath("../../Data")
+
+[node name="s_combat" parent="Control_Skills" instance=ExtResource("6_npoe7")]
+
+[node name="Data" type="Node" parent="."]
+script = ExtResource("7_cu20q")
+entity_name = "Enemy"
+walk_speed = 200.0
+run_speed = 900.0
+health = 200
+damage = 60
+
+[node name="Area_de_Deteccion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_de_Deteccion"]
+shape = SubResource("RectangleShape2D_b1b0j")
+
+[node name="Area_De_Ataque" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_De_Ataque"]
+shape = SubResource("RectangleShape2D_53p5i")
+
+[connection signal="timeout" from="SM_comportamientos/Patrullar/Timer" to="SM_comportamientos/Patrullar" method="_on_timer_timeout"]
+[connection signal="timeout" from="SM_acciones/Atacar/Timer" to="SM_acciones/Atacar" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area_de_Deteccion" to="Control" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area_de_Deteccion" to="Control" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Area_De_Ataque" to="Control" method="_on_area_de_ataque_body_entered"]
+[connection signal="body_exited" from="Area_De_Ataque" to="Control" method="_on_area_de_ataque_body_exited"]
