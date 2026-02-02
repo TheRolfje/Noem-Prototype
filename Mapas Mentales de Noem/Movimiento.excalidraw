@@ -1,0 +1,677 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://mindmap.so",
+  "elements": [
+    {
+      "type": "text",
+      "version": 463,
+      "versionNonce": 559739447,
+      "isDeleted": false,
+      "id": "HvzGWsN3crxbJlDfrzY-Z",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 906.9591151646205,
+      "y": 115.91814204624723,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 410.2558288574219,
+      "height": 44.99999999999999,
+      "seed": 806553937,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1768667279237,
+      "link": null,
+      "locked": false,
+      "fontSize": 35.99999999999999,
+      "fontFamily": 1,
+      "text": "Sistema de Cualidades:",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Sistema de Cualidades:",
+      "lineHeight": 1.25
+    },
+    {
+      "type": "text",
+      "version": 151,
+      "versionNonce": 1670353751,
+      "isDeleted": false,
+      "id": "GTcJg3BUxOUfOE_9yy4ha",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 851.3061043875557,
+      "y": 278.081534249442,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 140.7198944091797,
+      "height": 25,
+      "seed": 1811240881,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [
+        {
+          "id": "wVpn_cH5uwm2m_EjeFiH7",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1768667279237,
+      "link": null,
+      "locked": false,
+      "fontSize": 20,
+      "fontFamily": 1,
+      "text": "Control de IA:",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Control de IA:",
+      "lineHeight": 1.25
+    },
+    {
+      "type": "text",
+      "version": 175,
+      "versionNonce": 799402391,
+      "isDeleted": false,
+      "id": "l3fyf7KmOe5Qadris4Hk0",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1213.734662737165,
+      "y": 269.938711983817,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 214.15982055664062,
+      "height": 25,
+      "seed": 1595333087,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [
+        {
+          "id": "1vMrObnsbtsthtDi7SNir",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1768667279237,
+      "link": null,
+      "locked": false,
+      "fontSize": 20,
+      "fontFamily": 1,
+      "text": "Detección de teclado:",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Detección de teclado:",
+      "lineHeight": 1.25
+    },
+    {
+      "type": "text",
+      "version": 355,
+      "versionNonce": 1913884567,
+      "isDeleted": false,
+      "id": "cd1V7kyz86ebsYk2mo_ce",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1031.0203683035713,
+      "y": 496.2244175502232,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 137.7798614501953,
+      "height": 50,
+      "seed": 1844205503,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [
+        {
+          "id": "1vMrObnsbtsthtDi7SNir",
+          "type": "arrow"
+        },
+        {
+          "id": "wVpn_cH5uwm2m_EjeFiH7",
+          "type": "arrow"
+        },
+        {
+          "id": "ZkwUKdYHM1hKCsF-vfnYz",
+          "type": "arrow"
+        },
+        {
+          "id": "7K5-ZJpGb5RgssnavCwkx",
+          "type": "arrow"
+        },
+        {
+          "id": "rA0hk4Pl8qeBi06DUaeyK",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1768668735043,
+      "link": null,
+      "locked": false,
+      "fontSize": 20,
+      "fontFamily": 1,
+      "text": "Procesamiento\nde la señal.",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Procesamiento\nde la señal.",
+      "lineHeight": 1.25
+    },
+    {
+      "type": "arrow",
+      "version": 631,
+      "versionNonce": 411328409,
+      "isDeleted": false,
+      "id": "1vMrObnsbtsthtDi7SNir",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1218.5919015066963,
+      "y": 302.22444806780135,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 94.4511807562867,
+      "height": 181.71426391601562,
+      "seed": 1662519025,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1768667279648,
+      "link": null,
+      "locked": false,
+      "startBinding": {
+        "elementId": "l3fyf7KmOe5Qadris4Hk0",
+        "focus": 0.37823091224269906,
+        "gap": 7.285736083984375
+      },
+      "endBinding": {
+        "elementId": "cd1V7kyz86ebsYk2mo_ce",
+        "focus": 0.29173421984288567,
+        "gap": 12.285705566406278
+      },
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -80.57135009765625,
+          32
+        ],
+        [
+          -94.4511807562867,
+          181.71426391601562
+        ]
+      ]
+    },
+    {
+      "type": "arrow",
+      "version": 670,
+      "versionNonce": 23203161,
+      "isDeleted": false,
+      "id": "wVpn_cH5uwm2m_EjeFiH7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 962.0204903738838,
+      "y": 309.6529758998326,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 137.63428189726687,
+      "height": 172.0001220703125,
+      "seed": 195363953,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1768667279648,
+      "link": null,
+      "locked": false,
+      "startBinding": {
+        "elementId": "GTcJg3BUxOUfOE_9yy4ha",
+        "focus": 0.5370977090529241,
+        "gap": 6.571441650390625
+      },
+      "endBinding": {
+        "elementId": "cd1V7kyz86ebsYk2mo_ce",
+        "focus": 0.05016173404871806,
+        "gap": 14.571319580078153
+      },
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          122.857177734375,
+          19.42852783203125
+        ],
+        [
+          137.63428189726687,
+          172.0001220703125
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "version": 318,
+      "versionNonce": 1770103447,
+      "isDeleted": false,
+      "id": "B3bsDJg_N_YusDygypcA_",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1138.7347237723213,
+      "y": 363.7957981654576,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 106.81719970703125,
+      "height": 32.28573608398439,
+      "seed": 896989617,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1768667279237,
+      "link": null,
+      "locked": false,
+      "fontSize": 12.914294433593756,
+      "fontFamily": 1,
+      "text": "Señal para Usar\nuna Cualidad.",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Señal para Usar\nuna Cualidad.",
+      "lineHeight": 1.25
+    },
+    {
+      "type": "text",
+      "version": 685,
+      "versionNonce": 423159321,
+      "isDeleted": false,
+      "id": "43RNgJNAbo24XU5k_S0Il",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1003.1531229383498,
+      "y": 761.9183088030135,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 213.2396240234375,
+      "height": 208.5714925130207,
+      "seed": 689984625,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [
+        {
+          "id": "ZkwUKdYHM1hKCsF-vfnYz",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1768668921111,
+      "link": null,
+      "locked": false,
+      "fontSize": 13.904766167534714,
+      "fontFamily": 1,
+      "text": "State Machine de\nCualidades:\n\nChequea si la Cualidad\nsolicitada es valida para\nla Cualidad Activa.\nSi todo está bien cambia\nla Cualidad Activa por la\nCualidad Solicitada.\nEsto también es personalizable\npor la instancia de la\nCualidad de la Entidad.",
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "State Machine de\nCualidades:\n\nChequea si la Cualidad\nsolicitada es valida para\nla Cualidad Activa.\nSi todo está bien cambia\nla Cualidad Activa por la\nCualidad Solicitada.\nEsto también es personalizable\npor la instancia de la\nCualidad de la Entidad.",
+      "lineHeight": 1.25
+    },
+    {
+      "type": "arrow",
+      "version": 1357,
+      "versionNonce": 243725273,
+      "isDeleted": false,
+      "id": "ZkwUKdYHM1hKCsF-vfnYz",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1108.2523390299243,
+      "y": 550.7958286830358,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 1.3649392595389145,
+      "height": 201.55103846958707,
+      "seed": 1796109119,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "boundElements": [],
+      "updated": 1768668921112,
+      "link": null,
+      "locked": false,
+      "startBinding": {
+        "elementId": "cd1V7kyz86ebsYk2mo_ce",
+        "focus": -0.12369530022709288,
+        "gap": 4.571411132812472
+      },
+      "endBinding": {
+        "elementId": "43RNgJNAbo24XU5k_S0Il",
+        "focus": -0.034069977066772644,
+        "gap": 9.571441650390625
+      },
+      "lastCommittedPoint": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -1.3649392595389145,
+          201.55103846958707
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "version": 229,
+      "versionNonce": 866186679,
+      "isDeleted": false,
+      "id": "gQoFPuGirjZ8TrnMNJdwS",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "angle": 0,
+      "x": 1120.5919538225446,
+      "y": 640.6938912527902,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "width": 115.06907653808594,
+      "height": 30.285766601562507,
+      "seed": 1907868191,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1768668880949,
+      "link": null,
+      "locked": false,
+      "fontSize": 12.114306640625003,
+      "fontFamily": 1,
+      "text": "Solicita Cambio de\nla Cualidad Activa.",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Solicita Cambio de\nla Cualidad Activa.",
+      "lineHeight": 1.25
+    },
+    {
+      "id": "Rmna5xBchCHL9df4MLlAS",
+      "type": "text",
+      "x": -331.6124223981584,
+      "y": 170.06117248535156,
+      "width": 612.0603637695312,
+      "height": 888.9499224825387,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 1434635031,
+      "version": 2243,
+      "versionNonce": 1096711191,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1768667187857,
+      "link": null,
+      "locked": false,
+      "text": "Todas las Entidades tienen \"Cualidades\".\nVarias las comparten, pero algunas tienen\nacciones únicas, como Noem.\n\nCada Cualidad debe ser acoplable, y cada\nEntidad debe tener dentro de si todo lo\nnecesario para que la acción funcione.\nAnimaciones, sonidos, lógicas particulares, etc.\n\nSupongamos la acción \"Saltar\", la lógica funciona\nasí:\n\nSaltar es un nodo que todas las entidades pueden\no no tener. Tiene la lógica de programación\nasociada al salto, la \"función\" que calcula como\nsalta una Entidad.\nEsta \"función\" deja parámetros personalizables como\ndistancia del salto, altura, velocidad de caída, etc.\nCada Entidad puede modificar estos parámetros para\ntener su versión personalizada de \"Saltar\".\n\nPero, \"Saltar\" también necesita que la Entidad tenga\nciertos nodos o cosas para funcionar.\nDe por sí, necesita una animación asociada al salto.\nAdemás, conectarse al nodo del cuerpo de la Entidad\npara hacerla salta. Si modifica o necesita datos de\nla entidad, también necesita conectarse\ncon la \"Data\" de la Entidad. Así con todo.\nCada una de estas necesidades aparte como un @Export,\ny es un nodo al que se debe conectar el nodo de la habilidad,\nen este caso \"Saltar\".\n\nEl uso de Cualidades también depende del estado general\nen el que se encuentre la entidad, por lo que es necesario\nchequearlo. \"Saltar\" no puede usarse si la Entidad está\nen el aire, a menos que Esa Entidad si pueda.\nPor ende, hasta el chequeo de estados debe ser personalizable.",
+      "fontSize": 19.220538864487324,
+      "fontFamily": 1,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Todas las Entidades tienen \"Cualidades\".\nVarias las comparten, pero algunas tienen\nacciones únicas, como Noem.\n\nCada Cualidad debe ser acoplable, y cada\nEntidad debe tener dentro de si todo lo\nnecesario para que la acción funcione.\nAnimaciones, sonidos, lógicas particulares, etc.\n\nSupongamos la acción \"Saltar\", la lógica funciona\nasí:\n\nSaltar es un nodo que todas las entidades pueden\no no tener. Tiene la lógica de programación\nasociada al salto, la \"función\" que calcula como\nsalta una Entidad.\nEsta \"función\" deja parámetros personalizables como\ndistancia del salto, altura, velocidad de caída, etc.\nCada Entidad puede modificar estos parámetros para\ntener su versión personalizada de \"Saltar\".\n\nPero, \"Saltar\" también necesita que la Entidad tenga\nciertos nodos o cosas para funcionar.\nDe por sí, necesita una animación asociada al salto.\nAdemás, conectarse al nodo del cuerpo de la Entidad\npara hacerla salta. Si modifica o necesita datos de\nla entidad, también necesita conectarse\ncon la \"Data\" de la Entidad. Así con todo.\nCada una de estas necesidades aparte como un @Export,\ny es un nodo al que se debe conectar el nodo de la habilidad,\nen este caso \"Saltar\".\n\nEl uso de Cualidades también depende del estado general\nen el que se encuentre la entidad, por lo que es necesario\nchequearlo. \"Saltar\" no puede usarse si la Entidad está\nen el aire, a menos que Esa Entidad si pueda.\nPor ende, hasta el chequeo de estados debe ser personalizable.",
+      "lineHeight": 1.25
+    },
+    {
+      "id": "_6JdnxtwuBfjI7Qo87v_O",
+      "type": "rectangle",
+      "x": -349.5308478219169,
+      "y": 156.83676474434992,
+      "width": 645.0000272478377,
+      "height": 917.3469597952707,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 367081337,
+      "version": 189,
+      "versionNonce": 1054559801,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1768667200705,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "Jr3maPLodVcuDuaMmczIo",
+      "type": "text",
+      "x": 607.1091309338492,
+      "y": 421.33313369750977,
+      "width": 199.6184844970703,
+      "height": 240.33726101720057,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 746479159,
+      "version": 803,
+      "versionNonce": 1259256151,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "7K5-ZJpGb5RgssnavCwkx",
+          "type": "arrow"
+        },
+        {
+          "id": "rA0hk4Pl8qeBi06DUaeyK",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1768668735043,
+      "link": null,
+      "locked": false,
+      "text": "Chequea el Estado:\n\nCada Cualidad tiene\npor defecto una lista\nde estados en los que\npuede usare. Pero, cada\nEntidad puede modificar\nesto en su propia instancia\nde la Cualidad.\n\"Saltar está permitido\nen el aire.\"\nContinua con la ejecución\nsi todo está bien.",
+      "fontSize": 14.78998529336619,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Chequea el Estado:\n\nCada Cualidad tiene\npor defecto una lista\nde estados en los que\npuede usare. Pero, cada\nEntidad puede modificar\nesto en su propia instancia\nde la Cualidad.\n\"Saltar está permitido\nen el aire.\"\nContinua con la ejecución\nsi todo está bien.",
+      "lineHeight": 1.25
+    },
+    {
+      "id": "7K5-ZJpGb5RgssnavCwkx",
+      "type": "arrow",
+      "x": 1023.5238355000815,
+      "y": 489.3331031799317,
+      "width": 201.15902187393226,
+      "height": 49.49751939688241,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 1860758999,
+      "version": 154,
+      "versionNonce": 2036417849,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1768668729878,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -71.4285888671875,
+          -49.142852783203125
+        ],
+        [
+          -201.15902187393226,
+          -49.49751939688241
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "cd1V7kyz86ebsYk2mo_ce",
+        "focus": -0.2854091637549851,
+        "gap": 7.496532803489799
+      },
+      "endBinding": {
+        "elementId": "Jr3maPLodVcuDuaMmczIo",
+        "focus": -0.8467330569770444,
+        "gap": 15.637198195229757
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "rA0hk4Pl8qeBi06DUaeyK",
+      "type": "arrow",
+      "x": 823.5238660176597,
+      "y": 677.9045448303223,
+      "width": 234.85720825195312,
+      "height": 118.85714721679688,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 121244409,
+      "version": 77,
+      "versionNonce": 952298297,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1768668736987,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          133.14291381835938,
+          -28
+        ],
+        [
+          234.85720825195312,
+          -118.85714721679688
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "Jr3maPLodVcuDuaMmczIo",
+        "focus": 1.1400298288090651,
+        "gap": 16.796250586740143
+      },
+      "endBinding": {
+        "elementId": "cd1V7kyz86ebsYk2mo_ce",
+        "focus": -0.008397051045010972,
+        "gap": 12.822980063302083
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
