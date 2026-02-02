@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dspl4rlg8moqg"]
+
+[node name="Walk_C" type="Node2D"]
+
+[node name="W_flat_land_SC" type="Node2D" parent="."]
+
+[node name="W_sloping_land_SC" type="Node2D" parent="."]
