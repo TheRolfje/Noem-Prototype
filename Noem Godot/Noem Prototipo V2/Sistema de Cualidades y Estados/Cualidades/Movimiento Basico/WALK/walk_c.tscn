@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dspl4rlg8moqg"]
 
-[ext_resource type="Script" uid="uid://ctrevl10u273l" path="res://Cualidades/walk_c.gd" id="1_cw03c"]
+[ext_resource type="Script" uid="uid://ctrevl10u273l" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/WALK/walk_c.gd" id="1_cw03c"]
 
 [node name="Walk_C" type="Node2D"]
 script = ExtResource("1_cw03c")

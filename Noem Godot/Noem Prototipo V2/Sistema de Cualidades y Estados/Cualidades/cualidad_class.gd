@@ -22,8 +22,6 @@ class_name Quality
 #Datos de la Cualidad:
 @onready var name_of_quality : String = "NONE"
 
-
-
 enum Sub_Qualities{ #Aca van todos los nombres de las SubCualidades de esta Cualidad.
 	NONE            #Deben escribirse igual que los nombres de sus respectivos Nodos.
 }                   #Ya que esos nombres son lo que se van a usar para Buscar el Nodo de la SC

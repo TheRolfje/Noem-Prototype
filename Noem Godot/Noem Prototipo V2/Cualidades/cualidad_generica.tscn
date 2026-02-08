@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp5cvvajfqjjq"]
-
-[ext_resource type="Script" uid="uid://bycs0b4fqsr5q" path="res://cualidad_class.gd" id="1_jmnsb"]
-
-[node name="Quality_Class" type="Node"]
-script = ExtResource("1_jmnsb")
