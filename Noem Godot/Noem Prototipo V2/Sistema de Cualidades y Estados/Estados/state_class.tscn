@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ppo4n6vsmxpo"]
-
-[ext_resource type="Script" uid="uid://6dpxde4c1vn6" path="res://Sistema de Cualidades y Estados/Estados/state_class.gd" id="1_ai6x3"]
-
-[node name="State" type="Node"]
-script = ExtResource("1_ai6x3")

@@ -12,6 +12,13 @@ var action_pressed:bool = true
 @export var health:int = 1
 @export var damage:int = 0
 
+var active_emotional_state : StringName
+var active_locomotional_state : StringName
+var active_physical_state : StringName
+var active_protection_state : StringName
+
+var active_quality : StringName
+
 enum emotions {HAPPY,ANGRY,FEAR,NEUTRAL,ALERT}
 var emotional_state:emotions = emotions.NEUTRAL
 

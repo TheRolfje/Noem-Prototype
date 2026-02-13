@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqdsulgracb7i"]
+
+[ext_resource type="Script" uid="uid://wikd0bsjkqk0" path="res://Sistema de Cualidades y Estados/Cualidades/Qualities_Manager/qualities_manager.gd" id="1_fwco8"]
+
+[node name="Qualities_Manager" type="Node"]
+script = ExtResource("1_fwco8")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs0u6lhwp0dgy"]
+
+[ext_resource type="Script" uid="uid://enlabmw10a3c" path="res://Sistema de Cualidades y Estados/Estados/State_Manager/state_manager.gd" id="1_j7t57"]
+
+[node name="State_Manager" type="Node"]
+script = ExtResource("1_j7t57")
