@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://beoaypknykn8u"]
+
+[ext_resource type="Script" uid="uid://8f56r0jlb8o8" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_A.gd" id="1_5vp2r"]
+[ext_resource type="Script" uid="uid://blglmkrvoe6jy" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/sub_quality_a.gd" id="2_6af1v"]
+
+[node name="Quality_A" type="Node2D"]
+script = ExtResource("1_5vp2r")
+
+[node name="SubQuality_A" type="Node2D" parent="."]
+script = ExtResource("2_6af1v")

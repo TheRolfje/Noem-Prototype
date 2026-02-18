@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://4vahb488ygob"]
 
-[ext_resource type="Script" uid="uid://bd0d7tkk54f1x" path="res://slope.gd" id="1_vfnc2"]
+[ext_resource type="Script" uid="uid://bd0d7tkk54f1x" path="res://Elementos_de_Prueba/slope.gd" id="1_vfnc2"]
 
 [node name="Slope" type="Area2D"]
 script = ExtResource("1_vfnc2")

@@ -6,3 +6,13 @@ const LOCOMOTIONAL : StringName = &"locomotional"
 const EMOTIONAL : StringName = &"emotional"
 const PROTECTION : StringName = &"protection"
 const PHYSICAL : StringName = &"physical"
+
+static func type_is_valid(type : StringName):
+	var valid_types = [
+		LOCOMOTIONAL,
+		EMOTIONAL,
+		PHYSICAL,
+		PROTECTION
+	]
+	
+	return valid_types.has(type) #Si el StringName no es un type valido, retorna false.

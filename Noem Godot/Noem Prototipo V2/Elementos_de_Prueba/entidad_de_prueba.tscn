@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://cma3h617r7qdi"]
+
+[ext_resource type="Script" uid="uid://dpnpw683kmp6o" path="res://Elementos_de_Prueba/entidad_de_prueba.gd" id="1_aeou8"]
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_tk1ej"]
+[ext_resource type="PackedScene" uid="uid://cs0u6lhwp0dgy" path="res://Sistema de Cualidades y Estados/Estados/State_Manager/state_manager.tscn" id="3_1pdrj"]
+[ext_resource type="Script" uid="uid://rwlodtsn8aso" path="res://Elementos_de_Prueba/data.gd" id="5_3cp5c"]
+[ext_resource type="PackedScene" uid="uid://beoaypknykn8u" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_A.tscn" id="5_m7ixo"]
+[ext_resource type="Script" uid="uid://dpdcnijdo4u6x" path="res://Elementos_de_Prueba/entradas_teclado.gd" id="6_7qop5"]
+[ext_resource type="PackedScene" uid="uid://bcl1bp3twnofx" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_b.tscn" id="6_f12ew"]
+[ext_resource type="PackedScene" uid="uid://cqdsulgracb7i" path="res://Sistema de Cualidades y Estados/Cualidades/Qualities_Manager/qualities_manager.tscn" id="6_mdkb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbviv"]
+
+[node name="Entidad_de_Prueba" type="CharacterBody2D" node_paths=PackedStringArray("quality_manager")]
+script = ExtResource("1_aeou8")
+quality_manager = NodePath("Qualities_Manager")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 0.148438)
+texture = ExtResource("2_tk1ej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wbviv")
+
+[node name="State_Manager" parent="." node_paths=PackedStringArray("data_entity") instance=ExtResource("3_1pdrj")]
+data_entity = NodePath("../Data")
+
+[node name="Qualities_Manager" parent="." instance=ExtResource("6_mdkb2")]
+
+[node name="Quality_A" parent="Qualities_Manager" instance=ExtResource("5_m7ixo")]
+
+[node name="Quality_B" parent="Qualities_Manager" instance=ExtResource("6_f12ew")]
+
+[node name="Data" type="Node" parent="."]
+script = ExtResource("5_3cp5c")
+
+[node name="Entradas Teclado" type="Node" parent="."]
+script = ExtResource("6_7qop5")

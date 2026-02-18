@@ -2,132 +2,144 @@ extends Node
 
 class_name Qualities_Manager
 
-signal request_of_change_of_state
-signal state_changed
+#Son notificadores para uso externo
+signal request_of_change_of_quality
+signal quality_changed
+#-----------------------------------
 
-var active_state:Quality
-var old_state:Quality
+@onready var entity : CharacterBody2D = self.owner
 
-var new_state_initiated:bool = true
-var active_state_finished:bool = true
+@export var data_entity : data_humanoid
+@export var animations : AnimationPlayer
+#falta nodos de control, sonido, etc.
 
-var check_if_the_quality_is_valid:bool = false
+var active_quality: Quality
+var default_quality: Quality
+var old_active_quality:StringName
+
+#Solo se ejecuta la acción de la Cualidad (o la busqueda de subcualidades)
+#si estos estan en true
+var new_quality_initialized:bool = false
+var old_active_quality_finished:bool = true
+#---------------------------------------------
+
 #Si se pone en true, la S.M. pregunta si la cualidad es valida para los estados
-#y la cualidad activa. Si todo esta bien se cambia, si no se ignora. Se usa principalmente
+#y la cualidad activa. Si todo esta bien se cambia, si no, se ignora. Se usa principalmente
 #para el jugador. Los NPCs validan estas cosas por IA normalmente.
 #Si está en false, la Cualidad solo se cambia y ya.
+@export var check_if_the_quality_is_valid:bool = false
+#-----------------------------------------------------
 
-var States_in_the_Machine:Dictionary = {}
-
-var States_whit_pending_connections:Array = [] #Funciona cuando los estados se van agregando a la SM, solo si se quiere.
+var all_qualities_in_the_manager:Dictionary[StringName, Quality]
 	
+func execute_default_quality():
+	print("Solicitud de Uso de Cualidad Default: " + default_quality.name_of_quality + "\n")
+	change_active_quality(default_quality.name_of_quality)
+	
+func change_active_quality(name_of_quality:StringName):
+	#Recibe una señal desde fuera con el nombre de la cualidad a la que se quiere cambiar.
+	print("Solicitud de cambio a Cualidad: " + name_of_quality + "\n")
+	if(check_if_the_quality_is_valid):
+		if(verificar_si_la_cualidad_puede_activarse(name_of_quality)):
+			_switch_quality(name_of_quality)
+	else:
+		_switch_quality(name_of_quality)
+		
+
+func _switch_quality(name_of_new_active_quality:StringName):
+	#Registra la cualidad activa como old_active_quality y luego busca la clave de la nueva
+	#cualidad en el diccionario para asignarla como cualidada activa.
+	print("Cambiando a Cualidad: " + name_of_new_active_quality + "\n")
+	if(all_qualities_in_the_manager.has(name_of_new_active_quality)):
+		request_of_change_of_quality.emit() #Es para uso externo.
+		
+		if(active_quality != null):
+			await action_end_of_active_quality()
+	
+			old_active_quality = active_quality.name_of_quality	
+		else:
+			old_active_quality = name_of_new_active_quality
+			
+		active_quality = all_qualities_in_the_manager[name_of_new_active_quality]
+			
+		quality_changed.emit() #Tambien uso externo.
+			
+		await action_start_of_active_quality()
+	else:
+		push_error("La Cualidad: ", name_of_new_active_quality, " no fue creada o añadida a la Quality Manager")
+		
+func add_new_quality_to_dictionary(name_new_quality:StringName, new_quality:Quality):
+	if(name_new_quality != &"LessName"):
+		if(!all_qualities_in_the_manager.has(name_new_quality)):
+			all_qualities_in_the_manager[name_new_quality] = new_quality
+	else:
+		push_error("LA CUALIDAD NO TIENE NOMBRE, SE LE DEBE PONER NOMBRE ANTES DE LLAMAR A ESTE METODO.")
+	
+func action_of_active_SUB_quality(): #El physics process de la Entidad ejecuta esto en bucle.
+	if(old_active_quality_finished and new_quality_initialized):
+		active_quality._sub_quality_action()
+	
+func action_end_of_active_quality():
+	print("Iniciando acción de fin de Cualidad: " + active_quality.name_of_quality + "\n")
+	old_active_quality_finished = false
+	await active_quality.finish_quality()
+	old_active_quality_finished = true
+	print("Acción de fin de Cualidad: " + active_quality.name_of_quality + " terminada\n")
+	
+func action_start_of_active_quality():
+	print("Iniciando acción de inicio de Cualidad: " + active_quality.name_of_quality + "\n")
+	new_quality_initialized = false
+	await active_quality.initialize_quality()
+	new_quality_initialized = true
+
+func assign_this_quality_ass_default_quality(quality:Quality):
+	default_quality = quality
+
+func verificar_si_la_cualidad_puede_activarse(name_of_quality : StringName):
+	#No se me ocurrió otro nombre. La Cualidad que quiere activarse tiene una lista
+	#de Estados y Cualidades bloqueados, desde los cuales no se puede activar.
+	#Si los estados activos o la cualidad activa no aparecen en esas listas,
+	#entonces la nueva Cualidad no tiene problema y puede cambiarse.
+
+	var quality : Quality = all_qualities_in_the_manager[name_of_quality]
+	
+	if(
+		_no_problem_with_active_quality(quality) and
+		_no_problem_with_active_emotional_state(quality) and
+		_no_problem_with_active_locomotional_state(quality) and 
+		_no_problem_with_active_physical_state(quality) and
+		_no_problem_with_active_protection_state(quality)
+	):
+		return true
+	else:
+		return false
+	
+func _no_problem_with_active_quality(quality : Quality):
+	if(not quality.cualidades_bloqueadas.has(data_entity.active_quality)):
+		return true
+		
+func _no_problem_with_active_locomotional_state(quality : Quality):
+	if(not quality.estados_locomocionales_bloqueados.has(data_entity.active_locomotional_state)):
+		return true
+		
+func _no_problem_with_active_emotional_state(quality : Quality):
+	if(not quality.estados_emocionales_bloqueados.has(data_entity.active_emotional_state)):
+		return true
+		
+func _no_problem_with_active_protection_state(quality : Quality):
+	if(not quality.estados_de_proteccion_bloqueados.has(data_entity.active_protection_state)):
+		return true
+
+func _no_problem_with_active_physical_state(quality : Quality):
+	if(not quality.estados_fisicos_bloqueados.has(data_entity.active_physical_state)):
+		return true
+		
+
 func interruption_is_valid(name_of_interruption:String):
-	if(active_state.name_of_state != name_of_interruption):
-		if(!name_of_interruption in active_state.interruptions_not_allowed):
+	if(active_quality.name_of_quality != name_of_interruption):
+		if(!name_of_interruption in active_quality.interruptions_not_allowed):
 			return true
 		else:
 			return false
 	else:
 		return false
-	
-func new_state_signal(name_of_quality:String): #Cambiar nombre
-	#Recibe una señal desde fuera con el nombre del estado al que se quiere cambiar.
-	if(active_state.name_of_quality != name_of_quality):
-		#print("Recibi una señal: ", name_of_quality)
-		if(check_if_the_quality_is_valid):
-			if(verificar_si_la_cualidad_puede_activarse(name_of_quality)):
-				#print("La señal es valida ", name_of_quality)
-				#Si el nombre es valido, se cambia el estado. Si no, solo se ignora.
-				_switch_state(name_of_quality)
-			#else:
-				#print("Estado no disponible en: ", active_state.name_of_quality)
-		else:
-			_switch_state(name_of_quality)
-		
-func verificar_si_la_cualidad_puede_activarse(name_of_quality : String):
-	#No se me ocurrió otro nombre. Entra a las listas de estados y Cualidades bloqueados
-	#de la cualidad que quiere activarse. Si los estados activos o la cualidad activa
-	#no aparecen en esas listas, entonces la nueva Cualidad no tiene problema con esos
-	#estados y puede cambiarse.
-	pass
-	
-func _switch_state(name_of_new_active_state:String):
-	#Registra el estado activo como old_state y luego busca la clave del nuevo
-	#estado en el diccionario para asignarlo como estado activo.
-	if(States_in_the_Machine.has(name_of_new_active_state)):
-		request_of_change_of_state.emit() #Es para uso externo.
-		
-		await action_end_of_active_state()
-		active_state_finished = true
-		
-		old_state = active_state
-		active_state = States_in_the_Machine[name_of_new_active_state]
-		
-		state_changed.emit() #Tambien uso externo.
-		
-		await action_start_of_active_state()
-		new_state_initiated = true
-		#print("Estado cambiado de ", old_state.name_of_state, " a: ", active_state.name_of_state)
-	else:
-		push_error("El estado: ", name_of_new_active_state, " no fue creado o añadido a la StateMachine")
-		
-func add_new_state_to_dictionary(name_new_state:String, new_state:Quality):
-	#Agrega un estado nuevo al diccionario de la State Machine.
-	if(!States_in_the_Machine.has(name_new_state)):
-		States_in_the_Machine[name_new_state] = new_state
-		
-		#Antes de añadir el nuevo estado a la red, primero reinta añadir estados con conecciones
-		#pendientes, ya que gracias a la nueva inclusión en el diccionario ahora quizá si se pueda.
-		if(!States_whit_pending_connections.is_empty()):
-			for state_pending in States_whit_pending_connections:
-				_add_new_state_to_network_of_states(States_in_the_Machine[state_pending])
-	
-		#Ahora añade el nuevo estado a la red.
-		#_add_new_state_to_network_of_states(new_state)
-	else:
-		assert(name_new_state , " Ya está en la State Machine. Se está intento añadir un duplicado")
-	
-func _add_new_state_to_network_of_states(new_state:State_2D): #Modificar para Cualidades.
-	var ingreso_a_pendientes:bool = false
-	var state:Node2D
-	
-	#if(new_state.states_that_can_travel_to_me.has())
-	
-	#Recorre toda la lista de estados que pueden viajar a "new_state"
-	for name in new_state.states_that_can_travel_to_me:
-		#Busca en el diccionario cada estado de la lista
-		if(States_in_the_Machine.has(name)):
-			state = States_in_the_Machine[name]
-			if(!state.states_to_which_I_can_travel.has(new_state.name_of_state)):
-				state.add_a_state_to_which_I_can_travel(new_state.name_of_state)
-				#Si existe en el diccionario, añade en dicho estado a
-				#"new_state" como un nuevo estado al que se puede viajar, si no estaba desde antes.
-		else:
-			#print("Añadí un estado pendiente: ", new_state.name_of_state)
-			ingreso_a_pendientes = true
-			if(!States_whit_pending_connections.has(new_state.name_of_state)):
-				States_whit_pending_connections.append(new_state.name_of_state)
-				#Si no existe en el diccionario de pendientes, lo agrega.
-				
-	if(!ingreso_a_pendientes and States_whit_pending_connections.has(new_state.name_of_state)):
-		#Si estaba en la lista de pendientes, pero no volvió a ingresar significa que pudo hacer todas
-		#sus conecciones, por lo que ya no tiene pendientes. Por eso se saca de dicha lista.
-		States_whit_pending_connections.erase(new_state.name_of_state)
-	
-func action_of_active_state():
-	#Ejecuta la acción del estado activo.
-	if(active_state_finished and new_state_initiated):
-		active_state.action()
-	
-func action_end_of_active_state():
-	active_state_finished = false
-	await active_state.action_of_end()
-	
-func action_start_of_active_state():
-	new_state_initiated = false
-	await active_state.action_of_start()
-
-func assign_default_state(state:Quality):
-	#Asigna un estado como estado por default de la entidad. Normalmente IDLE.
-	active_state = state
-	old_state = active_state

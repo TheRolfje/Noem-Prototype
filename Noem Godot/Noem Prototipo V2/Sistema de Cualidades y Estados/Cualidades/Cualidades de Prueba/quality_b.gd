@@ -1,7 +1,8 @@
 extends Quality
 
 func _ready() -> void:
-	super._ready() #Si o si debe llamar al ready de la clase Quality.
+	name_of_quality = &"Quality_B"
+	add_this_quality_to_the_manager()
 
 func quality_start_action(): #Acción de inicio de la Cualidad.
 	pass
@@ -10,4 +11,4 @@ func quality_end_action(): #Cierre de la Cualidad (normalmente para recetearla p
 	pass
 	
 func choose_sub_quality(): #Logica para elegir que SubCualidad usar.
-	pass
+	_start_this_sub_quality(&"B")
