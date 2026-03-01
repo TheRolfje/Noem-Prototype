@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cijp7612wuop"]
+
+[ext_resource type="Script" uid="uid://bvq0qlrqx5f2g" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/phy_state_a.gd" id="1_ihge5"]
+
+[node name="Phy_state_a" type="Node"]
+script = ExtResource("1_ihge5")

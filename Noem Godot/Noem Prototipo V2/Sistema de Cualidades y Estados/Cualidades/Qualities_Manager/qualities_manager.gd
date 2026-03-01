@@ -33,12 +33,13 @@ var old_active_quality_finished:bool = true
 var all_qualities_in_the_manager:Dictionary[StringName, Quality]
 	
 func execute_default_quality():
-	print("Solicitud de Uso de Cualidad Default: " + default_quality.name_of_quality + "\n")
+	#print("Solicitud de Uso de Cualidad Default: " + default_quality.name_of_quality + "\n")
 	change_active_quality(default_quality.name_of_quality)
 	
 func change_active_quality(name_of_quality:StringName):
 	#Recibe una señal desde fuera con el nombre de la cualidad a la que se quiere cambiar.
-	print("Solicitud de cambio a Cualidad: " + name_of_quality + "\n")
+	
+	#print("Solicitud de cambio a Cualidad: " + name_of_quality + "\n")
 	if(check_if_the_quality_is_valid):
 		if(verificar_si_la_cualidad_puede_activarse(name_of_quality)):
 			_switch_quality(name_of_quality)
@@ -49,24 +50,27 @@ func change_active_quality(name_of_quality:StringName):
 func _switch_quality(name_of_new_active_quality:StringName):
 	#Registra la cualidad activa como old_active_quality y luego busca la clave de la nueva
 	#cualidad en el diccionario para asignarla como cualidada activa.
-	print("Cambiando a Cualidad: " + name_of_new_active_quality + "\n")
-	if(all_qualities_in_the_manager.has(name_of_new_active_quality)):
-		request_of_change_of_quality.emit() #Es para uso externo.
-		
-		if(active_quality != null):
-			await action_end_of_active_quality()
 	
-			old_active_quality = active_quality.name_of_quality	
+	#print("Cambiando a Cualidad: " + name_of_new_active_quality + "\n")
+	if(active_quality == null or name_of_new_active_quality != active_quality.name_of_quality):
+		
+		if(all_qualities_in_the_manager.has(name_of_new_active_quality)):
+			request_of_change_of_quality.emit() #Es para uso externo.
+			
+			if(active_quality != null):
+				await action_end_of_active_quality()
+		
+				old_active_quality = active_quality.name_of_quality	
+			else:
+				old_active_quality = name_of_new_active_quality
+				
+			active_quality = all_qualities_in_the_manager[name_of_new_active_quality]
+				
+			quality_changed.emit() #Tambien uso externo.
+				
+			await action_start_of_active_quality()
 		else:
-			old_active_quality = name_of_new_active_quality
-			
-		active_quality = all_qualities_in_the_manager[name_of_new_active_quality]
-			
-		quality_changed.emit() #Tambien uso externo.
-			
-		await action_start_of_active_quality()
-	else:
-		push_error("La Cualidad: ", name_of_new_active_quality, " no fue creada o añadida a la Quality Manager")
+			push_error("La Cualidad: ", name_of_new_active_quality, " no fue creada o añadida a la Quality Manager")
 		
 func add_new_quality_to_dictionary(name_new_quality:StringName, new_quality:Quality):
 	if(name_new_quality != &"LessName"):
@@ -80,14 +84,16 @@ func action_of_active_SUB_quality(): #El physics process de la Entidad ejecuta e
 		active_quality._sub_quality_action()
 	
 func action_end_of_active_quality():
-	print("Iniciando acción de fin de Cualidad: " + active_quality.name_of_quality + "\n")
+	
+	#print("Iniciando acción de fin de Cualidad: " + active_quality.name_of_quality + "\n")
 	old_active_quality_finished = false
 	await active_quality.finish_quality()
 	old_active_quality_finished = true
-	print("Acción de fin de Cualidad: " + active_quality.name_of_quality + " terminada\n")
+	#print("Acción de fin de Cualidad: " + active_quality.name_of_quality + " terminada\n")
 	
 func action_start_of_active_quality():
-	print("Iniciando acción de inicio de Cualidad: " + active_quality.name_of_quality + "\n")
+	
+	#print("Iniciando acción de inicio de Cualidad: " + active_quality.name_of_quality + "\n")
 	new_quality_initialized = false
 	await active_quality.initialize_quality()
 	new_quality_initialized = true
@@ -143,3 +149,6 @@ func interruption_is_valid(name_of_interruption:String):
 			return false
 	else:
 		return false
+
+func evaluate_sub_quality_selection_according_to_state_changed(type_of_state_changed : StringName):
+	active_quality.evaluate_sub_quality_change_according_to_change_in_this_type_state(type_of_state_changed)

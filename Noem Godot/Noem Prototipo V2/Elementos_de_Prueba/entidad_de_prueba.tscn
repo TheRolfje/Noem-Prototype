@@ -1,19 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://cma3h617r7qdi"]
+[gd_scene load_steps=15 format=3 uid="uid://cma3h617r7qdi"]
 
 [ext_resource type="Script" uid="uid://dpnpw683kmp6o" path="res://Elementos_de_Prueba/entidad_de_prueba.gd" id="1_aeou8"]
 [ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_tk1ej"]
 [ext_resource type="PackedScene" uid="uid://cs0u6lhwp0dgy" path="res://Sistema de Cualidades y Estados/Estados/State_Manager/state_manager.tscn" id="3_1pdrj"]
+[ext_resource type="PackedScene" uid="uid://dixg547f48fqj" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/l_state_a.tscn" id="4_eqvnj"]
 [ext_resource type="Script" uid="uid://rwlodtsn8aso" path="res://Elementos_de_Prueba/data.gd" id="5_3cp5c"]
+[ext_resource type="PackedScene" uid="uid://x0pd6c6hf5gc" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/l_state_b.tscn" id="5_falxq"]
 [ext_resource type="PackedScene" uid="uid://beoaypknykn8u" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_A.tscn" id="5_m7ixo"]
 [ext_resource type="Script" uid="uid://dpdcnijdo4u6x" path="res://Elementos_de_Prueba/entradas_teclado.gd" id="6_7qop5"]
 [ext_resource type="PackedScene" uid="uid://bcl1bp3twnofx" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_b.tscn" id="6_f12ew"]
+[ext_resource type="PackedScene" uid="uid://t3qi4g6r3mms" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/e_state_a.tscn" id="6_falxq"]
 [ext_resource type="PackedScene" uid="uid://cqdsulgracb7i" path="res://Sistema de Cualidades y Estados/Cualidades/Qualities_Manager/qualities_manager.tscn" id="6_mdkb2"]
+[ext_resource type="PackedScene" uid="uid://coc0idphm4s25" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/p_state_a.tscn" id="7_ivol5"]
+[ext_resource type="PackedScene" uid="uid://cijp7612wuop" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/phy_state_a.tscn" id="8_wnyk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbviv"]
 
-[node name="Entidad_de_Prueba" type="CharacterBody2D" node_paths=PackedStringArray("quality_manager")]
+[node name="Entidad_de_Prueba" type="CharacterBody2D" node_paths=PackedStringArray("quality_manager", "state_manager")]
 script = ExtResource("1_aeou8")
 quality_manager = NodePath("Qualities_Manager")
+state_manager = NodePath("State_Manager")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15625, 0.148438)
@@ -22,10 +28,22 @@ texture = ExtResource("2_tk1ej")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wbviv")
 
-[node name="State_Manager" parent="." node_paths=PackedStringArray("data_entity") instance=ExtResource("3_1pdrj")]
+[node name="State_Manager" parent="." node_paths=PackedStringArray("data_entity", "qualities_manager") instance=ExtResource("3_1pdrj")]
 data_entity = NodePath("../Data")
+qualities_manager = NodePath("../Qualities_Manager")
 
-[node name="Qualities_Manager" parent="." instance=ExtResource("6_mdkb2")]
+[node name="L_State_A" parent="State_Manager" instance=ExtResource("4_eqvnj")]
+
+[node name="L_State_B" parent="State_Manager" instance=ExtResource("5_falxq")]
+
+[node name="E_state_A" parent="State_Manager" instance=ExtResource("6_falxq")]
+
+[node name="P_state_A" parent="State_Manager" instance=ExtResource("7_ivol5")]
+
+[node name="Phy_state_a" parent="State_Manager" instance=ExtResource("8_wnyk6")]
+
+[node name="Qualities_Manager" parent="." node_paths=PackedStringArray("data_entity") instance=ExtResource("6_mdkb2")]
+data_entity = NodePath("../Data")
 
 [node name="Quality_A" parent="Qualities_Manager" instance=ExtResource("5_m7ixo")]
 

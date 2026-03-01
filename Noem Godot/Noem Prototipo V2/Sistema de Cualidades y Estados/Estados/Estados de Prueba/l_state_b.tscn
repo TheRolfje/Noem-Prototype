@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://x0pd6c6hf5gc"]
+
+[ext_resource type="Script" uid="uid://c3q8t02i2c4ef" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/state_b.gd" id="1_a8c6s"]
+
+[node name="L_State_B" type="Node"]
+script = ExtResource("1_a8c6s")

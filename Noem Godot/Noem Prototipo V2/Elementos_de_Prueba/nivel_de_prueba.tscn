@@ -7,7 +7,7 @@ script/source = "extends Node2D
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amc4x"]
-size = Vector2(253, 6)
+size = Vector2(224.5, 6)
 
 [node name="Nivel de Prueba" type="Node2D"]
 script = SubResource("GDScript_hlh48")
@@ -18,7 +18,7 @@ position = Vector2(-3, 10)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(11, 27)
+position = Vector2(-3.25, 27)
 shape = SubResource("RectangleShape2D_amc4x")
 
 [node name="Camera2D" type="Camera2D" parent="."]

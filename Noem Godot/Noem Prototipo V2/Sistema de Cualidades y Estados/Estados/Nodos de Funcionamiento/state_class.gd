@@ -2,7 +2,7 @@ extends Node
 
 class_name State
 
-@export var state_manager : State_Manager
+var state_manager : State_Manager
 
 var name_of_state : StringName #la clase "state_names" guarda todos los nombre de los estados como StringName.
 var type_of_state : StringName #La clase State_Type guarda los nombres de los tipos de estado.

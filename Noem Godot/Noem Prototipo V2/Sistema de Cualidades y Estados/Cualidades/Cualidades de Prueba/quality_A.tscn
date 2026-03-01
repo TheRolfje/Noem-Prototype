@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://beoaypknykn8u"]
+[gd_scene load_steps=4 format=3 uid="uid://beoaypknykn8u"]
 
 [ext_resource type="Script" uid="uid://8f56r0jlb8o8" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_A.gd" id="1_5vp2r"]
 [ext_resource type="Script" uid="uid://blglmkrvoe6jy" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/sub_quality_a.gd" id="2_6af1v"]
+[ext_resource type="Script" uid="uid://caodqw8gc4qt3" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/node_2d.gd" id="3_6af1v"]
 
 [node name="Quality_A" type="Node2D"]
 script = ExtResource("1_5vp2r")
+lomocomotional_changes_affect_me = true
 
 [node name="SubQuality_A" type="Node2D" parent="."]
 script = ExtResource("2_6af1v")
+
+[node name="SubQuality_A2" type="Node2D" parent="."]
+script = ExtResource("3_6af1v")
