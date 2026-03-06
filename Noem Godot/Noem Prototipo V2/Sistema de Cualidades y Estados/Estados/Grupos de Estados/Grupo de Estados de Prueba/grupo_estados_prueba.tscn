@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://5r6g647mtaiu"]
+
+[ext_resource type="Script" uid="uid://eftkojwmwqpu" path="res://Sistema de Cualidades y Estados/Estados/Grupos de Estados/Grupo de Estados de Prueba/grupo_estados_prueba.gd" id="1_prns3"]
+[ext_resource type="PackedScene" uid="uid://t3qi4g6r3mms" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/e_state_a.tscn" id="2_28v2n"]
+[ext_resource type="PackedScene" uid="uid://dixg547f48fqj" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/l_state_a.tscn" id="3_5wm6f"]
+[ext_resource type="PackedScene" uid="uid://x0pd6c6hf5gc" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/l_state_b.tscn" id="4_2hjhf"]
+[ext_resource type="PackedScene" uid="uid://cijp7612wuop" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/phy_state_a.tscn" id="5_qllu2"]
+[ext_resource type="PackedScene" uid="uid://coc0idphm4s25" path="res://Sistema de Cualidades y Estados/Estados/Estados de Prueba/p_state_a.tscn" id="6_f07x8"]
+
+[node name="Grupo_estados_Prueba" type="Node"]
+script = ExtResource("1_prns3")
+
+[node name="E_state_A" parent="." instance=ExtResource("2_28v2n")]
+name_of_state = &"e_state_a"
+type_of_state = &"emotional"
+
+[node name="L_State_A" parent="." instance=ExtResource("3_5wm6f")]
+name_of_state = &"l_state_a"
+type_of_state = &"locomotional"
+
+[node name="L_State_B" parent="." instance=ExtResource("4_2hjhf")]
+name_of_state = &"l_state_b"
+type_of_state = &"locomotional"
+
+[node name="Phy_state_a" parent="." instance=ExtResource("5_qllu2")]
+name_of_state = &"phy_state_a"
+type_of_state = &"physical"
+
+[node name="P_state_A" parent="." instance=ExtResource("6_f07x8")]
+name_of_state = &"p_state_a"
+type_of_state = &"protection"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr6t26282j6np"]
+
+[ext_resource type="Script" uid="uid://60jlvvhub2m7" path="res://Sistema de Cualidades y Estados/Estados/Grupos de Estados/Basic States Humanoid/basic_states_humanoid.gd" id="1_nxncm"]
+
+[node name="Basic_States_Humanoid" type="Node"]
+script = ExtResource("1_nxncm")

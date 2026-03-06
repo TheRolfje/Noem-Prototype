@@ -77,10 +77,10 @@ var _states_ready_to_execute : Dictionary[StringName, bool] = {
 	State_Type.PROTECTION : false
 }
 	
-func add_state_to_manager(new_state : State, name_of_state : StringName, type : StringName):
-	var dictionary_of_state : Dictionary = _all_states_in_the_manager[type]
+func add_state_to_manager(new_state : State):
+	var dictionary_of_state : Dictionary = _all_states_in_the_manager[new_state.type_of_state]
 	
-	dictionary_of_state[name_of_state] = new_state
+	dictionary_of_state[new_state.name_of_state] = new_state
 
 #Esta función se llama desde fuera con una señal.
 func change_active_state(new_state : StringName, type : StringName):

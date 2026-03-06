@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcl1bp3twnofx"]
 
 [ext_resource type="Script" uid="uid://cxjbxces1q53j" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_b.gd" id="1_5m3jb"]
-[ext_resource type="Script" uid="uid://dp5texkey68t6" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/sub_quality_b.gd" id="2_3bl4c"]
-[ext_resource type="Script" uid="uid://w1imqnm6hdrs" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/sub_quality_b_2.gd" id="3_tbhv4"]
+[ext_resource type="Script" uid="uid://dp5texkey68t6" path="res://Sistema de Cualidades y Estados/Cualidades/Sub_Qualities/Sub Cualidades de Prueba/sub_quality_b.gd" id="2_3bl4c"]
+[ext_resource type="Script" uid="uid://w1imqnm6hdrs" path="res://Sistema de Cualidades y Estados/Cualidades/Sub_Qualities/Sub Cualidades de Prueba/sub_quality_b_2.gd" id="3_tbhv4"]
 
 [node name="Quality_B" type="Node2D"]
 script = ExtResource("1_5m3jb")

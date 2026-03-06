@@ -46,7 +46,6 @@ func change_active_quality(name_of_quality:StringName):
 	else:
 		_switch_quality(name_of_quality)
 		
-
 func _switch_quality(name_of_new_active_quality:StringName):
 	#Registra la cualidad activa como old_active_quality y luego busca la clave de la nueva
 	#cualidad en el diccionario para asignarla como cualidada activa.
@@ -72,6 +71,12 @@ func _switch_quality(name_of_new_active_quality:StringName):
 		else:
 			push_error("La Cualidad: ", name_of_new_active_quality, " no fue creada o añadida a la Quality Manager")
 		
+func execute_sub_quality(quality_owner : StringName, sub_quality : StringName):
+	#Ejecuta una subCualidad directamente. Pensado para interrupciones.
+	var quality : Quality = all_qualities_in_the_manager[quality_owner]
+	
+	quality._start_this_sub_quality(sub_quality)
+
 func add_new_quality_to_dictionary(name_new_quality:StringName, new_quality:Quality):
 	if(name_new_quality != &"LessName"):
 		if(!all_qualities_in_the_manager.has(name_new_quality)):
@@ -140,7 +145,6 @@ func _no_problem_with_active_physical_state(quality : Quality):
 	if(not quality.estados_fisicos_bloqueados.has(data_entity.active_physical_state)):
 		return true
 		
-
 func interruption_is_valid(name_of_interruption:String):
 	if(active_quality.name_of_quality != name_of_interruption):
 		if(!name_of_interruption in active_quality.interruptions_not_allowed):

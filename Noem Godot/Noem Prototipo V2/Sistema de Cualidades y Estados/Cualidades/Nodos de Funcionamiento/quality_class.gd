@@ -86,7 +86,7 @@ func assing_this_quality_ass_default_quality():
 #Cuando se decide que SubCualidad activar (Dentro de "choose_sub_quality()"),
 #se inicia esa SubCualidad con este método.
 func _start_this_sub_quality(new_sub_quality: StringName):
-	
+	#Cierra la SubCualidad activa e inicia una nueva.
 	if(active_sub_quality == null or new_sub_quality != active_sub_quality.name_of_subquality):
 		#Cierra la SubCualidad anterior y ejecuta la acción de inicio de una nueva.
 		if (active_sub_quality != null): #Si es Null acá es porque es la primera SC que esta C eligió.

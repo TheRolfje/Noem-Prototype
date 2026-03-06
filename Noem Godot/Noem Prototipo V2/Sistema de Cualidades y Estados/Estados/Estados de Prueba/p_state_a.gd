@@ -1,9 +1,7 @@
 extends State
 
 func _ready() -> void:
-	state_manager = get_parent()
-	name_of_state = &"p_state_a"
-	_add_state_to_manager(name_of_state, State_Type.LOCOMOTIONAL)
+	super._ready()
 	
 #Se sobreescriben al programar los estados, aunque quizas ni lo necesiten.
 func action_of_start():
