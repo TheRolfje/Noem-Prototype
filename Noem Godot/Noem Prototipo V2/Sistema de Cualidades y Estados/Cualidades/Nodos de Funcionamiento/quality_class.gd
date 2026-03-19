@@ -126,23 +126,3 @@ func add_subquality_to_the_quality_owner(subquality : Sub_Quality, name : String
 		_all_sub_qualities_in_this_quality[name] = subquality
 	else:
 		push_error("LA SUBCUALIDAD NO TIENE NOMBRE. SE LE DEBE PONER NOMBRE ANTES DE LLAMAR A ESTE METODO.")
-
-func evaluate_sub_quality_change_according_to_change_in_this_type_state(type : StringName):
-	#Seguro esto se podía hacer de otra forma pero bueno.
-	#En sí, si te importa que Ese tipo de estado haya cambiado,
-	#llamás de nuevo a "choose_sub_quality"
-	
-	match type:
-		State_Type.LOCOMOTIONAL:
-			if lomocomotional_changes_affect_me:
-				choose_sub_quality()
-		State_Type.EMOTIONAL:
-			if emotional_changes_affect_me:
-				choose_sub_quality()
-		State_Type.PHYSICAL:
-			if physical_changes_affect_me:
-				choose_sub_quality()
-		State_Type.PROTECTION:
-			if protection_changes_affect_me:
-				choose_sub_quality()
-#----------------------------------------------------------

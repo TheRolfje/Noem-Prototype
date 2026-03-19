@@ -45,6 +45,23 @@ func change_active_quality(name_of_quality:StringName):
 			_switch_quality(name_of_quality)
 	else:
 		_switch_quality(name_of_quality)
+
+func determine_if_Active_Quality_is_affected_by_this_state_change(type : StringName):
+	#Si un estado activo cambió, se evalúa si ese cambio le importa o no a la
+	#Cualidad activa, para saber si es necesario procesarlo y reelegir una SubCualidad
+	match type:
+		State_Type.LOCOMOTIONAL:
+			if(active_quality.lomocomotional_changes_affect_me):
+				active_quality.choose_sub_quality()
+		State_Type.EMOTIONAL:
+			if(active_quality.emotional_changes_affect_me):
+				active_quality.choose_sub_quality()
+		State_Type.PHYSICAL:
+			if(active_quality.physical_changes_affect_me):
+				active_quality.choose_sub_quality()
+		State_Type.PROTECTION:
+			if(active_quality.protection_changes_affect_me):
+				active_quality.choose_sub_quality()
 		
 func _switch_quality(name_of_new_active_quality:StringName):
 	#Registra la cualidad activa como old_active_quality y luego busca la clave de la nueva
@@ -153,6 +170,3 @@ func interruption_is_valid(name_of_interruption:String):
 			return false
 	else:
 		return false
-
-func evaluate_sub_quality_selection_according_to_state_changed(type_of_state_changed : StringName):
-	active_quality.evaluate_sub_quality_change_according_to_change_in_this_type_state(type_of_state_changed)

@@ -101,7 +101,8 @@ func change_active_state(new_state : StringName, type : StringName):
 	await initialized_new_state(type)
 	
 	data_entity.change_state_labels(new_state, type)
-	notify_quality_manager_about_type_of_state_changed(type)
+	
+	qualities_manager.determine_if_Active_Quality_is_affected_by_this_state_change(type)
 	
 func close_old_state(type : StringName):
 	_old_states_finished[type] = false
@@ -119,9 +120,6 @@ func initialized_new_state(type : StringName):
 	_new_states_initialized[type] = false
 	await _active_states[type].action_of_start()
 	_new_states_initialized[type] = true
-
-func notify_quality_manager_about_type_of_state_changed(type : StringName):
-	qualities_manager.evaluate_sub_quality_selection_according_to_state_changed(type)
 	
 func action_of_active_states(): #El physics procces de la entidad ejecuta esto en bucle.
 	verify_and_excute_state_of_type(State_Type.LOCOMOTIONAL)
