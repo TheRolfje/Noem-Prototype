@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cma3h617r7qdi"]
+[gd_scene load_steps=14 format=3 uid="uid://cma3h617r7qdi"]
 
 [ext_resource type="Script" uid="uid://dpnpw683kmp6o" path="res://Elementos_de_Prueba/entidad_de_prueba.gd" id="1_aeou8"]
 [ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_tk1ej"]
@@ -9,8 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://beoaypknykn8u" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_A.tscn" id="6_f12ew"]
 [ext_resource type="PackedScene" uid="uid://cqdsulgracb7i" path="res://Sistema de Cualidades y Estados/Cualidades/Qualities_Manager/qualities_manager.tscn" id="6_mdkb2"]
 [ext_resource type="PackedScene" uid="uid://bcl1bp3twnofx" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_b.tscn" id="7_eqvnj"]
+[ext_resource type="PackedScene" uid="uid://uee7hpk2ul0b" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/mover_x.tscn" id="8_falxq"]
+[ext_resource type="Script" uid="uid://b5m6m7xu8dx5a" path="res://Elementos_de_Prueba/detector_de_estados.gd" id="10_eqvnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbviv"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_falxq"]
+a = Vector2(0, -18)
+b = Vector2(0, 20)
 
 [node name="Entidad_de_Prueba" type="CharacterBody2D" node_paths=PackedStringArray("quality_manager", "state_manager")]
 script = ExtResource("1_aeou8")
@@ -24,22 +30,43 @@ texture = ExtResource("2_tk1ej")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wbviv")
 
-[node name="State_Manager" parent="." node_paths=PackedStringArray("data_entity", "qualities_manager") instance=ExtResource("3_1pdrj")]
+[node name="State_Manager" parent="." node_paths=PackedStringArray("entity", "data_entity", "qualities_manager") instance=ExtResource("3_1pdrj")]
+entity = NodePath("..")
 data_entity = NodePath("../Data")
 qualities_manager = NodePath("../Qualities_Manager")
 
 [node name="Grupo_estados_Prueba" parent="State_Manager" node_paths=PackedStringArray("state_manager") instance=ExtResource("4_mdkb2")]
 state_manager = NodePath("..")
 
-[node name="Qualities_Manager" parent="." node_paths=PackedStringArray("data_entity") instance=ExtResource("6_mdkb2")]
+[node name="Qualities_Manager" parent="." node_paths=PackedStringArray("entity", "data_entity") instance=ExtResource("6_mdkb2")]
+entity = NodePath("..")
 data_entity = NodePath("../Data")
 
-[node name="Quality_A" parent="Qualities_Manager" instance=ExtResource("6_f12ew")]
+[node name="Quality_A" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("6_f12ew")]
+qualities_manager = NodePath("..")
 
-[node name="Quality_B" parent="Qualities_Manager" instance=ExtResource("7_eqvnj")]
+[node name="Quality_B" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("7_eqvnj")]
+qualities_manager = NodePath("..")
+
+[node name="Mover_X" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("8_falxq")]
+speed = 100
+qualities_manager = NodePath("..")
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource("5_3cp5c")
 
-[node name="Entradas Teclado" type="Node" parent="."]
+[node name="Entradas Teclado" type="Node" parent="." node_paths=PackedStringArray("quality_manager", "state_manager")]
 script = ExtResource("6_7qop5")
+quality_manager = NodePath("../Qualities_Manager")
+state_manager = NodePath("../State_Manager")
+
+[node name="Detector_de_Estado_Locomocional" type="Node2D" parent="." node_paths=PackedStringArray("state_manager")]
+script = ExtResource("10_eqvnj")
+state_manager = NodePath("../State_Manager")
+
+[node name="Area2D" type="Area2D" parent="Detector_de_Estado_Locomocional"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector_de_Estado_Locomocional/Area2D"]
+shape = SubResource("SegmentShape2D_falxq")
+
+[connection signal="body_entered" from="Detector_de_Estado_Locomocional/Area2D" to="Detector_de_Estado_Locomocional" method="_on_area_2d_body_entered"]

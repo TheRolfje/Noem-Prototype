@@ -7,8 +7,7 @@ signal request_of_change_of_quality
 signal quality_changed
 #-----------------------------------
 
-@onready var entity : CharacterBody2D = self.owner
-
+@export var entity : CharacterBody2D
 @export var data_entity : data_humanoid
 @export var animations : AnimationPlayer
 #falta nodos de control, sonido, etc.
@@ -32,7 +31,7 @@ var old_active_quality_finished:bool = true
 
 var all_qualities_in_the_manager:Dictionary[StringName, Quality]
 	
-func execute_default_quality():
+func change_to_default_quality():
 	#print("Solicitud de Uso de Cualidad Default: " + default_quality.name_of_quality + "\n")
 	change_active_quality(default_quality.name_of_quality)
 	

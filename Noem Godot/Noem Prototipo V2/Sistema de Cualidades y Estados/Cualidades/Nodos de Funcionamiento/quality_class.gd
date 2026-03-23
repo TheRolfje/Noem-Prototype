@@ -3,12 +3,14 @@ extends Node
 class_name Quality
 
 #Las cualidades sacan todos los datos para funcionar del Qualities Manager.
-@onready var qualities_manager : Qualities_Manager = get_parent()
+@export var qualities_manager : Qualities_Manager
 
 #Y las guardan para que sus SubCualidades las saquen de aca:
+@onready var entity : CharacterBody2D = qualities_manager.entity
 @onready var data_entity : data_humanoid = qualities_manager.data_entity
 @onready var animations_entity : AnimationPlayer = qualities_manager.animations
 #faltan nodos de control, sonidos y demás.
+var datos_compartidos_correctamente : bool = false
 #------------------------------------------------------
 
 #Estos exports sirven para que cuando un estado cambia durante la ejecución de una Cualidad,
@@ -40,9 +42,8 @@ var estados_de_proteccion_bloqueados : Array = []
 var estados_fisicos_bloqueados : Array = []
 var estados_emocionales_bloqueados : Array = []
 var cualidades_bloqueadas : Array = []
-#--------------------------------------------------------
-		
 	
+#--------------------------------------------------------
 
 #Métodos que las Cualidades Sobreescriben:
 func quality_start_action(): #Acción de inicio de la Cualidad.
@@ -56,6 +57,17 @@ func choose_sub_quality(): #Logica para elegir que SubCualidad usar. Es llamado 
 #------------------------------------------------------------------------------
 
 #Metodos de Funcionamiento de las Cualidades:
+
+func compartir_datos_con_las_subcualidades():
+	var sub_quality :Sub_Quality
+	for key in _all_sub_qualities_in_this_quality:
+		sub_quality = _all_sub_qualities_in_this_quality[key]
+		
+		sub_quality.entity = entity
+		sub_quality.data = data_entity
+		sub_quality.animations = animations_entity
+		
+	datos_compartidos_correctamente = true
 
 func add_this_quality_to_the_manager(): #Se llama en el Ready de toda Cualidad.
 	qualities_manager.add_new_quality_to_dictionary(name_of_quality, self)
@@ -101,10 +113,11 @@ func _start_this_sub_quality(new_sub_quality: StringName):
 		await _action_of_start_of_sub_quality()
 
 func _sub_quality_action(): #La SM ejecuta esto en bucle.
-	if(new_sub_quality_initialized and old_sub_quality_finished):	
-		active_sub_quality.action()
-	#else:
-		#print("Intentando Ejecutar acción de la SubCualidad activa: " + active_sub_quality.name_of_subquality + "\n")
+	if(datos_compartidos_correctamente):
+		if(new_sub_quality_initialized and old_sub_quality_finished):
+			active_sub_quality.action()
+		#else:
+			#print("Intentando Ejecutar acción de la SubCualidad activa: " + active_sub_quality.name_of_subquality + "\n")
 func _action_of_end_of_sub_quality():
 	
 	#print("Iniciando acción de fin de SubCualidad: " + active_sub_quality.name_of_subquality + "\n")
@@ -126,3 +139,11 @@ func add_subquality_to_the_quality_owner(subquality : Sub_Quality, name : String
 		_all_sub_qualities_in_this_quality[name] = subquality
 	else:
 		push_error("LA SUBCUALIDAD NO TIENE NOMBRE. SE LE DEBE PONER NOMBRE ANTES DE LLAMAR A ESTE METODO.")
+
+func compartir_datos_con_subcualidades():
+	for child : Sub_Quality in get_children():
+		child.entity = entity
+		child.data = data_entity
+		child.animations = animations_entity
+		
+	datos_compartidos_correctamente = true

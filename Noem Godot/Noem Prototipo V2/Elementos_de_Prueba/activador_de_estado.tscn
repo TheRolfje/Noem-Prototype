@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk3nl5i1v7tvk"]
+
+[ext_resource type="Script" uid="uid://c46sj3olynd4x" path="res://emisor_de_estado.gd" id="1_tx5bp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rp14w"]
+radius = 2.0
+height = 10.0
+
+[node name="Activador_de_Estado" type="StaticBody2D"]
+script = ExtResource("1_tx5bp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rp14w")

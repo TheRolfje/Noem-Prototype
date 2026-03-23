@@ -8,8 +8,10 @@
 script = ExtResource("1_5vp2r")
 lomocomotional_changes_affect_me = true
 
-[node name="SubQuality_A" type="Node2D" parent="."]
+[node name="SubQuality_A" type="Node2D" parent="." node_paths=PackedStringArray("quality_owner")]
 script = ExtResource("2_6af1v")
+quality_owner = NodePath("..")
 
-[node name="SubQuality_A2" type="Node2D" parent="."]
+[node name="SubQuality_A2" type="Node2D" parent="." node_paths=PackedStringArray("quality_owner")]
 script = ExtResource("3_6af1v")
+quality_owner = NodePath("..")

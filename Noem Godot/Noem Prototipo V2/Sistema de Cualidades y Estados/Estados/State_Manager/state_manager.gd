@@ -22,6 +22,7 @@ extends Node
 
 class_name  State_Manager
 
+@export var entity : CharacterBody2D
 @export var data_entity : data_humanoid
 @export var qualities_manager : Qualities_Manager
 
@@ -83,8 +84,8 @@ func add_state_to_manager(new_state : State):
 	dictionary_of_state[new_state.name_of_state] = new_state
 
 #Esta función se llama desde fuera con una señal.
-func change_active_state(new_state : StringName, type : StringName):
-	
+func change_active_state(name_of_state : StringName, type : StringName):
+	#print("Cambiar a estado: " + name_of_state + "\n")
 	_states_ready_to_execute[type] = false
 	
 	if(_active_states[type] != null):
@@ -94,15 +95,16 @@ func change_active_state(new_state : StringName, type : StringName):
 		
 		_label_old_states[type] = _active_states[type].name_of_state
 	else:
-		_label_old_states[type] = new_state
+		_label_old_states[type] = name_of_state
 		
-	assing_new_active_state(new_state, type)
+	assing_new_active_state(name_of_state, type)
 	
 	await initialized_new_state(type)
 	
-	data_entity.change_state_labels(new_state, type)
+	data_entity.change_state_labels(name_of_state, type)
 	
-	qualities_manager.determine_if_Active_Quality_is_affected_by_this_state_change(type)
+	if(qualities_manager.active_quality != null):
+		qualities_manager.determine_if_Active_Quality_is_affected_by_this_state_change(type)
 	
 func close_old_state(type : StringName):
 	_old_states_finished[type] = false

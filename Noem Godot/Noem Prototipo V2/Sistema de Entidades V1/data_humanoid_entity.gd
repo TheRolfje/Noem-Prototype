@@ -15,10 +15,10 @@ var action_pressed:bool = true
 @export var damage:int = 0
 
 #Posibles estados de la Entidad.-----------------------
-var active_emotional_state : StringName
-var active_locomotional_state : StringName
-var active_physical_state : StringName
-var active_protection_state : StringName
+var active_emotional_state : StringName = &"null"
+var active_locomotional_state : StringName = &"null"
+var active_physical_state : StringName = &"null"
+var active_protection_state : StringName = &"null"
 
 var active_quality : StringName
 #-------------------------------------------------------

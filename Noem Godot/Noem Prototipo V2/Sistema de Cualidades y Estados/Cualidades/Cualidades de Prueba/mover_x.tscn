@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://uee7hpk2ul0b"]
+
+[ext_resource type="Script" uid="uid://c0qrrm36ts4fm" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/mover_x.gd" id="1_ovcdw"]
+[ext_resource type="Script" uid="uid://dx11mkfr12ne8" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/derecha.gd" id="2_veotv"]
+[ext_resource type="Script" uid="uid://demqyra5dc4od" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/izquierda.gd" id="3_yp4jv"]
+
+[node name="Mover_X" type="Node"]
+script = ExtResource("1_ovcdw")
+
+[node name="derecha" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_veotv")
+quality_owner = NodePath("..")
+
+[node name="izquierda" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("3_yp4jv")
+quality_owner = NodePath("..")

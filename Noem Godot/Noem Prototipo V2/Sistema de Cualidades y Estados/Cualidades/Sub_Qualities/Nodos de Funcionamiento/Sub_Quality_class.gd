@@ -2,7 +2,15 @@ extends Node
 
 class_name Sub_Quality
 
-@onready var quality_owner : Quality = get_parent()
+@export var quality_owner : Quality
+
+var entity : CharacterBody2D
+var data : data_humanoid
+var animations : AnimationPlayer
+
+#@onready var entity: CharacterBody2D = quality_owner.entity
+#@onready var data: data_humanoid = quality_owner.data_entity
+#@onready var animations : AnimationPlayer = quality_owner.animations_entity
 
 var name_of_subquality : StringName = &"LessName"
 	

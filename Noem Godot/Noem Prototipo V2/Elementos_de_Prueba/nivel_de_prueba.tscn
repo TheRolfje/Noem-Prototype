@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://du3dg4aqro84w"]
+[gd_scene load_steps=5 format=3 uid="uid://du3dg4aqro84w"]
 
 [ext_resource type="PackedScene" uid="uid://cma3h617r7qdi" path="res://Elementos_de_Prueba/entidad_de_prueba.tscn" id="1_amc4x"]
+[ext_resource type="PackedScene" uid="uid://dk3nl5i1v7tvk" path="res://Elementos_de_Prueba/activador_de_estado.tscn" id="2_d2lhg"]
 
 [sub_resource type="GDScript" id="GDScript_hlh48"]
 script/source = "extends Node2D
@@ -23,3 +24,13 @@ shape = SubResource("RectangleShape2D_amc4x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1, -10)
+
+[node name="Activador_de_Estado" parent="." instance=ExtResource("2_d2lhg")]
+position = Vector2(58, -7)
+tipo = &"locomotional"
+nombre = &"l_state_b"
+
+[node name="Activador_de_Estado2" parent="." instance=ExtResource("2_d2lhg")]
+position = Vector2(-75, -6)
+tipo = &"locomotional"
+nombre = &"l_state_a"
