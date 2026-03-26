@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk3nl5i1v7tvk"]
 
-[ext_resource type="Script" uid="uid://c46sj3olynd4x" path="res://emisor_de_estado.gd" id="1_tx5bp"]
+[ext_resource type="Script" uid="uid://c46sj3olynd4x" path="res://Elementos_de_Prueba/emisor_de_estado.gd" id="1_tx5bp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rp14w"]
 radius = 2.0

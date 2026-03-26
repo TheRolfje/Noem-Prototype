@@ -1,15 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cma3h617r7qdi"]
+[gd_scene load_steps=10 format=3 uid="uid://cma3h617r7qdi"]
 
 [ext_resource type="Script" uid="uid://dpnpw683kmp6o" path="res://Elementos_de_Prueba/entidad_de_prueba.gd" id="1_aeou8"]
 [ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_tk1ej"]
 [ext_resource type="PackedScene" uid="uid://cs0u6lhwp0dgy" path="res://Sistema de Cualidades y Estados/Estados/State_Manager/state_manager.tscn" id="3_1pdrj"]
-[ext_resource type="PackedScene" uid="uid://5r6g647mtaiu" path="res://Sistema de Cualidades y Estados/Estados/Grupos de Estados/Grupo de Estados de Prueba/grupo_estados_prueba.tscn" id="4_mdkb2"]
 [ext_resource type="Script" uid="uid://rwlodtsn8aso" path="res://Elementos_de_Prueba/data.gd" id="5_3cp5c"]
 [ext_resource type="Script" uid="uid://dpdcnijdo4u6x" path="res://Elementos_de_Prueba/entradas_teclado.gd" id="6_7qop5"]
-[ext_resource type="PackedScene" uid="uid://beoaypknykn8u" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_A.tscn" id="6_f12ew"]
 [ext_resource type="PackedScene" uid="uid://cqdsulgracb7i" path="res://Sistema de Cualidades y Estados/Cualidades/Qualities_Manager/qualities_manager.tscn" id="6_mdkb2"]
-[ext_resource type="PackedScene" uid="uid://bcl1bp3twnofx" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/quality_b.tscn" id="7_eqvnj"]
-[ext_resource type="PackedScene" uid="uid://uee7hpk2ul0b" path="res://Sistema de Cualidades y Estados/Cualidades/Cualidades de Prueba/mover_x.tscn" id="8_falxq"]
 [ext_resource type="Script" uid="uid://b5m6m7xu8dx5a" path="res://Elementos_de_Prueba/detector_de_estados.gd" id="10_eqvnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbviv"]
@@ -35,22 +31,9 @@ entity = NodePath("..")
 data_entity = NodePath("../Data")
 qualities_manager = NodePath("../Qualities_Manager")
 
-[node name="Grupo_estados_Prueba" parent="State_Manager" node_paths=PackedStringArray("state_manager") instance=ExtResource("4_mdkb2")]
-state_manager = NodePath("..")
-
 [node name="Qualities_Manager" parent="." node_paths=PackedStringArray("entity", "data_entity") instance=ExtResource("6_mdkb2")]
 entity = NodePath("..")
 data_entity = NodePath("../Data")
-
-[node name="Quality_A" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("6_f12ew")]
-qualities_manager = NodePath("..")
-
-[node name="Quality_B" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("7_eqvnj")]
-qualities_manager = NodePath("..")
-
-[node name="Mover_X" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("8_falxq")]
-speed = 100
-qualities_manager = NodePath("..")
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource("5_3cp5c")

@@ -2,17 +2,9 @@
 
 #Empezar a programar Cualidades y Estados Reales para el sistema.
 
-#Empecé a crear los emisores de estados para probar. Fuerzan a la Entidad que los toque a cambiar uno
-#de sus estados activos, a menos que ya esten en dicho estado, aunque creo que eso lo valida por
-#si misma la entidad; eso también habría que verlo. 
-
-#Además de eso ya cree el nodo de entradas de teclado, así que solo tengo que programar que hace
-#cada una. En teoría después ya puedo programar Cualidades. Recordar que es el sistema de Cualidades
-#el que valida si una Cualidad se puede usar o no, así que en el nodo de Entradas de Teclado o en
-#el futuro Nodo de Control, no debería tener que preocuparme por eso, solo programar las Cualidades
-#para que estas impidan cambiar a una Cualidad Bloqueada, ya sea por el estado activo o por la cualidad
-#activa.
-
-#IMPORTANTE: ARREGLAR DEPENDIENCIAS DE ENTITY EN LAS SUBCUALIDAD. ESTA INTENTANDO EXTRAER ENTITY
-#SIN QUE LA QUALITIES MANAGER ESTE CARGADA AÚN. Primero se carga el ready de la sub cualidad, después el
-#de la Cualidad y por último el del Qualitis Manager, yo necesito que la SubCualidad tenga a la Entidad antes.
+#Buscar una forma de que la Entidad o el entorno validen que la Entidad ya está en un estado activo
+#y que no intente cambiar a ese mismo estado, pero tampoco que en cada fotograma intente hacer esa
+#validación con un if o algo. Ideal: No se procesa nada (o lo minomo) hasta que llega una señal de
+#estado diferente al activo. Quizas usar activadores de estado en lugar de un rastreo constante.
+#Podría traer bugs de que la Entidad esté en un estado lógico, cuando en el juego debería estar en otro,
+#o que el jugador pueda usar un activador de estado no pensado para esa parte del juego.

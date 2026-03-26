@@ -94,7 +94,7 @@ func execute_sub_quality(quality_owner : StringName, sub_quality : StringName):
 	quality._start_this_sub_quality(sub_quality)
 
 func add_new_quality_to_dictionary(name_new_quality:StringName, new_quality:Quality):
-	if(name_new_quality != &"LessName"):
+	if(name_new_quality != &"none"):
 		if(!all_qualities_in_the_manager.has(name_new_quality)):
 			all_qualities_in_the_manager[name_new_quality] = new_quality
 	else:

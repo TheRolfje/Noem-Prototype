@@ -12,7 +12,7 @@ var animations : AnimationPlayer
 #@onready var data: data_humanoid = quality_owner.data_entity
 #@onready var animations : AnimationPlayer = quality_owner.animations_entity
 
-var name_of_subquality : StringName = &"LessName"
+var name_of_subquality : StringName = &"none"
 	
 func action_of_start():
 	pass
@@ -22,7 +22,10 @@ func action():
 	
 func action_of_end():
 	pass
-	
+
+func _ready() -> void:
+	add_subquality_to_the_quality_owner()
+
 #IMPORTANTE: Este método se tiene que llamar en el ready, DESPUÉS DE ASIGNAR EL NOMBRE A LA SUBCUALIDAD.
 func add_subquality_to_the_quality_owner():
 	quality_owner.add_subquality_to_the_quality_owner(self, name_of_subquality)

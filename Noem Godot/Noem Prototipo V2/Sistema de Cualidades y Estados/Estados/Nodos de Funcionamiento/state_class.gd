@@ -4,8 +4,8 @@ class_name State
 
 var state_group : states_group
 
-@export var name_of_state : StringName = &"none"#la clase "state_names" guarda todos los nombre de los estados como StringName.
-@export var type_of_state : StringName = &"none"#La clase State_Type guarda los nombres de los tipos de estado.
+var name_of_state : StringName = &"none"#la clase "state_names" guarda todos los nombre de los estados como StringName.
+var type_of_state : StringName = &"none"#La clase State_Type guarda los nombres de los tipos de estado.
 	
 func _ready() -> void:
 	state_group = get_parent()

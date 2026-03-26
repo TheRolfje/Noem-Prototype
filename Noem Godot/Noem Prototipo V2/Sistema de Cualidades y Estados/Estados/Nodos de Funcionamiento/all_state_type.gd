@@ -6,6 +6,7 @@ const LOCOMOTIONAL : StringName = &"locomotional"
 const EMOTIONAL : StringName = &"emotional"
 const PROTECTION : StringName = &"protection"
 const PHYSICAL : StringName = &"physical"
+const NONE : StringName = &"none"
 
 static func type_is_valid(type : StringName):
 	var valid_types = [

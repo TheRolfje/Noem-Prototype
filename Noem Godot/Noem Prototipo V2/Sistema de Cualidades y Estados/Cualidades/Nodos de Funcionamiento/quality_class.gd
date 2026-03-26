@@ -2,6 +2,8 @@ extends Node
 
 class_name Quality
 
+#UNA CUALIDAD TAMBIEN ACTUA DE "SUBQUALITY_MANAGER". Quizas debería separarlo, pero bueno... funciona.
+
 #Las cualidades sacan todos los datos para funcionar del Qualities Manager.
 @export var qualities_manager : Qualities_Manager
 
@@ -20,6 +22,14 @@ var datos_compartidos_correctamente : bool = false
 @export var emotional_changes_affect_me : bool = false
 @export var physical_changes_affect_me : bool = false
 @export var protection_changes_affect_me : bool = false
+#-------------------------------------------------------
+
+#Si esta en True, la Cualidad se convierte en Cualidad Por Defecto.
+
+@export var default_quality : bool = false
+
+#Si o si tiene que haber una Cualidad Por Defecto. Si hay varias, se toma por defecto a la
+#última asignada como tal (creo, xd)
 #-------------------------------------------------------
 
 #Funcionamiento de las SubCualidades:
@@ -58,7 +68,16 @@ func choose_sub_quality(): #Logica para elegir que SubCualidad usar. Es llamado 
 
 #Metodos de Funcionamiento de las Cualidades:
 
+func _ready() -> void:
+	add_this_quality_to_the_manager()
+	compartir_datos_con_las_subcualidades()
+	
+	if(default_quality):
+		assing_this_quality_ass_default_quality()
+
 func compartir_datos_con_las_subcualidades():
+	#Envia los datos de la Entidad a las SubCualidades. Si, seguro hay una mejor forma de hacerlo.
+	
 	var sub_quality :Sub_Quality
 	for key in _all_sub_qualities_in_this_quality:
 		sub_quality = _all_sub_qualities_in_this_quality[key]
@@ -135,15 +154,7 @@ func _action_of_start_of_sub_quality():
 	#print("Acción de inicio de SubCualidad: " + active_sub_quality.name_of_subquality + " terminada\n")
 
 func add_subquality_to_the_quality_owner(subquality : Sub_Quality, name : StringName):
-	if(name != &"LessName"):
+	if(name != &"none"):
 		_all_sub_qualities_in_this_quality[name] = subquality
 	else:
 		push_error("LA SUBCUALIDAD NO TIENE NOMBRE. SE LE DEBE PONER NOMBRE ANTES DE LLAMAR A ESTE METODO.")
-
-func compartir_datos_con_subcualidades():
-	for child : Sub_Quality in get_children():
-		child.entity = entity
-		child.data = data_entity
-		child.animations = animations_entity
-		
-	datos_compartidos_correctamente = true
