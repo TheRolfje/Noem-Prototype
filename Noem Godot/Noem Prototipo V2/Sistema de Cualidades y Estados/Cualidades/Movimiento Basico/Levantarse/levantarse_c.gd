@@ -14,7 +14,10 @@ func quality_end_action(): #Cierre de la Cualidad (normalmente para recetearla p
 	
 func choose_sub_quality(): #Logica para elegir que SubCualidad usar.
 	if (data_entity.active_locomotional_state == State_Names.Locomocion.FLAT_TERRAIN):
-		_start_this_sub_quality("wake_up")
+		if(data_entity.active_quality == "derrapar"):
+			_start_this_sub_quality("levantarse_derrape")
+		else:
+			_start_this_sub_quality("wake_up")
 
 #-------------------------------------------------------
 

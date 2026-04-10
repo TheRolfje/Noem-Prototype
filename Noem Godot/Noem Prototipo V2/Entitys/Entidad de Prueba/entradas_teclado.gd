@@ -44,9 +44,6 @@ func _process(delta: float) -> void:
 	detect_shift_action()
 	detect_ctrl_action()
 	
-	#if Input.is_action_just_pressed("Contener"):
-		#control_node.contener()
-	
 #PODRÍAN HACERSE CON SEÑALES GENERALES Y QUE OTROS NODOS SE SUBSCRIBAN, SI LO LLEGO A NECESITAR.
 func ctrl_on():
 	control_node.ctrl_on()

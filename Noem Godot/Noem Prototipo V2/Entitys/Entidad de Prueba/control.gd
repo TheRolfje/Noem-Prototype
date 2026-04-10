@@ -9,6 +9,7 @@ class_name Control_Player
 @export var data : data_humanoid
 @export var buffer : buffer_actions
 
+@onready var buffer_permisos : buffer_coyote_time = $"../buffer_coyote_time"
 @onready var teclado : entradas_teclado = $"../Entradas Teclado"
 @onready var quality_manager : Qualities_Manager = $"../Qualities_Manager"
 
@@ -27,12 +28,12 @@ func _process(delta: float) -> void:
 
 
 func excecute_continuos_quality(): #Acciones continuas. Dependen de cuando quiere la Entidad que duren.
-	if(data.corriendo and data.direction_movement.x != 0):
+	if(data.corriendo and data.direction_movement.x != 0 and data.active_quality != "derrapar"):
 		excecute("run")
 	
-	elif data.direction_movement.x != 0:
+	elif (data.direction_movement.x != 0 and data.active_quality != "derrapar"):
 		excecute("walk")
-	else:
+	elif (data.active_quality != "derrapar"):
 		excecute("idle")
 
 func execute_last_one_shot_action(last_action : StringName):
@@ -60,11 +61,18 @@ func validator_levantarse() -> bool:
 #Estas dos son especiales porque inician acciones continuas de forma indirecta: Correr y Estar Agachado.
 func shift_on():
 	data.corriendo = true
+	data.derrape_permitido = true
 	
 func shift_off():
 	data.corriendo = false
+	data.derrape_permitido = false
+	buffer_permisos.add_permission("derrapar_permitido")
 	
 func ctrl_on():
+	if(data.derrape_permitido or buffer_permisos.permission_with_life("derrapar_permitido")):
+		buffer.add_action("derrapar")
+		return 
+	
 	buffer.add_action("agacharse")
 	
 func ctrl_off():

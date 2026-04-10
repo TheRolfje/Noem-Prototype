@@ -1,10 +1,12 @@
 #TAREAS PENDIENTES: Aca anoto todo lo que debería de hacer.
 
 #Ultimo hecho:
-#El Sistema integró el buffer.
+#Cualidad Derrapar Beta implementada.
 
 #Por hacer:
-#Agregar Derrapar como prueba de otro tipo de acciones.
+#Pensar cuando limpiar todo lo acumulado del buffer. Seguramente algún método que determine que si pasaste
+#X tiempo en alguna Cualidad manda a limpiar ambos buffers.
+#Cambiar la lógica de "Cualidades de las que no puedo activarme" a "Cualidades que no pueden Interrumpirme".
 
 #Corregir todo el tema de Data y Crear clase Entity.
 

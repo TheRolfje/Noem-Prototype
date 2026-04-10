@@ -24,6 +24,7 @@ var direction_movement:Vector2 = Vector2.RIGHT
 
 var agachado : bool = false
 var corriendo : bool = false
+var derrape_permitido : bool = false
 
 var action_one_use_in_course : bool = false
 

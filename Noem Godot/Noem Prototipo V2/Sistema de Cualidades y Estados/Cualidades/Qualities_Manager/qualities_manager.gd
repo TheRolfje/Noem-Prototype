@@ -164,6 +164,8 @@ func _no_problem_with_active_quality(quality : Quality):
 	if(not quality.cualidades_bloqueadas.has(data_entity.active_quality)):
 		return true
 		
+	print("La Cualidad Activa: " + active_quality.name_of_quality + " No permite el cambio a : " + str(quality.name_of_quality))
+		
 func _no_problem_with_active_locomotional_state(quality : Quality):
 	if(not quality.estados_locomocionales_bloqueados.has(data_entity.active_locomotional_state)):
 		return true

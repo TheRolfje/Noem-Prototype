@@ -5,8 +5,15 @@
 
 [node name="Derrapar_c" type="Node"]
 script = ExtResource("1_pp2i2")
+lomocomotional_changes_affect_me = true
 
 [node name="Derrape_normal" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
 script = ExtResource("2_1iaux")
 quality_owner = NodePath("..")
 default_sub_quality = true
+
+[node name="Timer" type="Timer" parent="Derrape_normal"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Derrape_normal/Timer" to="Derrape_normal" method="_on_timer_timeout"]

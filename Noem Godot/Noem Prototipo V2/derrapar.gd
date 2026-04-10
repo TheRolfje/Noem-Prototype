@@ -1,13 +1,13 @@
 extends Quality
 
 func _ready() -> void:
-	name_of_quality = "Derrapar" #<--- Reemplazar por nombre de la Cualidad
+	name_of_quality = "derrapar" #<--- Reemplazar por nombre de la Cualidad
 	
 	super._ready() #No Borrar ni Modificar orden de llamado.
 
 
 func quality_start_action(): #Acción de inicio de la Cualidad.
-	pass
+	data_entity.agachado = true
 	
 func quality_end_action(): #Cierre de la Cualidad (normalmente para recetearla para un siguiente uso)
 	pass
