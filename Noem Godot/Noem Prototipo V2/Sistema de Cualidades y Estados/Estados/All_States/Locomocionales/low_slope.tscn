@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvicbnhokdak6"]
+
+[ext_resource type="Script" uid="uid://bd4yjm78cfhd" path="res://Sistema de Cualidades y Estados/Estados/All_States/Locomocionales/low_slope.gd" id="1_th44i"]
+
+[node name="low_slope" type="Node"]
+script = ExtResource("1_th44i")

@@ -6,11 +6,13 @@
 
 [node name="Mover_X" type="Node"]
 script = ExtResource("1_ovcdw")
+speed = 100
+lomocomotional_changes_affect_me = true
+default_quality = true
 
-[node name="derecha" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+[node name="derecha" type="Node" parent="."]
 script = ExtResource("2_veotv")
-quality_owner = NodePath("..")
+default_sub_quality = true
 
-[node name="izquierda" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+[node name="izquierda" type="Node" parent="."]
 script = ExtResource("3_yp4jv")
-quality_owner = NodePath("..")

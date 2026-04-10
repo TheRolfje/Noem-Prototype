@@ -1,7 +1,7 @@
 extends State
 
 func _ready() -> void:
-	name_of_state = "none" #<--- Reemplazar por el nombre del estado.
+	name_of_state = State_Names.none_type.none_name #<--- Crear nombre en clase: State_Names, luego reemplazarlo aca."
 	type_of_state = State_Type.NONE  #<--- Reemplazar NONE por el tipo de estado correcto.
 	
 	super._ready() #No borrar ni modificar posición

@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://whdoqlglr0ls"]
+
+[ext_resource type="Script" uid="uid://gt0vxjr3ifby" path="res://Sistema de Cualidades y Estados/Estados/Grupos de Estados/Terrain_Group/terrain_group.gd" id="1_hbye5"]
+[ext_resource type="PackedScene" uid="uid://c3pksk0ieptco" path="res://Sistema de Cualidades y Estados/Estados/All_States/Locomocionales/flat_terrain.tscn" id="2_wpury"]
+[ext_resource type="PackedScene" uid="uid://dvicbnhokdak6" path="res://Sistema de Cualidades y Estados/Estados/All_States/Locomocionales/low_slope.tscn" id="3_6awlk"]
+
+[node name="Terrain_Group" type="Node"]
+script = ExtResource("1_hbye5")
+
+[node name="Flat_Terrain" parent="." instance=ExtResource("2_wpury")]
+
+[node name="low_slope" parent="." instance=ExtResource("3_6awlk")]

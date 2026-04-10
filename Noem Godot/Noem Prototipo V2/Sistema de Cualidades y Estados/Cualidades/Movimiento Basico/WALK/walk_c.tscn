@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dspl4rlg8moqg"]
+[gd_scene load_steps=4 format=3 uid="uid://dspl4rlg8moqg"]
 
-[ext_resource type="Script" uid="uid://ctrevl10u273l" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/WALK/walk_c.gd" id="1_cw03c"]
+[ext_resource type="Script" uid="uid://0e6vwvob3637" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/WALK/walk_c.gd" id="1_cw03c"]
+[ext_resource type="Script" uid="uid://dpr46xcu57hdp" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/WALK/walk_flat.gd" id="2_2japv"]
+[ext_resource type="Script" uid="uid://cx33pro3lc57x" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/WALK/stealth_walk.gd" id="3_v8tnb"]
 
-[node name="Walk_C" type="Node2D"]
+[node name="Walk_C" type="Node"]
 script = ExtResource("1_cw03c")
+normal_velocity_walk = 100
+lomocomotional_changes_affect_me = true
 
-[node name="W_flat_land_SC" type="Node2D" parent="."]
+[node name="flat_walk" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_2japv")
+quality_owner = NodePath("..")
+default_sub_quality = true
 
-[node name="W_sloping_land_SC" type="Node2D" parent="."]
+[node name="stealth_walk" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("3_v8tnb")
+quality_owner = NodePath("..")

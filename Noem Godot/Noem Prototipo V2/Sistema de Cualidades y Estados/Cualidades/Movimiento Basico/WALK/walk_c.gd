@@ -1,11 +1,29 @@
 extends Quality
 
+@export var normal_velocity_walk : int
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	name_of_quality = "walk" #<--- Reemplazar por nombre de la Cualidad
+	
+	super._ready() #No Borrar ni Modificar orden de llamado.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func quality_start_action(): #Acción de inicio de la Cualidad.
 	pass
+	
+func quality_end_action(): #Cierre de la Cualidad (normalmente para recetearla para un siguiente uso)
+	pass
+	
+func choose_sub_quality(): #Logica para elegir que SubCualidad usar.
+	
+	if(data_entity.active_locomotional_state == State_Names.Locomocion.FLAT_TERRAIN or
+	data_entity.active_locomotional_state == State_Names.Locomocion.LOW_SLOPE):
+		if(data_entity.agachado):
+			_start_this_sub_quality("stealth_walk")
+		else:
+			_start_this_sub_quality("flat_walk")
+	
+
+#-------------------------------------------------------
+
+#Métodos propios de la Cualdiad.

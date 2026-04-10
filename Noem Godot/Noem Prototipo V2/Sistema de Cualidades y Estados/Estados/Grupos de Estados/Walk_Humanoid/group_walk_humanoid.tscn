@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxjjl62ncm22l"]
-
-[ext_resource type="Script" uid="uid://cxw51enc3u634" path="res://Sistema de Cualidades y Estados/Estados/Grupos de Estados/Walk_Humanoid/group_walk_humanoid.gd" id="1_dsnm8"]
-
-[node name="Terrain_Group" type="Node"]
-script = ExtResource("1_dsnm8")

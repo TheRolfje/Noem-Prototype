@@ -1,0 +1,108 @@
+[gd_scene load_steps=20 format=3 uid="uid://cma3h617r7qdi"]
+
+[ext_resource type="Script" uid="uid://dpnpw683kmp6o" path="res://Entitys/Entidad de Prueba/entidad_de_prueba.gd" id="1_aeou8"]
+[ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_tk1ej"]
+[ext_resource type="PackedScene" uid="uid://cs0u6lhwp0dgy" path="res://Sistema de Cualidades y Estados/Estados/State_Manager/state_manager.tscn" id="3_1pdrj"]
+[ext_resource type="PackedScene" uid="uid://whdoqlglr0ls" path="res://Sistema de Cualidades y Estados/Estados/Grupos de Estados/Terrain_Group/terrain_group.tscn" id="4_f12ew"]
+[ext_resource type="Script" uid="uid://rwlodtsn8aso" path="res://Entitys/Entidad de Prueba/data.gd" id="5_3cp5c"]
+[ext_resource type="Script" uid="uid://dpdcnijdo4u6x" path="res://Entitys/Entidad de Prueba/entradas_teclado.gd" id="6_7qop5"]
+[ext_resource type="PackedScene" uid="uid://dspl4rlg8moqg" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/WALK/walk_c.tscn" id="6_c2dht"]
+[ext_resource type="PackedScene" uid="uid://cqdsulgracb7i" path="res://Sistema de Cualidades y Estados/Cualidades/Qualities_Manager/qualities_manager.tscn" id="6_mdkb2"]
+[ext_resource type="PackedScene" uid="uid://cidjlgqq67gjn" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Idle/IDLE.tscn" id="7_pp4be"]
+[ext_resource type="PackedScene" uid="uid://cn0ekk1a667g7" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Agacharse/agacharse_c.tscn" id="8_6ug6u"]
+[ext_resource type="PackedScene" uid="uid://b4vi5rfiqshsc" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Run/run_c.tscn" id="9_24q2u"]
+[ext_resource type="PackedScene" uid="uid://c41fcll4u3svl" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Levantarse/levantarse.tscn" id="10_4eesp"]
+[ext_resource type="Script" uid="uid://ccx2pcie4dryk" path="res://Entitys/Entidad de Prueba/control.gd" id="10_c2dht"]
+[ext_resource type="Script" uid="uid://b5m6m7xu8dx5a" path="res://Entitys/Entidad de Prueba/detector_de_estados.gd" id="10_eqvnj"]
+[ext_resource type="PackedScene" uid="uid://bts2e58st4i8k" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Avanado/Derrapar/derrapar_c.tscn" id="11_e2eag"]
+[ext_resource type="Script" uid="uid://bfl533qyhvrl1" path="res://Entitys/Entidad de Prueba/label.gd" id="12_pfjjq"]
+[ext_resource type="PackedScene" uid="uid://krdd8jolyqeg" path="res://Buffer_Actions/buffer_actions.tscn" id="17_leldm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbviv"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_falxq"]
+a = Vector2(0, -18)
+b = Vector2(0, 20)
+
+[node name="Entidad_de_Prueba" type="CharacterBody2D" node_paths=PackedStringArray("data", "state_manager", "qualities_manager")]
+script = ExtResource("1_aeou8")
+data = NodePath("Data")
+state_manager = NodePath("State_Manager")
+qualities_manager = NodePath("Qualities_Manager")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15625, 0.148438)
+texture = ExtResource("2_tk1ej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wbviv")
+
+[node name="State_Manager" parent="." node_paths=PackedStringArray("entity", "data_entity", "qualities_manager") instance=ExtResource("3_1pdrj")]
+entity = NodePath("..")
+data_entity = NodePath("../Data")
+qualities_manager = NodePath("../Qualities_Manager")
+
+[node name="Terrain_Group" parent="State_Manager" node_paths=PackedStringArray("state_manager") instance=ExtResource("4_f12ew")]
+state_manager = NodePath("..")
+
+[node name="Qualities_Manager" parent="." node_paths=PackedStringArray("entity", "data_entity") instance=ExtResource("6_mdkb2")]
+entity = NodePath("..")
+data_entity = NodePath("../Data")
+check_if_the_quality_is_valid = true
+
+[node name="Walk_C" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("6_c2dht")]
+qualities_manager = NodePath("..")
+
+[node name="Idle" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("7_pp4be")]
+qualities_manager = NodePath("..")
+
+[node name="Agacharse_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("8_6ug6u")]
+qualities_manager = NodePath("..")
+
+[node name="Run_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("9_24q2u")]
+qualities_manager = NodePath("..")
+
+[node name="Levantarse_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("10_4eesp")]
+qualities_manager = NodePath("..")
+
+[node name="Derrapar_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("11_e2eag")]
+qualities_manager = NodePath("..")
+
+[node name="Data" type="Node" parent="."]
+script = ExtResource("5_3cp5c")
+
+[node name="Entradas Teclado" type="Node" parent="." node_paths=PackedStringArray("data")]
+script = ExtResource("6_7qop5")
+data = NodePath("../Data")
+
+[node name="Detector_de_Estado_Locomocional" type="Node2D" parent="." node_paths=PackedStringArray("state_manager")]
+script = ExtResource("10_eqvnj")
+state_manager = NodePath("../State_Manager")
+
+[node name="Area2D" type="Area2D" parent="Detector_de_Estado_Locomocional"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector_de_Estado_Locomocional/Area2D"]
+shape = SubResource("SegmentShape2D_falxq")
+
+[node name="Control" type="Node" parent="." node_paths=PackedStringArray("data", "buffer")]
+script = ExtResource("10_c2dht")
+data = NodePath("../Data")
+buffer = NodePath("../buffer_actions")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -59.0
+offset_right = 33.0
+offset_bottom = -36.0
+script = ExtResource("12_pfjjq")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -11.0
+
+[node name="buffer_actions" parent="." instance=ExtResource("17_leldm")]
+buffer_time = 500
+
+[connection signal="body_entered" from="Detector_de_Estado_Locomocional/Area2D" to="Detector_de_Estado_Locomocional" method="_on_area_2d_body_entered"]

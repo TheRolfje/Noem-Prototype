@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cidjlgqq67gjn"]
+
+[ext_resource type="Script" uid="uid://bc0rha5sr4l86" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Idle/idle.gd" id="1_ilxl2"]
+[ext_resource type="Script" uid="uid://dgsil1ubrdkqm" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Idle/stealth_idle.gd" id="2_niw6l"]
+[ext_resource type="Script" uid="uid://b8rnv1hwwhq31" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Idle/default_idle.gd" id="3_cysg6"]
+
+[node name="Idle_c" type="Node"]
+script = ExtResource("1_ilxl2")
+lomocomotional_changes_affect_me = true
+default_quality = true
+
+[node name="stealth_idle" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_niw6l")
+quality_owner = NodePath("..")
+
+[node name="default_idle" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("3_cysg6")
+quality_owner = NodePath("..")
+default_sub_quality = true

@@ -4,7 +4,10 @@ class_name Sub_Quality
 
 @export var quality_owner : Quality
 
-var entity : CharacterBody2D
+@export var default_sub_quality : bool = false #Si esto es True, si choose_sub_quality no elije
+											#ninguna sub cualidad, entonces se activa esta sub cualidad.
+
+var entity : Entity
 var data : data_humanoid
 var animations : AnimationPlayer
 
@@ -25,6 +28,12 @@ func action_of_end():
 
 func _ready() -> void:
 	add_subquality_to_the_quality_owner()
+	
+	if(default_sub_quality):
+		assing_this_subquality_ass_default()
+	
+func assing_this_subquality_ass_default():
+	quality_owner.default_sub_quality = self.name_of_subquality
 
 #IMPORTANTE: Este método se tiene que llamar en el ready, DESPUÉS DE ASIGNAR EL NOMBRE A LA SUBCUALIDAD.
 func add_subquality_to_the_quality_owner():

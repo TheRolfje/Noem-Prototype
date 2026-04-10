@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4vi5rfiqshsc"]
+
+[ext_resource type="Script" uid="uid://bj2gairrfgl58" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Run/run.gd" id="1_f1uyp"]
+[ext_resource type="Script" uid="uid://b3mdm5xcf71g1" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Run/run_combat.gd" id="2_odyuq"]
+[ext_resource type="Script" uid="uid://b6gmou6x1ejl" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Run/trotar.gd" id="3_odyuq"]
+
+[node name="Run_c" type="Node"]
+script = ExtResource("1_f1uyp")
+lomocomotional_changes_affect_me = true
+emotional_changes_affect_me = true
+
+[node name="Run_Combat" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_odyuq")
+quality_owner = NodePath("..")
+
+[node name="trotar" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("3_odyuq")
+quality_owner = NodePath("..")
+default_sub_quality = true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://du3dg4aqro84w"]
+
+[ext_resource type="PackedScene" uid="uid://cma3h617r7qdi" path="res://Elementos_de_Prueba/entidad_de_prueba.tscn" id="1_amc4x"]
+[ext_resource type="PackedScene" uid="uid://dk3nl5i1v7tvk" path="res://Elementos_de_Prueba/activador_de_estado.tscn" id="2_d2lhg"]
+
+[sub_resource type="GDScript" id="GDScript_hlh48"]
+script/source = "extends Node2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amc4x"]
+size = Vector2(224.5, 6)
+
+[node name="Nivel de Prueba" type="Node2D"]
+script = SubResource("GDScript_hlh48")
+
+[node name="Entidad_de_Prueba" parent="." instance=ExtResource("1_amc4x")]
+position = Vector2(-3, 10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3.25, 27)
+shape = SubResource("RectangleShape2D_amc4x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, -10)
+
+[node name="Activador_de_Estado" parent="." instance=ExtResource("2_d2lhg")]
+position = Vector2(-79, -8)
+tipo = &"locomotional"
+nombre = &"low_slope"
+
+[node name="Activador_de_Estado2" parent="." instance=ExtResource("2_d2lhg")]
+position = Vector2(63, -7)
+tipo = &"locomotional"
+nombre = &"flat_terrain"

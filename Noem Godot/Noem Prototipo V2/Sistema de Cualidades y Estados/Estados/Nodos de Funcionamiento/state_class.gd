@@ -6,7 +6,10 @@ var state_group : states_group
 
 var name_of_state : StringName = &"none"#la clase "state_names" guarda todos los nombre de los estados como StringName.
 var type_of_state : StringName = &"none"#La clase State_Type guarda los nombres de los tipos de estado.
-	
+
+var entity : Entity
+var data : data_humanoid
+
 func _ready() -> void:
 	state_group = get_parent()
 	

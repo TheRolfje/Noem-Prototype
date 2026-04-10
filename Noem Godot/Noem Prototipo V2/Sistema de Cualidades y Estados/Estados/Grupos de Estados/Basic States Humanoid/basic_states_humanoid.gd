@@ -1,3 +1,0 @@
-extends states_group
-
-class_name Basic_States_Humanoid

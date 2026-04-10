@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c41fcll4u3svl"]
+
+[ext_resource type="Script" uid="uid://dekccbea4vlqq" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Levantarse/levantarse_c.gd" id="1_hs75v"]
+[ext_resource type="Script" uid="uid://ciy30c056a88o" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Levantarse/levantarse.gd" id="2_6dgmr"]
+
+[node name="Levantarse_c" type="Node"]
+script = ExtResource("1_hs75v")
+lomocomotional_changes_affect_me = true
+one_use_quality = true
+
+[node name="levantarse" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_6dgmr")
+quality_owner = NodePath("..")
+default_sub_quality = true

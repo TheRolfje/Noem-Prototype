@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bts2e58st4i8k"]
+
+[ext_resource type="Script" uid="uid://cr1nfbb1gq70j" path="res://derrapar.gd" id="1_pp2i2"]
+[ext_resource type="Script" uid="uid://c874pg7uetk4q" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Avanado/Derrapar/derrape_normal.gd" id="2_1iaux"]
+
+[node name="Derrapar_c" type="Node"]
+script = ExtResource("1_pp2i2")
+
+[node name="Derrape_normal" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_1iaux")
+quality_owner = NodePath("..")
+default_sub_quality = true

@@ -22,7 +22,7 @@ extends Node
 
 class_name  State_Manager
 
-@export var entity : CharacterBody2D
+@export var entity : Entity
 @export var data_entity : data_humanoid
 @export var qualities_manager : Qualities_Manager
 
@@ -32,24 +32,20 @@ var _all_states_in_the_manager : Dictionary[StringName, Dictionary] = {
 	State_Type.LOCOMOTIONAL : {},
 	State_Type.EMOTIONAL : {},
 	State_Type.PHYSICAL : {},
-	State_Type.PROTECTION : {}
+	State_Type.PROTECTION : {},
+	State_Type.STEALTH : {}
 }
 
 #Guarda los estados activos. Como solo hay un estado activo por tipo, el
 #tipo es la clave del diccionario.
 var _active_states : Dictionary[StringName, State] = {
-	State_Type.LOCOMOTIONAL : null,
-	State_Type.EMOTIONAL : null,
-	State_Type.PHYSICAL : null,
-	State_Type.PROTECTION : null
+	State_Type.LOCOMOTIONAL : null, #Default depende del terreno
+	State_Type.EMOTIONAL : null, #Default Neutral
+	State_Type.PHYSICAL : null, #Default Sano
+	State_Type.PROTECTION : null, #Default Depende del terreno
+	State_Type.STEALTH : null #Default Depende del terreno
 }
 
-var _label_old_states : Dictionary[StringName, StringName] = {
-	State_Type.LOCOMOTIONAL : &"",
-	State_Type.EMOTIONAL : &"",
-	State_Type.PHYSICAL : &"",
-	State_Type.PROTECTION : &""
-}
 #Estados que terminaron su "action_of_end"
 #Estan en True por defecto porque originalmente no hay estados que cerrar,
 #ya después cuando empiezan a llegar nuevos estados esto siempre queda en
@@ -58,14 +54,16 @@ var _old_states_finished : Dictionary[StringName, bool] = {
 	State_Type.LOCOMOTIONAL : true,
 	State_Type.EMOTIONAL : true,
 	State_Type.PHYSICAL : true,
-	State_Type.PROTECTION : true
+	State_Type.PROTECTION : true,
+	State_Type.STEALTH : false
 }
 #Estados que terminaron su "action_of_start"
 var _new_states_initialized : Dictionary[StringName, bool] = {
 	State_Type.LOCOMOTIONAL : false,
 	State_Type.EMOTIONAL : false,
 	State_Type.PHYSICAL : false,
-	State_Type.PROTECTION : false
+	State_Type.PROTECTION : false,
+	State_Type.STEALTH : false
 }
 #Ambos se guardan porque si o si todos los estados deben haber terminado sus acciones
 #de inicio y fin para que las acciones en bucle de los estados puedan empezar a ejecutarse.
@@ -75,13 +73,20 @@ var _states_ready_to_execute : Dictionary[StringName, bool] = {
 	State_Type.LOCOMOTIONAL : false,
 	State_Type.EMOTIONAL : false,
 	State_Type.PHYSICAL : false,
-	State_Type.PROTECTION : false
+	State_Type.PROTECTION : false,
+	State_Type.STEALTH : false
 }
 	
 func add_state_to_manager(new_state : State):
 	var dictionary_of_state : Dictionary = _all_states_in_the_manager[new_state.type_of_state]
 	
 	dictionary_of_state[new_state.name_of_state] = new_state
+	
+	compartir_datos_con_el_nuevo_estado(new_state)
+	
+func compartir_datos_con_el_nuevo_estado(new_state : State):
+	new_state.entity = entity
+	new_state.data = data_entity
 
 #Esta función se llama desde fuera con una señal.
 func change_active_state(name_of_state : StringName, type : StringName):
@@ -92,10 +97,6 @@ func change_active_state(name_of_state : StringName, type : StringName):
 		#Si no había un estado activo de ese tipo, significa que este que llega
 		#es el primero, por ende no hay ningun "estado que cerrar".
 		await close_old_state(type)
-		
-		_label_old_states[type] = _active_states[type].name_of_state
-	else:
-		_label_old_states[type] = name_of_state
 		
 	assing_new_active_state(name_of_state, type)
 	
@@ -128,7 +129,8 @@ func action_of_active_states(): #El physics procces de la entidad ejecuta esto e
 	verify_and_excute_state_of_type(State_Type.PROTECTION)
 	verify_and_excute_state_of_type(State_Type.PHYSICAL)
 	verify_and_excute_state_of_type(State_Type.EMOTIONAL)
-		
+	verify_and_excute_state_of_type(State_Type.STEALTH)
+	
 func verify_and_excute_state_of_type(type):
 	if (_states_ready_to_execute[type]): 
 		_active_states[type].action()
