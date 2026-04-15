@@ -14,6 +14,8 @@ func action_of_start(): #Acción de Inicio de la SubCualidad
 func action(): #Acción de la SubCualidad, se ejecuta en bucle.
 	data.agachado = true
 	
+	action_finished()
+	
 func action_of_end(): #Acción de cierre de la SubCualidad.
 	pass
 

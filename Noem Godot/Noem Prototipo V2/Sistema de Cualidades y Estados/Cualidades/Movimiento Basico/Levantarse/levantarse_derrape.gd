@@ -9,7 +9,9 @@ func action_of_start(): #Acción de Inicio de la SubCualidad
 	print("Levantando de Derrape\n")
 
 func action(): #Acción de la SubCualidad, se ejecuta en bucle.
+	data.agachado = false
 	entity.move_entity(0)
+	action_finished()
 	
 func action_of_end(): #Acción de cierre de la SubCualidad.
 	pass

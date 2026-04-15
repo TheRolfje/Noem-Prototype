@@ -1,27 +1,29 @@
 extends Sub_Quality
 
-var derrape_activo : bool = false
-
 @onready var timer : Timer = $Timer
 
+var accion_iniciada : bool = false
+
 func _ready() -> void:
-	name_of_subquality = "derrape_normal" #<--- Reemplazar por Nombre de la SubCualidad.
+	name_of_subquality = "flat_terrain_transition" #<--- Reemplazar por Nombre de la SubCualidad.
 	
 	super._ready() #No Borrar ni modificar orden de llamado.
 	
 func action_of_start(): #Acción de Inicio de la SubCualidad
-	#print("Iniciando Derrape\n")
-	derrape_activo = true
+	data.direction_look *= -1
+	entity.move_entity(0)
 	timer.start()
 
 func action(): #Acción de la SubCualidad, se ejecuta en bucle.
-	entity.move_entity(400)
-	
-	if(not derrape_activo):
-		action_finished()
+
+	#print("Aplicando Transicion\n")
+	await timer.timeout
+	#print("Termine la Transicion\n")
+	action_finished()
+		
 	
 func action_of_end(): #Acción de cierre de la SubCualidad.
-	timer.stop()
+	accion_iniciada = false
 
 #--------------------------------------------------------------
 
@@ -29,4 +31,5 @@ func action_of_end(): #Acción de cierre de la SubCualidad.
 
 
 func _on_timer_timeout() -> void:
-	derrape_activo = false
+	pass
+	#print("Timer Termino\n")

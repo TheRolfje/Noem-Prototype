@@ -33,13 +33,44 @@ var datos_compartidos_con_las_subcualidades : bool = false
 #última asignada como tal (creo, xd)
 #-------------------------------------------------------
 
-#Si está en True, esta Cualidad se entiende como de UN USO y no de USO CONTINUO.
+#Por defecto todas las cualidades interrumpen la ejecución de cualidades constantes como Idle, Walk, Run, etc.
+#para que se ignoren mientras una cualidad normal se está ejecutando.
+#Si esto esta en False, ya no va a interrumpir eso, y por ende la Cualidad puede ser interrumpida por las
+#Cualidades antes mencionadas. 
+#Si es True, en el Action of Start se va a levantar la bandera de Action_in_course.
 
-@export var one_use_quality : bool = false
+@export var interrumpir_ejecucion_constante: bool = true
 
-#Las Cualidades de Un Uso por defecto modifican la bandera que indica si hay o no una Cualidad de
-#Un Uso en curso en la data.
-#-------------------------------------------------------
+#Además, si es true, cuando una Cualidad Termina su acción, debe de levantar manualmente la bandera:
+#Action_Finish, que indica que la acción termino, permitiendo que la bandera de Action_in_Course se baje
+#y permitiendo de nuevo que la "ejecución constante" pueda activar una nueva Cualidad.
+#Si la Bandera Action_Finished nunca se levanta, la única forma, en teoría, de terminar una Cualidad es cuando
+#otra Cualidad manual se quiera activar, pero no se cambiaria automaticamente por una de "ejecución constante".
+
+var action_finished : bool = false #Se tiene que levantar a través del metodo "action_finished()" de la
+									#clase Sub_Quality.
+#------------------------------------------------------
+
+#Esta variable sirve para indicar a la qualitis manager que permita la ejecución del método action
+#SOLO una vez, y luego espere a que termine. Sirve para cualidades que no tienen ninguna acción continua
+#y solo ejecutan algo y esperan a que termine. Cualidades con cualquier tipo de movimiento o acción
+#que dependa de una ejecución continua no deberían levantar esta flag.
+
+@export var one_shot_quality : bool = false
+
+var _one_shot_action_started : bool = false #Si "one_shot" esta levantada, esta bandera se usa para indicar que la
+#acción ya se inicio y que no se debe iniciar de nuevo. Se pone en false por si misma de nuevo al final de la
+#acción.
+
+#------------------------------------------------------
+
+#Si es True, la Cualidad podrá ser interrumpida SOLAMENTE por las cualidades que aparecen en su lista de
+#Cualidades Bloqueadas. Si es False (por defecto), la Cualidad puede ser interrumpida por TODAS las
+#Cualidades, salvo por las Cualidades Bloqueadas.
+
+@export var Invertir_Permisos_de_Interrupcion : bool = false
+
+#----------------------------------------------------------
 
 #Funcionamiento de las SubCualidades:
 var _all_sub_qualities_in_this_quality : Dictionary[StringName, Sub_Quality]
@@ -87,14 +118,23 @@ func _ready() -> void:
 	
 	if(default_quality):
 		assing_this_quality_ass_default_quality()
+		
+	if(default_sub_quality == null):
+		push_error("NO SE ASIGNO NINGUNA SUBCUALIDAD POR DEFECTO PARA LA CUALIDAD: " + name_of_quality + "\n")
 
 
 func add_this_quality_to_the_manager(): #Se llama en el Ready de toda Cualidad.
 	qualities_manager.add_new_quality_to_dictionary(name_of_quality, self)
 
 func initialize_quality(): #La SM inicia la Cualidad con este método.
-	if one_use_quality:
-		data_entity.action_one_use_in_course = true
+	if interrumpir_ejecucion_constante:
+		action_finished = false
+		data_entity.block_detection_of_constant_qualities = true
+	else:
+		#Esto es un seguro. Si "interrumpir ejecución constante" es false, la cualidad JAMAS debería ser
+		#one shot. Si alguien marca one shot, pero desmarca ejecución constante, esto lo corrije antes de
+		#de ejecutar la acción de la cualidad.
+		one_shot_quality = false
 	
 	await quality_start_action() #Primero se ejecuta la acción de inicio de la Cualidad.
 	#print("Acción de inicio de Cualidad: " + name_of_quality + " terminada\n")
@@ -124,7 +164,7 @@ func init_choose_sub_quality():
 	#esto activa la SubCualidad marcada como Por Defecto.
 	if(new_sub_quality_initialized == false):
 		push_error("NO SE ELIGIO NINGUNA SUBCUALIDAD PARA LA CUALIDAD: " + name_of_quality + "\n")
-		#_start_this_sub_quality(default_sub_quality)
+		_start_this_sub_quality(default_sub_quality)
 
 #Cuando se decide que SubCualidad activar (Dentro de "choose_sub_quality()"),
 #se inicia esa SubCualidad con este método.
@@ -148,9 +188,11 @@ func _start_this_sub_quality(new_sub_quality: StringName):
 func _sub_quality_action(): #La SM ejecuta esto en bucle.
 	if(datos_compartidos_con_las_subcualidades):
 		if(new_sub_quality_initialized and old_sub_quality_finished):
-			active_sub_quality.action()
+			await active_sub_quality.action()
 		#else:
 			#print("Intentando Ejecutar acción de la SubCualidad activa: " + active_sub_quality.name_of_subquality + "\n")
+
+
 func _action_of_end_of_sub_quality():
 	
 	#print("Iniciando acción de fin de SubCualidad: " + active_sub_quality.name_of_subquality + "\n")

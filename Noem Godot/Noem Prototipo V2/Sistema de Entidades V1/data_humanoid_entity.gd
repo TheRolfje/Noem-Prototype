@@ -26,7 +26,8 @@ var agachado : bool = false
 var corriendo : bool = false
 var derrape_permitido : bool = false
 
-var action_one_use_in_course : bool = false
+var block_detection_of_constant_qualities : bool = false
+#Si esto está en True, cualidades como Idle, Run o Walk se ignoran. 
 
 #------------------------------------------------------
 

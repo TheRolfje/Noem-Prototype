@@ -1,12 +1,16 @@
 #TAREAS PENDIENTES: Aca anoto todo lo que debería de hacer.
 
 #Ultimo hecho:
-#Cualidad Derrapar Beta implementada.
+#Sistema de activacion de Cualidades de Ejecución Continua y de One Shot terminada.
+#Ahora ya no existen más las acciones de One Shot puro. 
 
 #Por hacer:
-#Pensar cuando limpiar todo lo acumulado del buffer. Seguramente algún método que determine que si pasaste
-#X tiempo en alguna Cualidad manda a limpiar ambos buffers.
-#Cambiar la lógica de "Cualidades de las que no puedo activarme" a "Cualidades que no pueden Interrumpirme".
+#Agregar el concepto de One Shot de nuevo, pero distinto: Marcar una tilde de One Shot indica a la
+#action of subquality que solo se ejecute una vez y ya. Sirve para Cualidades que no tienen ninguna acción
+#continua más que solo ejecutar una animación, como la cualidad de transition_of_direction.
+#Ahora, si la Cualidad es One Shot, pero requiere uso continuo, no se marca esta casilla.
+
+#Agregar un método que inicie animaciones y chequee si ya se iniciaron para no volverlas a iniciar.
 
 #Corregir todo el tema de Data y Crear clase Entity.
 
@@ -25,3 +29,12 @@
 #la Cualidad en ese nodo, asume que no tiene ningún bloqueo y se cambia. Si la encuentra, verifica que
 #los nombres de los estados/cualidades activos no sean los que la nueva Cualidad tiene bloqueados.
 #En base a esto determina si cambiar o no de Cualidad Activa. 
+
+#Posible problema con estados activos: Si Noem está "Tranquilo" y algo lo atacase de golpe, no reaccionaría
+#como se espera, o al menos tengo el miedo de eso. El punto: Intentar que el juego no mezcle "atmosferas de
+#juego". Si estás tranquilo, estás tranquilo, si entras en una zona donde algo podría llegar a atacarte,
+#Noem se pone tenso. Esto no es un juego de mundo abierto donde cualquier cosa puede pasar, JAMAS debería
+#darse una situación en donde Noem y Malba esten totalmente tranquilos y de la nada algo los ataca, al menos
+#no en "tiempo de juego", si hay una escena de por medio está bien. 
+
+#Crear una Documentación real que Godot pueda mostrar externamente.

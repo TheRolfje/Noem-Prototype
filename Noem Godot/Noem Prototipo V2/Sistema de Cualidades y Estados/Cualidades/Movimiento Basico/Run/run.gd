@@ -4,8 +4,6 @@ func _ready() -> void:
 	name_of_quality = "run" #<--- Reemplazar por nombre de la Cualidad
 	
 	super._ready() #No Borrar ni Modificar orden de llamado.
-	
-	cualidades_bloqueadas.append("derrapar")
 
 func quality_start_action(): #Acción de inicio de la Cualidad.
 	pass

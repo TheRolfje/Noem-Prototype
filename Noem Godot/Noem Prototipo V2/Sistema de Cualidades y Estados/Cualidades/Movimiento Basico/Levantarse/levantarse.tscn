@@ -7,7 +7,6 @@
 [node name="Levantarse_c" type="Node"]
 script = ExtResource("1_hs75v")
 lomocomotional_changes_affect_me = true
-one_use_quality = true
 
 [node name="levantarse" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
 script = ExtResource("2_6dgmr")

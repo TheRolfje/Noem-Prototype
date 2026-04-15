@@ -21,7 +21,8 @@ func action_of_start():
 	pass
 	
 func action():
-	pass
+	#Si action no hace nada, por defecto se llama a action_finished
+	action_finished()
 	
 func action_of_end():
 	pass
@@ -43,3 +44,6 @@ func add_subquality_to_the_quality_owner():
 #a la cualidad por defecto. Es para SubCualidades de un solo uso, como golpear.
 func return_to_quality_default():
 	quality_owner.qualities_manager.execute_default_quality()
+	
+func action_finished():
+	quality_owner.action_finished = true

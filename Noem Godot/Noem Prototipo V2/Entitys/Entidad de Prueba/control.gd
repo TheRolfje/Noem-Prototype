@@ -21,19 +21,25 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if data.action_one_use_in_course == false: #Las acciones continuas se pausan hasta que las de Un Uso terminen.
+	#print(data.action_one_use_in_course)
+	if data.block_detection_of_constant_qualities == false: #Las acciones continuas se pausan hasta que las de Un Uso terminen.
 		excecute_continuos_quality()
 		
 	execute_last_one_shot_action(buffer.last_action)
 
 
 func excecute_continuos_quality(): #Acciones continuas. Dependen de cuando quiere la Entidad que duren.
-	if(data.corriendo and data.direction_movement.x != 0 and data.active_quality != "derrapar"):
+	
+	if(data.direction_look == data.direction_movement * (-1)):
+		excecute("transition_of_direction")
+		return
+	
+	if(data.corriendo and data.direction_movement.x != 0): #and data.active_quality != "derrapar"):
 		excecute("run")
 	
-	elif (data.direction_movement.x != 0 and data.active_quality != "derrapar"):
+	elif (data.direction_movement.x != 0): #and data.active_quality != "derrapar"):
 		excecute("walk")
-	elif (data.active_quality != "derrapar"):
+	else: #(data.active_quality != "derrapar"):
 		excecute("idle")
 
 func execute_last_one_shot_action(last_action : StringName):

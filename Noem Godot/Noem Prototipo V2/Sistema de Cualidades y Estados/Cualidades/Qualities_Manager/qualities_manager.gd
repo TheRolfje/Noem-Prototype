@@ -39,13 +39,14 @@ func change_active_quality(name_of_quality:StringName) -> bool:
 	#Recibe una señal desde fuera con el nombre de la cualidad a la que se quiere cambiar.
 	if all_qualities_in_the_manager.has(name_of_quality):
 		if(active_quality == null or name_of_quality != active_quality.name_of_quality):
-			print("Solicitud de cambio a Cualidad: " + name_of_quality + "\n")
-			if(check_if_the_quality_is_valid):
+			#print("Solicitud de cambio a Cualidad: " + name_of_quality + "\n")
+			if(check_if_the_quality_is_valid and active_quality != null):
 				if(verificar_si_la_cualidad_puede_activarse(name_of_quality)):
 					_switch_quality(name_of_quality)
-					print("Cualidad: " + name_of_quality + " cambiada con exito\n")
+					#print("Cualidad: " + name_of_quality + " cambiada con exito\n")
 					return true
 				else:
+					#print("La Cualidad Activa: " + active_quality.name_of_quality + " No permite el cambio a : " + name_of_quality)
 					return false
 			else:
 				_switch_quality(name_of_quality)
@@ -116,19 +117,32 @@ func add_new_quality_to_dictionary(name_new_quality:StringName, new_quality:Qual
 		push_error("LA CUALIDAD NO TIENE NOMBRE, SE LE DEBE PONER NOMBRE ANTES DE LLAMAR A ESTE METODO.")
 	
 func action_of_active_SUB_quality(): #El physics process de la Entidad ejecuta esto en bucle.
+	
 	if(old_active_quality_finished and new_quality_initialized and active_quality.new_sub_quality_initialized):
-		active_quality._sub_quality_action()
+		if(active_quality._one_shot_action_started == false):
+			if(active_quality.one_shot_quality):
+				active_quality._one_shot_action_started = true
+				
+			await active_quality._sub_quality_action()
 		
-		if(active_quality.one_use_quality):
-			action_end_of_active_quality()
+			
+	if(active_quality.interrumpir_ejecucion_constante and active_quality.action_finished):
+		#Cuando una Cualidad termina, permite de nuevo la lectura de Cualidades de "ejecución constante"
+		data_entity.block_detection_of_constant_qualities = false
+		
+		if(active_quality.one_shot_quality):
+			active_quality._one_shot_action_started = false
+			
+		#(Existe la posibilidad que el contenido de este If se ejecute dos veces, una vez cuando el await
+		#retorne, y otra vez en la propia ejecución constante del physics_process. No debería traer problemas
+		#ya que solo pones dos flags en false, pero... vale la pena avisar.
 	
 func action_end_of_active_quality():
+	#Este método se ejecuta SOLAMENTE cuando una NUEVA CUALIDAD se va a activar. Una Cualidad activa no
+	#debería ejecutar nunca su propio método action_of_end. 
 	old_active_quality_finished = false
 	await active_quality.finish_quality()
 	old_active_quality_finished = true
-	
-	if (active_quality.one_use_quality):
-		data_entity.action_one_use_in_course = false
 	
 	new_quality_initialized = false #Como la Cualidad Activa termino, no hay ninguna activa ni
 	#inicializandose, por ende se debe esperar a que "action start" marque una Nueva Cualidad como
@@ -143,9 +157,9 @@ func assign_this_quality_ass_default_quality(quality:Quality):
 
 func verificar_si_la_cualidad_puede_activarse(name_of_quality : StringName):
 	#No se me ocurrió otro nombre. La Cualidad que quiere activarse tiene una lista
-	#de Estados y Cualidades bloqueados, desde los cuales no se puede activar.
-	#Si los estados activos o la cualidad activa no aparecen en esas listas,
-	#entonces la nueva Cualidad no tiene problema y puede cambiarse.
+	#de Estados bloqueados, desde los cuales no se puede activar.
+	#Ademas, la Cualidad Activa tiene una Lista de Cualidades que No pueden Interrumpirla.
+	#Si la Cualidad que se quiere activar no está en dicha Cualidad, entonces puede activarse.
 
 	var quality : Quality = all_qualities_in_the_manager[name_of_quality]
 	
@@ -161,10 +175,10 @@ func verificar_si_la_cualidad_puede_activarse(name_of_quality : StringName):
 		return false
 	
 func _no_problem_with_active_quality(quality : Quality):
-	if(not quality.cualidades_bloqueadas.has(data_entity.active_quality)):
-		return true
-		
-	print("La Cualidad Activa: " + active_quality.name_of_quality + " No permite el cambio a : " + str(quality.name_of_quality))
+	if(active_quality.Invertir_Permisos_de_Interrupcion == false):
+		return (not active_quality.cualidades_bloqueadas.has(quality.name_of_quality))
+	else:
+		return (active_quality.cualidades_bloqueadas.has(quality.name_of_quality))
 		
 func _no_problem_with_active_locomotional_state(quality : Quality):
 	if(not quality.estados_locomocionales_bloqueados.has(data_entity.active_locomotional_state)):

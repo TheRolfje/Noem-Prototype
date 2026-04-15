@@ -9,7 +9,7 @@ func action_of_start(): #Acción de Inicio de la SubCualidad
 	pass
 
 func action(): #Acción de la SubCualidad, se ejecuta en bucle.
-	pass
+	action_finished()
 	
 func action_of_end(): #Acción de cierre de la SubCualidad.
 	pass

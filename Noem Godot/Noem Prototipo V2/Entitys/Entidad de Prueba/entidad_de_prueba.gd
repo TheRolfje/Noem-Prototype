@@ -19,5 +19,5 @@ func _physics_process(delta: float) -> void:
 	state_manager.action_of_active_states()
 	qualities_manager.action_of_active_SUB_quality()
 	$Label.text = data.active_sub_quality
-	$Label2.text = str(data.action_one_use_in_course)
+	$Label2.text = str(data.block_detection_of_constant_qualities)
 	move_and_slide()

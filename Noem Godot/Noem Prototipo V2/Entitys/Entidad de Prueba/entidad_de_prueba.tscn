@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cma3h617r7qdi"]
+[gd_scene load_steps=22 format=3 uid="uid://cma3h617r7qdi"]
 
 [ext_resource type="Script" uid="uid://dpnpw683kmp6o" path="res://Entitys/Entidad de Prueba/entidad_de_prueba.gd" id="1_aeou8"]
 [ext_resource type="Texture2D" uid="uid://ch2soiv2jms4d" path="res://icon.svg" id="2_tk1ej"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://ccx2pcie4dryk" path="res://Entitys/Entidad de Prueba/control.gd" id="10_c2dht"]
 [ext_resource type="Script" uid="uid://b5m6m7xu8dx5a" path="res://Entitys/Entidad de Prueba/detector_de_estados.gd" id="10_eqvnj"]
 [ext_resource type="PackedScene" uid="uid://bts2e58st4i8k" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Avanado/Derrapar/derrapar_c.tscn" id="11_e2eag"]
+[ext_resource type="PackedScene" uid="uid://cise4c85e0w3n" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Transition_of_Direction/transition_of_direction.tscn" id="12_im6w8"]
 [ext_resource type="Script" uid="uid://bfl533qyhvrl1" path="res://Entitys/Entidad de Prueba/label.gd" id="12_pfjjq"]
 [ext_resource type="PackedScene" uid="uid://krdd8jolyqeg" path="res://Buffer_Actions/buffer_actions.tscn" id="17_leldm"]
 [ext_resource type="PackedScene" uid="uid://dwjmei0rjh8ld" path="res://buffer_coyote_time/buffer_coyote_time.tscn" id="18_w7mlo"]
@@ -53,20 +54,26 @@ check_if_the_quality_is_valid = true
 
 [node name="Walk_C" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("6_c2dht")]
 qualities_manager = NodePath("..")
+interrumpir_ejecucion_constante = false
 
 [node name="Idle" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("7_pp4be")]
 qualities_manager = NodePath("..")
+interrumpir_ejecucion_constante = false
 
 [node name="Agacharse_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("8_6ug6u")]
 qualities_manager = NodePath("..")
 
 [node name="Run_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("9_24q2u")]
 qualities_manager = NodePath("..")
+interrumpir_ejecucion_constante = false
 
 [node name="Levantarse_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("10_4eesp")]
 qualities_manager = NodePath("..")
 
 [node name="Derrapar_c" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("11_e2eag")]
+qualities_manager = NodePath("..")
+
+[node name="Transition_of_Direction" parent="Qualities_Manager" node_paths=PackedStringArray("qualities_manager") instance=ExtResource("12_im6w8")]
 qualities_manager = NodePath("..")
 
 [node name="Data" type="Node" parent="."]

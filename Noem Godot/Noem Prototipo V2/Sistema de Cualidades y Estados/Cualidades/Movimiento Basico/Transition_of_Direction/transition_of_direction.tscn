@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cise4c85e0w3n"]
+
+[ext_resource type="Script" uid="uid://bfwd2qmn86wo3" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Transition_of_Direction/transition_of_direction.gd" id="1_3sl7r"]
+[ext_resource type="Script" uid="uid://bbyhm1leicep1" path="res://Sistema de Cualidades y Estados/Cualidades/Movimiento Basico/Transition_of_Direction/flat_terrain_transition.gd" id="2_7d4wg"]
+
+[node name="Transition_of_Direction" type="Node"]
+script = ExtResource("1_3sl7r")
+lomocomotional_changes_affect_me = true
+one_shot_quality = true
+
+[node name="flat_terrain_transition" type="Node" parent="." node_paths=PackedStringArray("quality_owner")]
+script = ExtResource("2_7d4wg")
+quality_owner = NodePath("..")
+default_sub_quality = true
+
+[node name="Timer" type="Timer" parent="flat_terrain_transition"]
+wait_time = 0.25
+
+[connection signal="timeout" from="flat_terrain_transition/Timer" to="flat_terrain_transition" method="_on_timer_timeout"]
